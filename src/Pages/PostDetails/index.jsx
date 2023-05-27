@@ -3,7 +3,7 @@ import { useParams } from 'react-router-dom';
 import firebase from 'firebase/compat/app';
 import 'firebase/compat/database';
 
-import cls from './PostDetaills.module.scss'
+import cls from './PostDetaills.module.scss';
 
 const PostDetails = () => {
   const { postId } = useParams();
@@ -41,16 +41,15 @@ const PostDetails = () => {
     return <div className={cls.loading}>Loading...</div>;
   }
 
+  const formattedTimestamp = new Date(post.timestamp).toLocaleString();
+
   return (
     <div className={cls.container}>
-      <h2>{post.title}</h2>
-      {post.imageUrl &&
-       <img 
-          src={post.imageUrl} 
-          alt="Post" 
-          className={cls.imgPost}
-        />}
-      <p>{post.content}</p>
+      <h2 className={cls.title}>{post.title}</h2>
+      {post.imageUrl && <img src={post.imageUrl} alt="Post" className={cls.imgPost} />}
+      <p className={cls.discription}>{post.content}</p>
+      <p className={cls.category}>Category: {post.category}</p>
+      <p className={cls.time}>Timestamp: {formattedTimestamp}</p>
     </div>
   );
 };
