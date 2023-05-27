@@ -51,10 +51,9 @@ const PostList = () => {
             <Link to={`/postDetails/${post.id}`}>
               <h2>{post.title}</h2>
             </Link>
-            {post.imageUrl && <img 
-            src={post.imageUrl} 
-            alt="Post" 
-            className={cls.postImg}/>}
+            {post.imageUrl && <img src={post.imageUrl} alt="Post" className={cls.postImg} />}
+            <p>Category: {post.category}</p>
+            <p>Timestamp: {new Date(post.timestamp).toLocaleString()}</p>
           </li>
         ))}
       </ul>
