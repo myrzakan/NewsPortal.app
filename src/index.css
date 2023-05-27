@@ -8,3 +8,15 @@
 a {
   text-decoration: none;
 }
+
+@font-face {
+  font-family: 'raleway_c';
+  src: url(/public/fonts/raleway-v22-cyrillic-300.woff2);
+  font-weight: 300;
+}
+
+@font-face {
+  font-family: 'raleway_c';
+  src: url(/public/fonts/raleway-v22-cyrillic-100.woff2);
+  font-weight: 100;
+}

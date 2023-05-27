@@ -3,12 +3,13 @@ import { useParams } from 'react-router-dom';
 import firebase from 'firebase/compat/app';
 import 'firebase/compat/database';
 
+import cls from './PostDetaills.module.scss'
+
 const PostDetails = () => {
   const { postId } = useParams();
   const [post, setPost] = useState(null);
 
   useEffect(() => {
-    // Инициализация Firebase
     const firebaseConfig = {
       // Ваши настройки конфигурации Firebase
       apiKey: "AIzaSyCxHT4bGzaKIl8DYK-qwWPuKJAPqlMgaOg",
@@ -18,6 +19,7 @@ const PostDetails = () => {
       storageBucket: "press-e5741.appspot.com",
       messagingSenderId: "325042443581",
       appId: "1:325042443581:web:96832ff63420bda07a6154"
+      // ...
     };
 
     firebase.initializeApp(firebaseConfig);
@@ -36,12 +38,18 @@ const PostDetails = () => {
   }, [postId]);
 
   if (!post) {
-    return <div>Loading...</div>;
+    return <div className={cls.loading}>Loading...</div>;
   }
 
   return (
-    <div>
+    <div className={cls.container}>
       <h2>{post.title}</h2>
+      {post.imageUrl &&
+       <img 
+          src={post.imageUrl} 
+          alt="Post" 
+          className={cls.imgPost}
+        />}
       <p>{post.content}</p>
     </div>
   );

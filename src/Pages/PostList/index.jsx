@@ -3,9 +3,8 @@ import { Link } from 'react-router-dom';
 import firebase from 'firebase/compat/app';
 import 'firebase/compat/database';
 
-import cls from './PostList.module.scss'
+import cls from './PostList.module.scss';
 
-// Инициализация Firebase
 const firebaseConfig = {
   // Ваши настройки конфигурации Firebase
   apiKey: "AIzaSyCxHT4bGzaKIl8DYK-qwWPuKJAPqlMgaOg",
@@ -15,6 +14,7 @@ const firebaseConfig = {
   storageBucket: "press-e5741.appspot.com",
   messagingSenderId: "325042443581",
   appId: "1:325042443581:web:96832ff63420bda07a6154"
+  // ...
 };
 
 firebase.initializeApp(firebaseConfig);
@@ -51,6 +51,10 @@ const PostList = () => {
             <Link to={`/postDetails/${post.id}`}>
               <h2>{post.title}</h2>
             </Link>
+            {post.imageUrl && <img 
+            src={post.imageUrl} 
+            alt="Post" 
+            className={cls.postImg}/>}
           </li>
         ))}
       </ul>

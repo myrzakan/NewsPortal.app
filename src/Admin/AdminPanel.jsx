@@ -1,11 +1,10 @@
 import React, { useState } from 'react';
 import firebase from 'firebase/compat/app';
-
 import 'firebase/compat/database';
+import 'firebase/compat/storage';
 
-import cls from './Admin.module.scss'
+import cls from './Admin.module.scss';
 
-// Инициализация Firebase
 const firebaseConfig = {
   // Ваши настройки конфигурации Firebase
   apiKey: "AIzaSyCxHT4bGzaKIl8DYK-qwWPuKJAPqlMgaOg",
@@ -15,7 +14,6 @@ const firebaseConfig = {
   storageBucket: "press-e5741.appspot.com",
   messagingSenderId: "325042443581",
   appId: "1:325042443581:web:96832ff63420bda07a6154"
-
 };
 
 firebase.initializeApp(firebaseConfig);
@@ -23,6 +21,7 @@ firebase.initializeApp(firebaseConfig);
 const AdminPanel = () => {
   const [title, setTitle] = useState('');
   const [content, setContent] = useState('');
+  const [image, setImage] = useState(null);
 
   const handleTitleChange = (event) => {
     setTitle(event.target.value);
@@ -32,27 +31,50 @@ const AdminPanel = () => {
     setContent(event.target.value);
   };
 
+  const handleImageChange = (event) => {
+    if (event.target.files[0]) {
+      setImage(event.target.files[0]);
+    }
+  };
+
   const handleSubmit = (event) => {
     event.preventDefault();
 
-    const database = firebase.database();
-    const postsRef = database.ref('posts');
+    const storageRef = firebase.storage().ref();
+    const imagesRef = storageRef.child('images');
 
-    const newPostRef = postsRef.push();
-    const newPost = {
-      title: title,
-      content: content,
-    };
+    if (image) {
+      const imageRef = imagesRef.child(image.name);
+      imageRef.put(image)
+        .then(() => imageRef.getDownloadURL())
+        .then((imageUrl) => {
+          const database = firebase.database();
+          const postsRef = database.ref('posts');
 
-    newPostRef.set(newPost)
-      .then(() => {
-        setTitle('');
-        setContent('');
-        console.log('Post created successfully');
-      })
-      .catch((error) => {
-        console.log(error);
-      });
+          const newPostRef = postsRef.push();
+          const newPost = {
+            title: title,
+            content: content,
+            imageUrl: imageUrl,
+          };
+
+          newPostRef.set(newPost)
+            .then(() => {
+              setTitle('');
+              setContent('');
+              setImage(null);
+              console.log('Post created successfully');
+            })
+            .catch((error) => {
+              console.log(error);
+            });
+        })
+        .catch((error) => {
+          console.log(error);
+        });
+    } else {
+      console.log('Please select an image');
+    }
   };
 
   return (
@@ -68,6 +90,10 @@ const AdminPanel = () => {
           <div>
             <label htmlFor="content">Content:</label>
             <textarea id="content" value={content} onChange={handleContentChange} />
+          </div>
+          <div>
+            <label htmlFor="image">Image:</label>
+            <input type="file" id="image" onChange={handleImageChange} />
           </div>
           <button type="submit">Create Post</button>
         </form>
