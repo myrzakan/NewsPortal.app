@@ -2,6 +2,8 @@ import React, { useState, useEffect } from 'react';
 import firebase from 'firebase/compat/app';
 import 'firebase/compat/database';
 import 'firebase/compat/storage';
+import { toast } from 'react-toastify'
+import 'react-toastify/dist/ReactToastify.css';
 
 import cls from './Admin.module.scss';
 
@@ -93,7 +95,9 @@ const AdminPanel = () => {
     newCategoryRef
       .set(newCategory)
       .then(() => {
-        alert('Category created successfully');
+        toast.success('Category created successfully', {
+          position: 'top-center'
+        });
         setCategory('');
       })
       .catch((error) => {
@@ -107,7 +111,9 @@ const AdminPanel = () => {
     categoryRef
       .remove()
       .then(() => {
-        alert('Category deleted successfully');
+        toast.warning('Category deleted successfully', {
+          position: 'top-center'
+        });
       })
       .catch((error) => {
         console.log(error);
@@ -149,7 +155,9 @@ const AdminPanel = () => {
               setCategory('');
               setIsLoading(false); // Установка флага isLoading в false при успешном создании поста
               document.getElementById('image').value = null;
-              alert('Post created successfully');
+              toast.success('Post successfully created', {
+                position: 'top-center'
+              });
             })
             .catch((error) => {
               console.log(error);
@@ -161,23 +169,35 @@ const AdminPanel = () => {
           setIsLoading(false); // Установка флага isLoading в false в случае ошибки
         });
     } else {
-      console.log('Please select an image');
+      toast.error('Please select an image', {
+        position: 'top-center'
+      })
       setIsLoading(false); // Установка флага isLoading в false в случае ошибки
     }
   };
 
   const handleDeletePost = (postId) => {
+    const shouldDelete = window.confirm('Are you sure you want to delete this post?');
+    if (!shouldDelete) {
+      return;
+    }
+  
     const database = firebase.database();
     const postRef = database.ref(`posts/${postId}`);
     postRef
       .remove()
       .then(() => {
-        console.log('Post deleted successfully');
+        toast.warning('Post successfully deleted', {
+          position: 'top-center',
+          autoClose: '2000'
+        });
+        setPosts((prevPosts) => prevPosts.filter((post) => post.id !== postId));
       })
       .catch((error) => {
         console.log(error);
       });
   };
+  
 
   return (
   <div className={cls.admin_container}>
@@ -185,7 +205,7 @@ const AdminPanel = () => {
 
     <div className={cls.AdminPanel_CreatePosts}>
 
-      {/* <================== Раздел создание постов ==================> */}
+      {/* <==================================== Раздел создание постов ==========================================> */}
       <div>
         <h2 className={cls.titleCreate}>Create Post</h2>
         <form onSubmit={handleSubmit}>
@@ -203,8 +223,8 @@ const AdminPanel = () => {
             />
           </div>
 
+          {/* <========== Содержание поста ========> */}
           <div className={cls.discription_Container}>
-            {/* <========== Содержание поста ========> */}
             {/* <label htmlFor="content" className={cls.title_Content}>Content:</label> */}
             <textarea
               id="content"
@@ -214,9 +234,8 @@ const AdminPanel = () => {
               className={cls.input_Discription}
             />
           </div>
-
+          {/* <======== Выбор категории поста ===========> */}
           <div className={cls.category_Container}>
-            {/* <======== Выбор категории поста ===========> */}
             <label htmlFor="category" className={cls.titleCategory}>Category:</label>
             <select 
               id="category" 
@@ -232,9 +251,8 @@ const AdminPanel = () => {
               ))}
             </select>
           </div>
-
+          {/* <=========== Картинка поста ==========> */}
           <div className={cls.image_Container}>
-            {/* <=========== Картинка поста ==========> */}
             <label htmlFor="image" className={cls.titleImage}>Image:</label>
             <input 
               type="file" 
@@ -259,32 +277,11 @@ const AdminPanel = () => {
     {/* <======= emd AdminPanel_CreatePosts ======> */}
     
 
-
-      {/* <====================== Раздел удаление постов ==============> */}
-      <div className={cls.delete_Container}>
-        <h2>Post List</h2>
-        <ul>
-          {/* <====== Все посты =====> */}
-          {posts.map((post) => (
-            <li key={post.id} className={cls.post}>
-              <h3>{post.title}</h3>
-              {/* <====== Категория поста =====> */}
-              <p>Category: {post.category}</p> 
-              {/* <===== Время добавление поста =====> */}
-              <p>Timestamp: {new Date(post.timestamp).toLocaleString()}</p>
-              {/* <========= Кнопка удаление поста =============> */}
-              <button onClick={() => handleDeletePost(post.id)}>Delete Post</button>
-            </li>
-          ))}
-        </ul>
-      </div>
-
-
-      {/* <=============== Раздел категории ====================> */}
-      <div>
+      {/* <================================= Раздел создание и удаление категории ==================================================> */}
+      <div className={cls.create_category_container}>
 
         {/* <============= Создание категории =============> */}
-        <div>
+        <div className={cls.create_category}>
           <h2>Create Category</h2> 
           <div>
             <input
@@ -292,8 +289,13 @@ const AdminPanel = () => {
               onChange={handleCategoryChange}
               value={category}
               placeholder="Category Name"
+              className={cls.input_create_category}
             />
-            <button onClick={handleCategoryCreate}>Create Category</button>
+            <button 
+              onClick={handleCategoryCreate}
+              className={cls.button_create_category}
+            >
+              Create Category</button>
           </div>
         </div>
         
@@ -312,6 +314,25 @@ const AdminPanel = () => {
           </ul>
         </div>
 
+      </div>
+
+      {/* <========================================== Раздел удаление постов ==========================================> */}
+      <div className={cls.delete_Container}>
+        <h2>Post List</h2>
+        <ul>
+          {/* <====== Все посты =====> */}
+          {posts.map((post) => (
+            <li key={post.id} className={cls.post}>
+              <h3>{post.title}</h3>
+              {/* <====== Категория поста =====> */}
+              <p>Category: {post.category}</p> 
+              {/* <===== Время добавление поста =====> */}
+              <p>Timestamp: {new Date(post.timestamp).toLocaleString()}</p>
+              {/* <========= Кнопка удаление поста =============> */}
+              <button onClick={() => handleDeletePost(post.id)}>Delete Post</button>
+            </li>
+          ))}
+        </ul>
       </div>
 
   </div> 

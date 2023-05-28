@@ -10,12 +10,19 @@
     font-weight: 100;
   }
   
+
+  body {
+    background-color: #F8F4FF;
+  }
+
   .admin_container {
     font-family: 'raleway_c';
+    
   
     .AdminPanel_CreatePosts {
       border: solid 1px #fff;
       box-shadow: 0px 2px 10px 3px rgba(34, 60, 80, 0.2);
+      background-color: #F7F7F7;
       border-radius: 6px;
       max-width: 100rem;
       width: 77rem;
@@ -24,6 +31,7 @@
       position: relative;
       left: 330px;
     }
+
   
     // ================ Загаловок поста ============>
     .title_Container {
@@ -157,6 +165,57 @@
       font-size: 16px;
       cursor: pointer;
     }
+
+    // ================ Create category ====================>
+
+  
+    .create_category_container {
+        border: solid 1px #fff;
+        box-shadow: 0px 2px 10px 3px rgba(34, 60, 80, 0.2);
+        background-color: #F7F7F7;
+        border-radius: 6px;
+        max-width: 100rem;
+        width: 77rem;
+        max-height: 100rem;
+        height: 20rem;
+        position: relative;
+        left: 330px;
+        margin-top: 40px;
+
+        h2 {
+          text-align: center;
+        }
+
+
+
+      .button_create_category {
+        position: relative;
+        left: 450px;
+        top: 20px;
+        padding: 10px;
+        width: 300px;
+        background-color: #007bff;
+        color: #fff;
+        border: none;
+        border-radius: 4px;
+        font-size: 16px;
+        cursor: pointer;
+      }
+
+      .input_create_category {
+        width: 25rem;
+        height: 30px;
+        position: relative;
+        right: 3px;
+        border: none;
+        background-color: #f2f2f2;
+        padding: 10px;
+        font-size: 18px;
+        border-radius: 4px;
+
+      }
+
+    }
   
     .delete_Container {
       ul li {
@@ -165,3 +224,4 @@
     }
   }
   
+
