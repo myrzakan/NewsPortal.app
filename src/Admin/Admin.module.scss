@@ -12,7 +12,7 @@
   
 
   body {
-    background-color: #F8F4FF;
+    background-color: #F5F5F5;
   }
 
   .admin_container {
@@ -22,7 +22,7 @@
     .AdminPanel_CreatePosts {
       border: solid 1px #fff;
       box-shadow: 0px 2px 10px 3px rgba(34, 60, 80, 0.2);
-      background-color: #F7F7F7;
+      background-color: #F5F5F5;
       border-radius: 6px;
       max-width: 100rem;
       width: 77rem;
@@ -44,7 +44,7 @@
         position: relative;
         right: 3px;
         border: none;
-        background-color: #f2f2f2;
+        background-color: #E5E4E2;
         padding: 10px;
         font-size: 18px;
         border-radius: 4px;
@@ -72,7 +72,7 @@
         position: relative;
         left: 0;
         border: none;
-        background-color: #f2f2f2;
+        background-color: #E5E4E2;
         padding: 10px;
         font-size: 16px;
         border-radius: 4px;
@@ -114,7 +114,7 @@
           width: 200px;
           height: 40px;
           border: none;
-          background-color: #f2f2f2;
+          background-color: #E5E4E2;
           padding: 5px 10px;
           font-size: 16px;
           border-radius: 4px;
@@ -144,7 +144,7 @@
           width: 200px;
           height: 40px;
           border: none;
-          background-color: #f2f2f2;
+          background-color: #E5E4E2;
           padding: 5px 10px;
           font-size: 16px;
           border-radius: 4px;
@@ -208,12 +208,33 @@
         position: relative;
         right: 3px;
         border: none;
-        background-color: #f2f2f2;
+        background-color: #E5E4E2;
         padding: 10px;
         font-size: 18px;
         border-radius: 4px;
 
       }
+
+      .categories_create {
+
+
+        ul {
+          width: 50px;
+        }
+
+        .category {
+          cursor: pointer;
+          list-style: none;
+
+
+        }
+
+        .category:hover {
+          text-decoration: underline;
+        }
+        
+      }
+
 
     }
   

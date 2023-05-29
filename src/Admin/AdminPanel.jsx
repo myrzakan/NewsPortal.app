@@ -5,6 +5,7 @@ import 'firebase/compat/storage';
 import { toast } from 'react-toastify'
 import 'react-toastify/dist/ReactToastify.css';
 
+
 import cls from './Admin.module.scss';
 
 const firebaseConfig = {
@@ -300,15 +301,19 @@ const AdminPanel = () => {
         </div>
         
         {/* <============== Отображение созданных категории ===========> */}
-        <div>
+        <div className={cls.categories_create}>
           <h2>Categories</h2>
           <ul>
             {categories.map((category) => (
-              <li key={category.id} className={cls.category}>
+              <li 
+                key={category.id} 
+                className={cls.category} 
+                onClick={() => handleDeleteCategory(category.id)}
+              >
                 <p>{category.name}</p>
-                <button onClick={() => handleDeleteCategory(category.id)}>
+                {/* <button onClick={() => handleDeleteCategory(category.id)}>
                   Delete Category
-                </button>
+                </button> */}
               </li>
             ))}
           </ul>
