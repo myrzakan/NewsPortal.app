@@ -1,10 +1,15 @@
-import React, { useState, useEffect } from 'react';
+import React from 'react';
 import firebase from 'firebase/compat/app';
 import 'firebase/compat/database';
 import 'firebase/compat/storage';
 import { toast } from 'react-toastify'
 import 'react-toastify/dist/ReactToastify.css';
 
+import ReactQuill from 'react-quill';
+import 'react-quill/dist/quill.snow.css'; // импортируйте стили Quill
+
+
+import logo from './../Logo/375.2.png'
 
 import cls from './Admin.module.scss';
 
@@ -22,15 +27,16 @@ const firebaseConfig = {
 firebase.initializeApp(firebaseConfig);
 
 const AdminPanel = () => {
-  const [title, setTitle] = useState('');
-  const [content, setContent] = useState('');
-  const [image, setImage] = useState(null);
-  const [category, setCategory] = useState('');
-  const [categories, setCategories] = useState([]);
-  const [posts, setPosts] = useState([]);
-  const [isLoading, setIsLoading] = useState(false);
+  const [title, setTitle] = React.useState('');
+  const [content, setContent] = React.useState('');
+  const [image, setImage] = React.useState(null);
+  const [category, setCategory] = React.useState('');
+  const [categories, setCategories] = React.useState([]);
+  const [posts, setPosts] = React.useState([]);
+  const [isLoading, setIsLoading] = React.useState(false);
+  
 
-  useEffect(() => {
+  React.useEffect(() => {
     const database = firebase.database();
     const categoriesRef = database.ref('categories');
     const postsRef = database.ref('posts');
@@ -70,8 +76,8 @@ const AdminPanel = () => {
     setTitle(event.target.value);
   };
 
-  const handleContentChange = (event) => {
-    setContent(event.target.value);
+  const handleContentChange = (value) => {
+    setContent(value);
   };
 
   const handleImageChange = (event) => {
@@ -84,6 +90,7 @@ const AdminPanel = () => {
     setCategory(event.target.value);
   };
 
+  //? <========================================= Function Create Category ================================================>
   const handleCategoryCreate = () => {
     const database = firebase.database();
     const categoriesRef = database.ref('categories');
@@ -106,7 +113,12 @@ const AdminPanel = () => {
       });
   };
 
+  //? <========================================= Function Delete Category ==============================================>
   const handleDeleteCategory = (categoryId) => {
+    const handleCategory = window.confirm('Are you sure you want to delete this category?')
+    if (!handleCategory) {
+      return
+    }
     const database = firebase.database();
     const categoryRef = database.ref(`categories/${categoryId}`);
     categoryRef
@@ -121,6 +133,8 @@ const AdminPanel = () => {
       });
   };
 
+
+  //? <====================================== Function Submitting Forms =========================================>
   const handleSubmit = (event) => {
     event.preventDefault();
 
@@ -177,6 +191,9 @@ const AdminPanel = () => {
     }
   };
 
+
+
+  // ? <========================= Function Delete Posts ================================= > 
   const handleDeletePost = (postId) => {
     const shouldDelete = window.confirm('Are you sure you want to delete this post?');
     if (!shouldDelete) {
@@ -202,7 +219,8 @@ const AdminPanel = () => {
 
   return (
   <div className={cls.admin_container}>
-      <h1>Admin Panel</h1>
+      <h1 className={cls.title_admin_panel}>Admin Panel</h1>
+      <img src={logo} alt="svg" />
 
     <div className={cls.AdminPanel_CreatePosts}>
 
@@ -226,15 +244,13 @@ const AdminPanel = () => {
 
           {/* <========== Содержание поста ========> */}
           <div className={cls.discription_Container}>
-            {/* <label htmlFor="content" className={cls.title_Content}>Content:</label> */}
-            <textarea
-              id="content"
-              value={content}
-              onChange={handleContentChange}
-              placeholder="Содержание поста"
-              className={cls.input_Discription}
+            <ReactQuill
+             value={content}
+             onChange={handleContentChange}
+             placeholder="Содержание поста"
+             className={cls.input_Discription}
             />
-          </div>
+           </div>
           {/* <======== Выбор категории поста ===========> */}
           <div className={cls.category_Container}>
             <label htmlFor="category" className={cls.titleCategory}>Category:</label>
@@ -244,7 +260,10 @@ const AdminPanel = () => {
               onChange={handleCategoryChange}
               className={cls.selectCategory}
             >
-              <option value="" >Select a category</option>
+              <option 
+                value=""
+                className={cls.select_default} 
+              >Select a category</option>
               {categories.map((category) => (
                 <option key={category.id} value={category.name}>
                   {category.name}
@@ -275,21 +294,20 @@ const AdminPanel = () => {
       </div>
 
     </div> 
-    {/* <======= emd AdminPanel_CreatePosts ======> */}
+    {/* <======= end AdminPanel_CreatePosts ======> */}
     
-
       {/* <================================= Раздел создание и удаление категории ==================================================> */}
       <div className={cls.create_category_container}>
 
         {/* <============= Создание категории =============> */}
         <div className={cls.create_category}>
-          <h2>Create Category</h2> 
+          <h2 className={cls.title_category}>Create Category</h2> 
           <div>
             <input
               type="text"
               onChange={handleCategoryChange}
               value={category}
-              placeholder="Category Name"
+              placeholder="Название категории"
               className={cls.input_create_category}
             />
             <button 
@@ -323,23 +341,22 @@ const AdminPanel = () => {
 
       {/* <========================================== Раздел удаление постов ==========================================> */}
       <div className={cls.delete_Container}>
-        <h2>Post List</h2>
+        {/* <h2>Post List</h2> */}
         <ul>
           {/* <====== Все посты =====> */}
           {posts.map((post) => (
             <li key={post.id} className={cls.post}>
               <h3>{post.title}</h3>
               {/* <====== Категория поста =====> */}
-              <p>Category: {post.category}</p> 
+              <p>Category: <span>{post.category}</span></p> 
               {/* <===== Время добавление поста =====> */}
-              <p>Timestamp: {new Date(post.timestamp).toLocaleString()}</p>
+              <p>Timestamp: <span>{new Date(post.timestamp).toLocaleString()}</span></p>
               {/* <========= Кнопка удаление поста =============> */}
               <button onClick={() => handleDeletePost(post.id)}>Delete Post</button>
             </li>
           ))}
         </ul>
       </div>
-
   </div> 
   // end admin_container
   

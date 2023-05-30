@@ -13,7 +13,7 @@ const firebaseConfig = {
   projectId: "press-e5741",
   storageBucket: "press-e5741.appspot.com",
   messagingSenderId: "325042443581",
-  appId: "1:325042443581:web:96832ff63420bda07a6154"  
+  appId: "1:325042443581:web:96832ff63420bda07a6154"
   // ...
 };
 
@@ -42,12 +42,14 @@ const PostList = () => {
           postsList = postsList.filter((post) => post.category === selectedCategory);
         }
 
+        // Отсортируем посты по времени в порядке убывания
+        postsList.sort((a, b) => b.timestamp - a.timestamp);
+
         setPosts(postsList);
       }
     });
 
     // Получаем список категорий
-
     categoriesRef.on('value', (snapshot) => {
       const categoriesData = snapshot.val();
       if (categoriesData) {
