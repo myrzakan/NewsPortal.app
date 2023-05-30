@@ -91,7 +91,7 @@ const CreatePostForm = ({categories}) => {
   };
 
   return (
-    <div>
+    <div className={cls.AdminCreatePost}>
       <h2 className={cls.titleCreate}>Create Post</h2>
       <form onSubmit={handleSubmit}>
         {/* Заголовок поста */}

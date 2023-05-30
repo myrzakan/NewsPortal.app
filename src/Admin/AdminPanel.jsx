@@ -6,6 +6,10 @@ import CreateCategory from './CreateCategory';
 import DeletePosts from './DeletePosts';
 import DeleteCategory from './DeleteCategory';
 
+import cls from './Admin.module.scss'
+
+import logo from '../Logo/375.2.png'
+
 const firebaseConfig = {
   // Настройки конфигурации Firebase
   apiKey: "AIzaSyCxHT4bGzaKIl8DYK-qwWPuKJAPqlMgaOg",
@@ -63,12 +67,13 @@ const AdminPanel = () => {
   }, []);
 
   return (
-    <div>
+    <div className={cls.AdminPanelContainer}>
       <h1>Admin Panel</h1>
+      <img src={logo} alt="logo" />
       <CreatePostForm categories={categories} />
       <CreateCategory />
-      <DeletePosts posts={posts} />
       <DeleteCategory categories={categories} />
+      <DeletePosts posts={posts} />
     </div>
   );
 };

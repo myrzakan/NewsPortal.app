@@ -26,7 +26,7 @@ const DeleteCategory = ({ categories }) => {
   };
 
   return (
-    <div className={cls.categories_create}>
+    <div className={cls.DeleteCategoryContainer}>
       <h2>Categories</h2>
       <ul>
         {categories.map((category) => (

@@ -36,8 +36,8 @@ const CreateCategory = () => {
   };
 
   return (
-    <div className={cls.create_category}>
-      <h2 className={cls.title_category}>Create Category</h2>
+    <div className={cls.CreateCategoryContainer}>
+      <h2>Create Category</h2>
       <div>
         <input
           type="text"
