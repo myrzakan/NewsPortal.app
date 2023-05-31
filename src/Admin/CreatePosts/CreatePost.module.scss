@@ -28,6 +28,7 @@
   height: 50rem;
   position: relative;
   left: 330px;
+  padding-top: 50px;
   // ================ Загаловок поста ============>
   .title_Container {
     display: flex;
@@ -35,7 +36,7 @@
 
     .input_Title {
       width: 69rem;
-      height: 40px;
+      height: 60px;
       position: relative;
       right: 3px;
       border: none;

@@ -6,7 +6,7 @@ import 'firebase/compat/database';
 import cls from './PostList.module.scss';
 
 const firebaseConfig = {
-  // Ваши настройки конфигурации Firebase
+  // Настройки конфигурации Firebase
   apiKey: "AIzaSyCxHT4bGzaKIl8DYK-qwWPuKJAPqlMgaOg",
   authDomain: "press-e5741.firebaseapp.com",
   databaseURL: "https://press-e5741-default-rtdb.asia-southeast1.firebasedatabase.app",
@@ -23,6 +23,7 @@ const PostList = () => {
   const [posts, setPosts] = useState([]);
   const [categories, setCategories] = useState([]);
   const [selectedCategory, setSelectedCategory] = useState('');
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     const database = firebase.database();
@@ -46,6 +47,7 @@ const PostList = () => {
         postsList.sort((a, b) => b.timestamp - a.timestamp);
 
         setPosts(postsList);
+        setLoading(false);
       }
     });
 
@@ -71,6 +73,10 @@ const PostList = () => {
     setSelectedCategory(categoryId);
   };
 
+  if (loading) {
+    return <div className={cls.loading}>Loading...</div>;
+  }
+
   return (
     <div className={cls.post_container}>
       <h1>Список постов</h1>
@@ -85,14 +91,16 @@ const PostList = () => {
       <ul>
         {posts.map((post) => (
           <li key={post.id} className={cls.postlist}>
+        
+            {post.imageUrl && <img src={post.imageUrl} alt="Пост" className={cls.postImg} />}
+            
             <Link to={`/postDetails/${post.id}`}>
               <h2>{post.title}</h2>
             </Link>
-            {post.imageUrl && <img src={post.imageUrl} alt="Пост" className={cls.postImg} />}
             <p>Категория: {post.category}</p>
             <p>Время: {new Date(post.timestamp).toLocaleString()}</p>
           </li>
-        ))}
+        )).reverse()}
       </ul>
     </div>
   );

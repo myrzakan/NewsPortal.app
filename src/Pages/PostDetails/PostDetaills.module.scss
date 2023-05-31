@@ -16,10 +16,9 @@
     font-family: 'raleway_c';
     display: flex;
     justify-content: center;
-    margin-top: 400px;
-    
-    
-    
+    margin-top: 350px;
+
+    margin-bottom: 400px;
     font-size: 35px;
 
 }  
@@ -33,6 +32,11 @@
   box-shadow: 0px 2px 6px rgba(0, 0, 0, 0.1);
   padding: 20px;
   margin-bottom: 20px;
+  margin-top: 200px;
+
+  position: relative;
+  top: 0;
+  max-height: 200rem;
 }
 
 .imgPost {

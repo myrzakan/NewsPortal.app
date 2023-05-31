@@ -18,9 +18,9 @@
     box-shadow: 0px 2px 10px 3px rgba(34, 60, 80, 0.2);
     background-color: #F7F7F7;
     border-radius: 6px;
-    width: 19rem;
+    width: 24.6rem;
     height: 22rem;
-    padding: 0 50px;
+    padding: 20px 50px;
 
     position: absolute;
     top: 61.3rem;
@@ -31,7 +31,8 @@
     }
 
     ul {
-      margin-left: 62px;
+      margin-left: 75px;
+      margin-top: 20px;
     }
 
     ul li {
@@ -40,6 +41,7 @@
       width: 100px;
       font-size: 18px;
       text-align: center;
+      margin: 15px;
     }
 
     ul li:hover {

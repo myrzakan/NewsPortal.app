@@ -11,14 +11,14 @@ const PostDetails = () => {
 
   useEffect(() => {
     const firebaseConfig = {
-      // Ваши настройки конфигурации Firebase
-        apiKey: "AIzaSyCxHT4bGzaKIl8DYK-qwWPuKJAPqlMgaOg",
-        authDomain: "press-e5741.firebaseapp.com",
-        databaseURL: "https://press-e5741-default-rtdb.asia-southeast1.firebasedatabase.app",
-        projectId: "press-e5741",
-        storageBucket: "press-e5741.appspot.com",
-        messagingSenderId: "325042443581",
-        appId: "1:325042443581:web:96832ff63420bda07a6154"
+      // настройки конфигурации Firebase
+      apiKey: "AIzaSyCxHT4bGzaKIl8DYK-qwWPuKJAPqlMgaOg",
+      authDomain: "press-e5741.firebaseapp.com",
+      databaseURL: "https://press-e5741-default-rtdb.asia-southeast1.firebasedatabase.app",
+      projectId: "press-e5741",
+      storageBucket: "press-e5741.appspot.com",
+      messagingSenderId: "325042443581",
+      appId: "1:325042443581:web:96832ff63420bda07a6154"
     };
 
     firebase.initializeApp(firebaseConfig);
@@ -35,6 +35,10 @@ const PostDetails = () => {
       postRef.off();
     };
   }, [postId]);
+
+  useEffect(() => {
+    window.scrollTo(0, 0); // Прокручиваем страницу в начало при монтировании компонента
+  }, []);
 
   if (!post) {
     return <div className={cls.loading}>Loading...</div>;

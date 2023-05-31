@@ -14,15 +14,26 @@
   .delete_Container {
     position: relative;
     bottom: 100px;
+    left: 40px;
+    width: 300px;
 
     .post {
       span {
         font-weight: bold;
       }
+
+      p {
+        margin: 5px;
+      }
+
+      h3 {
+        margin-left: 5px;
+      }
     }
 
     button {
       padding: 10px;
+      margin-top: 10px;
       width: 150px;
       background-color: #007bff;
       color: #fff;
@@ -36,6 +47,7 @@
       opacity: 0.6;
     }
 
+ 
     ul li {
       list-style: none;
       border: solid 1px #fff;
@@ -43,7 +55,7 @@
       background-color: #F5F5F5;
       border-radius: 6px;
       max-width: 100rem;
-      width: 74.5rem;
+      width: 77rem;
       max-height: 100rem;
       height: 100%;
       margin: 20px 0px;
