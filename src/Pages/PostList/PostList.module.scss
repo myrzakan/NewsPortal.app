@@ -1,24 +1,10 @@
 
-@font-face {
-  font-family: 'raleway_c';
-  src: url(../../../public/fonts/raleway-v22-cyrillic-300.woff2);
-  font-weight: 300;
-}
-
-@font-face {
-  font-family: 'raleway_c';
-  src: url(../../../public/fonts/raleway-v22-cyrillic-100.woff2);
-  font-weight: 100;
-}
-
-
- 
 .loading {
-  font-family: 'raleway_c';
   display: flex;
   justify-content: center;
-  margin-top: 350px;
 
+
+  margin-top: 350px;
   margin-bottom: 400px;
   font-size: 35px;
 
@@ -61,6 +47,7 @@ body {
       font-size: 24px;
       margin-bottom: 10px;
       color: black;
+      font-weight: 500;
     }
 
     .postlist h2:hover {
@@ -70,6 +57,7 @@ body {
 
     ul {
       list-style: none;
+    
 
     }
     

@@ -69,6 +69,10 @@ const PostList = () => {
     };
   }, [selectedCategory]);
 
+  useEffect(() => {
+    window.scrollTo(0, 0); // Прокручиваем страницу в начало при монтировании компонента
+  }, []);
+
   const handleCategoryClick = (categoryId) => {
     setSelectedCategory(categoryId);
   };

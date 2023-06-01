@@ -15,9 +15,12 @@ const Header = () => {
         <div className={cls.headerContainer}>
             <Link to='/'><img src={Logo} alt="logo" /></Link>
             <nav>
-                <Link to='/'>Главная</Link>
-                
-
+                <Link to='/'></Link>
+                <Link to='/about' >О проекте</Link>
+                <Link to='/contact'>Контакт</Link>
+                <Link to='/termsOfUse'>Правило и использование</Link>
+                <Link to='/advertising'>Реклама</Link>
+                <Link to='/policy'>Политика конфиденциальности</Link>
             </nav>
             <div className={cls.one}></div>
         </div>
