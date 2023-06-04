@@ -17,65 +17,41 @@ const firebaseConfig = {
   // ...
 };
 
-firebase.initializeApp(firebaseConfig);
+if (!firebase.apps.length) {
+  firebase.initializeApp(firebaseConfig);
+}
 
 const PostList = () => {
   const [posts, setPosts] = useState([]);
-  const [categories, setCategories] = useState([]);
-  const [selectedCategory, setSelectedCategory] = useState('');
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    const database = firebase.database();
-    const postsRef = database.ref('posts');
-    const categoriesRef = database.ref('categories');
+    const fetchData = async () => {
+      try {
+        const snapshot = await firebase.database().ref('posts').once('value');
+        const postsData = snapshot.val();
+        if (postsData) {
+          let postsList = Object.keys(postsData).map((key) => ({
+            id: key,
+            ...postsData[key],
+          }));
 
-    // Получаем список постов
-    postsRef.on('value', (snapshot) => {
-      const postsData = snapshot.val();
-      if (postsData) {
-        let postsList = Object.keys(postsData).map((key) => ({
-          id: key,
-          ...postsData[key],
-        }));
+          postsList.sort((a, b) => b.timestamp - a.timestamp);
 
-        if (selectedCategory) {
-          postsList = postsList.filter((post) => post.category === selectedCategory);
+          setPosts(postsList);
+          setLoading(false);
         }
-
-        // Отсортируем посты по времени в порядке убывания
-        postsList.sort((a, b) => b.timestamp - a.timestamp);
-
-        setPosts(postsList);
-        setLoading(false);
+      } catch (error) {
+        console.log(error);
       }
-    });
-
-    // Получаем список категорий
-    categoriesRef.on('value', (snapshot) => {
-      const categoriesData = snapshot.val();
-      if (categoriesData) {
-        const categoriesList = Object.entries(categoriesData).map(([categoryId, category]) => ({
-          id: categoryId,
-          name: category.name,
-        }));
-        setCategories(categoriesList);
-      }
-    });
-
-    return () => {
-      postsRef.off();
-      categoriesRef.off();
     };
-  }, [selectedCategory]);
 
-  useEffect(() => {
-    window.scrollTo(0, 0); // Прокручиваем страницу в начало при монтировании компонента
+    fetchData();
   }, []);
 
-  const handleCategoryClick = (categoryId) => {
-    setSelectedCategory(categoryId);
-  };
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
 
   if (loading) {
     return <div className={cls.loading}>Loading...</div>;
@@ -84,27 +60,16 @@ const PostList = () => {
   return (
     <div className={cls.post_container}>
       <h1>Список постов</h1>
-      <div className={cls.categoryButtons}>
-        <button onClick={() => setSelectedCategory('')}>Все</button>
-        {categories.map((category) => (
-          <button key={category.id} onClick={() => handleCategoryClick(category.id)}>
-            {category.name}
-          </button>
-        ))}
-      </div>
       <ul>
         {posts.map((post) => (
           <li key={post.id} className={cls.postlist}>
-        
             {post.imageUrl && <img src={post.imageUrl} alt="Пост" className={cls.postImg} />}
-            
+            <p>{new Date(post.timestamp).toLocaleString()}</p>
             <Link to={`/postDetails/${post.id}`}>
               <h2>{post.title}</h2>
             </Link>
-            <p>Категория: {post.category}</p>
-            <p>Время: {new Date(post.timestamp).toLocaleString()}</p>
           </li>
-        )).reverse()}
+        ))}
       </ul>
     </div>
   );

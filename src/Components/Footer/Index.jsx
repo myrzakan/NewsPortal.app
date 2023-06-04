@@ -1,33 +1,89 @@
-
-
 import React from 'react'
-
+import { Link } from 'react-router-dom'
+import { AiOutlineArrowRight } from 'react-icons/ai'
+import { FaFacebook, FaTwitter, FaInstagram } from 'react-icons/fa'
 import cls from './Footer.module.scss'
 
 const Footer = () => {
-
     return (
         <div className={cls.footerContainer}>
             <div className={cls.one}></div>
             <div className={cls.container}>
                 <div className={cls.f_about}>
-                    <h3>about</h3>
-                    <p>Далеко-далеко за словесными горами в стране гласных и согласных живут рыбные тексты. Текстов заманивший рыбными рот</p>
+                    <h3>О нас</h3>
+                    <p>
+                        Мы предлагаем самые свежие новости и актуальную информацию нашим читателям.
+                        Наша цель - держать вас в курсе всех событий и происшествий, происходящих в мире.
+                    </p>
                 </div>
-                {/* <===== end =====> */}
 
                 <div className={cls.f_links}>
-                    <h3>Links</h3>
-                    <ion-icon name="arrow-forward-outline"></ion-icon>
+                    <h3>Ссылки</h3>
+                    <ul>
+                        <li>
+                            <AiOutlineArrowRight/>
+                            <Link to='/'>Главная</Link>
+                        </li>
+                        <li>
+                            <AiOutlineArrowRight/>
+                            <Link to='/about'>О проекте</Link>
+                        </li>
+                        <li>
+                            <AiOutlineArrowRight/>
+                            <Link to='/contact'>Контакты</Link>
+                        </li>
+                        <li>
+                            <AiOutlineArrowRight/>
+                            <Link to='/termsOfUse'>Правила использования</Link>
+                        </li>
+                        <li>
+                            <AiOutlineArrowRight/>
+                            <Link to='/advertising'>Реклама</Link>
+                        </li>
+                        <li>
+                            <AiOutlineArrowRight/>
+                            <Link to='/policy'>Политика конфиденциальности</Link>
+                        </li>
+                    </ul>
                 </div>
 
+                <div className={cls.contact}>
+                    <h3>Свяжитесь с нами</h3>
+                    <p>Телефон: +7 (XXX) XXX-XXXX</p>
+                    <p>Email: info@example.com</p>
+                    <p>Адрес: г. Ваш город, ул. Ваша улица, дом Ваш номер</p>
+                </div>
+
+                <div className={cls.social}>
+                    <h3>Мы в социальных сетях</h3>
+                    <ul>
+                        <li>
+                            <a href="https://www.facebook.com/example" target="_blank" rel="noopener noreferrer">
+                                <FaFacebook />
+                            </a>
+                        </li>
+                        <li>
+                            <a href="https://www.twitter.com/example" target="_blank" rel="noopener noreferrer">
+                                <FaTwitter />
+                            </a>
+                        </li>
+                        <li>
+                            <a href="https://www.instagram.com/example" target="_blank" rel="noopener noreferrer">
+                                <FaInstagram />
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+
+            <div className={cls.copyRight}>
+                <p>© {new Date().getFullYear()} Все права защищены.</p>
+                <p>Использование материалов разрешено только с письменного разрешения компании.</p>
+                <p>Любое копирование, воспроизведение или распространение контента без разрешения запрещено.</p>
             </div>
 
         </div>
     )
-
-
-    
 }
 
 export default Footer
