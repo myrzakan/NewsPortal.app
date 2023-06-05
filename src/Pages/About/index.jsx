@@ -1,17 +1,43 @@
 import React from 'react';
 import cls from './About.module.scss';
 
+import gsap from 'gsap'
+
 const About = () => {
 
   React.useEffect(() => {
     window.scrollTo(0, 0); 
   }, []);
 
+  React.useEffect(() => {
+    const animationData = [
+      { selector: cls.aboutTitle, duration: 0.5, delay: 0 },
+      { selector: cls.title1, duration: 0.6, delay: 0.1 },
+      { selector: cls.title2, duration: 0.7, delay: 0.2 },
+      { selector: cls.title3, duration: 0.8, delay: 0.3 },
+      { selector: cls.title4, duration: 0.9, delay: 0.4 },
+      { selector: cls.title5, duration: 1, delay: 0.5 },
+      { selector: cls.title_six, duration: 1.1, delay: 0.6 },
+      { selector: cls.title_seven, duration: 1.2, delay: 0.7 }
+    ];
+  
+    animationData.forEach(({ selector, duration, delay }) => {
+      gsap.from('.' + selector, {
+        opacity: 0,
+        duration,
+        delay,
+        x: 30
+      });
+    });
+  }, []);
+  
+
+
   return (
     <div className={cls.aboutContainer}>
-          <h1>О проекте</h1>
+          <h1 className={cls.aboutTitle}>О проекте</h1>
 
-          <p>
+          <p className={cls.title1}>
             <span>"News Line" </span>
             - это инновационный проект, созданный с целью предоставления пользователю полного и всестороннего
             информационного опыта. Мы стремимся стать вашим надежным проводником в мире новостей, предлагая
@@ -20,7 +46,7 @@ const About = () => {
 
           <br />
 
-          <p>
+          <p className={cls.title2}>
             Наша команда состоит из опытных журналистов и редакторов, которые тщательно отбирают и анализируют новости со
             всего мира. Мы следим за глобальными событиями, региональными разработками, политическими изменениями,
             научными открытиями, технологическими новинками, развитием бизнеса, культурными трендами и спортивными
@@ -29,7 +55,7 @@ const About = () => {
 
           <br />
 
-          <p>
+          <p className={cls.title3}>
             <span>"News Line" </span>
             предлагает множество категорий новостей, чтобы каждый читатель мог найти информацию по своим интересам. Вы
             сможете узнавать о последних политических событиях, экономическом развитии, научных исследованиях,
@@ -38,7 +64,7 @@ const About = () => {
 
           <br />
 
-          <p>
+          <p className={cls.title4}>
             Мы понимаем, что ваше время ценно, поэтому
             <span> "News Line" </span>
             предоставляет легкий и удобный интерфейс, который позволяет вам быстро найти нужную информацию. Вы сможете
@@ -48,7 +74,7 @@ const About = () => {
 
           <br />
 
-          <p>
+          <p className={cls.title5}>
             Мы гордимся своей независимостью и объективностью в отображении новостей. Мы представляем разные точки
             зрения, анализируем факты и предоставляем достоверную информацию, чтобы вы могли самостоятельно сформировать
             свое мнение.
@@ -56,7 +82,7 @@ const About = () => {
 
           <br />
 
-          <p>
+          <p className={cls.title_six}>
             <span>"News Line" </span>
             также предоставляет возможность взаимодействия с нашей командой. Вы можете оставлять комментарии, делиться
             своими мыслями и обсуждать новостные материалы с другими пользователями. Мы ценим ваше мнение и стремимся
@@ -65,7 +91,7 @@ const About = () => {
 
           <br />
 
-          <p>
+          <p className={cls.title_seven}>
             Присоединяйтесь к
             <span> "News Line" </span>
             уже сегодня и будьте в курсе самых актуальных новостей и событий со всего мира. Мы работаем для вас, чтобы

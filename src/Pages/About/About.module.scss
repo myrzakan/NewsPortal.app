@@ -1,13 +1,4 @@
 
-.loading {
-    display: flex;
-    justify-content: center;
-    margin-top: 350px;
-
-    margin-bottom: 400px;
-    font-size: 35px;
-
-}  
   
 
 .aboutContainer {
@@ -17,11 +8,35 @@
     position: relative;
     right: 25px;
 
-    h1 {
+    .aboutTitle {
         margin: 20px 0;
     }
 
-    p {
+    .title1 {
+        font-size: 19px;
+    }
+
+    .title2 {
+        font-size: 19px;
+    }
+
+    .title3 {
+        font-size: 19px;
+    }
+
+    .title4 {
+        font-size: 19px;
+    }
+
+    .title5 {
+        font-size: 19px;
+    }
+
+    .title_six {
+        font-size: 19px;
+    }
+
+    .title_seven {
         font-size: 19px;
     }
 
