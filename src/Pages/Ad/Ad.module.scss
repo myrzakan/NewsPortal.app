@@ -1,5 +1,3 @@
-
-
 .adContainer {
     margin: 0px 545px;
     margin-bottom: 100px;
@@ -7,27 +5,58 @@
     position: relative;
     right: 25px;
 
-
-    h1 {
+    & .title_one {
         margin: 20px 0;
     }
 
-    p {
+    & .title2 {
         font-size: 19px;
     }
 
-    span {
+    & .title_three {
+        font-size: 19px;
+    }
+
+    & .title_four {
+        font-size: 19px;
+    }
+
+    & .title_five {
+        font-size: 19px;
+    }
+
+    & .title_six {
+        font-size: 19px;
+    }
+
+    & .title_seven {
+        font-size: 19px;
+    }
+
+    & .title_eight {
+        font-size: 19px;
+    }
+
+    & .title_nine {
+        font-size: 19px;
+    }
+
+    & .title_ten {
+        font-size: 19px;
+    }
+
+    & span {
         color: black;
         font-weight: bold;
     }
 
-    strong {
+    & strong {
         color: #00A86B;
         font-size: 20px;
     }
 
-    a:hover {
-        span {
+    & a:hover {
+        & span {
             color: #00A86B;
         }
     }

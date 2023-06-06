@@ -4,6 +4,7 @@ import firebase from 'firebase/compat/app';
 import 'firebase/compat/database';
 
 import cls from './PostList.module.scss';
+import logo from '../../Logo/press.png';
 
 const firebaseConfig = {
   // Настройки конфигурации Firebase
@@ -24,6 +25,8 @@ if (!firebase.apps.length) {
 const PostList = () => {
   const [posts, setPosts] = useState([]);
   const [loading, setLoading] = useState(true);
+  const [categories, setCategories] = useState([]);
+  const [selectedCategory, setSelectedCategory] = useState(null);
 
   useEffect(() => {
     const fetchData = async () => {
@@ -40,6 +43,11 @@ const PostList = () => {
 
           setPosts(postsList);
           setLoading(false);
+
+          // Получаем список уникальных категорий
+          const categoriesSet = new Set(postsList.map((post) => post.category));
+          const categoriesList = Array.from(categoriesSet);
+          setCategories(categoriesList);
         }
       } catch (error) {
         console.log(error);
@@ -53,15 +61,36 @@ const PostList = () => {
     window.scrollTo(0, 0);
   }, []);
 
+  const selectCategory = (category) => {
+    setSelectedCategory(category);
+  };
+
   if (loading) {
-    return <div className={cls.loading}>Loading...</div>;
+    return (
+      <div className={cls.loading}>
+        <img src={logo} alt="logo" />
+      </div>
+    );
+  }
+
+  let filteredPosts = posts;
+  if (selectedCategory) {
+    filteredPosts = posts.filter((post) => post.category === selectedCategory);
   }
 
   return (
     <div className={cls.post_container}>
       <h1>Список постов</h1>
+      <div className={cls.categories}>
+        <button onClick={() => selectCategory(null)}>Все</button>
+        {categories.map((category) => (
+          <button key={category} onClick={() => selectCategory(category)}>
+            {category}
+          </button>
+        ))}
+      </div>
       <ul>
-        {posts.map((post) => (
+        {filteredPosts.map((post) => (
           <li key={post.id} className={cls.postlist}>
             {post.imageUrl && <img src={post.imageUrl} alt="Пост" className={cls.postImg} />}
             <p>{new Date(post.timestamp).toLocaleString()}</p>

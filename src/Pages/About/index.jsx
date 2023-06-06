@@ -11,20 +11,20 @@ const About = () => {
 
   React.useEffect(() => {
     const animationData = [
-      { selector: cls.aboutTitle, duration: 0.5, delay: 0 },
-      { selector: cls.title1, duration: 0.6, delay: 0.1 },
-      { selector: cls.title2, duration: 0.7, delay: 0.2 },
-      { selector: cls.title3, duration: 0.8, delay: 0.3 },
-      { selector: cls.title4, duration: 0.9, delay: 0.4 },
-      { selector: cls.title5, duration: 1, delay: 0.5 },
-      { selector: cls.title_six, duration: 1.1, delay: 0.6 },
-      { selector: cls.title_seven, duration: 1.2, delay: 0.7 }
+      { selector: cls.aboutTitle, delay: 0 },
+      { selector: cls.title1, delay: 0.1 },
+      { selector: cls.title2, delay: 0.2 },
+      { selector: cls.title3, delay: 0.3 },
+      { selector: cls.title4, delay: 0.4 },
+      { selector: cls.title5, delay: 0.5 },
+      { selector: cls.title_six, delay: 0.6 },
+      { selector: cls.title_seven, delay: 0.7 }
     ];
   
     animationData.forEach(({ selector, duration, delay }) => {
       gsap.from('.' + selector, {
         opacity: 0,
-        duration,
+        duration: 0.2,
         delay,
         x: 30
       });

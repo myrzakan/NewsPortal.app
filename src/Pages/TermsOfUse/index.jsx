@@ -1,7 +1,10 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
+import gsap from 'gsap'
 
 import cls from './TermsOfUse.module.scss'
+
+
 
 const TermsOfUse = () => {
 
@@ -9,13 +12,38 @@ const TermsOfUse = () => {
         window.scrollTo(0, 0); 
       }, []);
 
+  React.useEffect(() => {
+    const animationData = [
+      { selector: cls.title_one, delay: 0.1 },
+      { selector: cls.title_two, delay: 0.2 },
+      { selector: cls.title_three, delay: 0.3 },
+      { selector: cls.title_four, delay: 0.4 },
+      { selector: cls.title_five, delay: 0.5 },
+      { selector: cls.title_six, delay: 0.6 },
+      { selector: cls.title_seven, delay: 0.7 },
+      { selector: cls.title_eight, delay: 0.8 },
+      { selector: cls.title_nine, delay: 0.9 }
+    ];
+  
+    animationData.forEach(({ selector, duration, delay }) => {
+      gsap.from('.' + selector, {
+        opacity: 0,
+        duration: 0.2,
+        delay,
+        x: 30
+      });
+    });
+  }, []);
+  
+
+
     return (
         <div className={cls.Container}>
-            <h1>Правила и использование News Line:</h1>
+            <h1 className={cls.title_one}>Правила и использование News Line:</h1>
 
             <br />
 
-            <p>
+            <p className={cls.title_two}>
                 Добро пожаловать на <strong>News Line!</strong> Мы рады предоставить вам доступ к нашему 
                 информационному порталу и обеспечить вас актуальными новостями и интересными материалами. 
                 Чтобы гарантировать комфортное и безопасное взаимодействие с нашим сайтом, пожалуйста, ознакомьтесь с
@@ -24,7 +52,7 @@ const TermsOfUse = () => {
 
             <br />
 
-            <p>
+            <p className={cls.title_three}>
                 {/* <span>1. </span> */}
                 <strong> Авторские права: </strong> <br />
                 Все материалы, опубликованные на <strong> News Line, </strong> являются интеллектуальной собственностью и 
@@ -34,7 +62,7 @@ const TermsOfUse = () => {
 
             <br />
 
-            <p>
+            <p className={cls.title_four}>
                 {/* <span>2. </span> */}
                 <strong> Правила публикации комментариев: </strong> <br />
                 Мы приветствуем ваше активное участие в дискуссиях на нашем сайте через комментарии. 
@@ -45,7 +73,7 @@ const TermsOfUse = () => {
 
             <br />
 
-            <p>
+            <p className={cls.title_five}>
                 {/* <span>3. </span> */}
                 <strong> Информационная ответственность: </strong> <br />
                 Мы стремимся предоставлять актуальную и достоверную информацию, 
@@ -57,7 +85,7 @@ const TermsOfUse = () => {
 
             <br />
 
-            <p>
+            <p className={cls.title_six}>
                 {/* <span>4. </span> */}
                 <strong> Безопасность и конфиденциальность: </strong> <br />
                 Мы прилагаем все усилия для обеспечения безопасности вашей личной информации при использовании нашего сайта. 
@@ -67,7 +95,7 @@ const TermsOfUse = () => {
 
             <br />
 
-            <p>
+            <p className={cls.title_seven}>
                 {/* <span>5. </span> */}
                 <strong> Внешние ссылки: </strong> <br />
                 На <strong> News Line </strong> могут быть размещены ссылки на внешние ресурсы и сторонние веб-сайты. 
@@ -78,7 +106,7 @@ const TermsOfUse = () => {
 
             <br />
 
-            <p>
+            <p className={cls.title_eight}>
                 Мы призываем всех пользователей <strong> News Line </strong> соблюдать эти правила и условия использования, 
                 чтобы обеспечить качественное и безопасное взаимодействие на нашем сайте. 
                 Если у вас возникли вопросы, замечания или жалобы, пожалуйста, свяжитесь с нами 
@@ -91,7 +119,7 @@ const TermsOfUse = () => {
 
             <br />
 
-            <p>
+            <p className={cls.title_nine}>
                 Благодарим вас за использование <strong> News Line! </strong>
                 Мы надеемся, что наш сайт станет вашим надежным источником информации и вдохновения.
             </p>
