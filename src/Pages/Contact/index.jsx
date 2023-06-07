@@ -14,7 +14,7 @@ const Contact = () => {
 
     React.useEffect(() => {
       const animationData = [
-        { selector: cls.title_one, delay: 0.1 },
+        { selector: cls.title, delay: 0 },
         { selector: cls.title_two, delay: 0.1 },
         { selector: cls.title_three, delay: 0.2 },
         { selector: cls.title_four, delay: 0.3 },
@@ -39,7 +39,7 @@ const Contact = () => {
 
     return (
         <div className={cls.contactContainer}>
-            <h1 className={cls.title_one}>Контакты News Line:</h1>
+            <h1 className={cls.title}>Контакты News Line:</h1>
 
             <br />
 

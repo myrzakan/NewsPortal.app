@@ -2,9 +2,26 @@ import React from 'react'
 import { Link } from 'react-router-dom'
 import { AiOutlineArrowRight } from 'react-icons/ai'
 import { FaFacebook, FaTwitter, FaInstagram } from 'react-icons/fa'
+
+import logo from '../../Logo/press.png'
 import cls from './Footer.module.scss'
 
 const Footer = () => {
+
+    const handlePhoneClick = () => {
+        window.location.href = 'tel:+996500002007';
+      };
+    
+    const handleEmailClick = () => {
+        window.location.href = 'mailto:news@line.kg';
+    };
+
+    const handleAddressClick = () => {
+        window.location.href = 'https://www.google.com/maps/search/?api=1&query=г.+Бишкек, проспект Эркиндик 46';
+    };
+
+
+
     return (
         <div className={cls.footerContainer}>
             <div className={cls.one}></div>
@@ -49,9 +66,29 @@ const Footer = () => {
 
                 <div className={cls.contact}>
                     <h3>Свяжитесь с нами</h3>
-                    <p>Телефон: +7 (XXX) XXX-XXXX</p>
-                    <p>Email: info@example.com</p>
-                    <p>Адрес: г. Ваш город, ул. Ваша улица, дом Ваш номер</p>
+                    <p>
+                        Телефон: 
+                        <span 
+                            onClick={handlePhoneClick} 
+                            className={cls.clickableText}> +996 (500) 002 007
+                        </span>
+                     </p>
+
+                    <p>
+                        Email: 
+                        <span 
+                            onClick={handleEmailClick} 
+                            className={cls.clickableText}> news@line.kg
+                        </span>
+                    </p>
+
+                    <p>
+                        Адрес: 
+                        <span 
+                            onClick={handleAddressClick} 
+                            className={cls.clickableText}> г. Бишкек, проспект Эркиндик 46
+                        </span>
+                    </p>
                 </div>
 
                 <div className={cls.social}>
@@ -77,6 +114,7 @@ const Footer = () => {
             </div>
 
             <div className={cls.copyRight}>
+                <img src={logo} alt="logo" />
                 <p>© {new Date().getFullYear()} Все права защищены.</p>
                 <p>Использование материалов разрешено только с письменного разрешения компании.</p>
                 <p>Любое копирование, воспроизведение или распространение контента без разрешения запрещено.</p>

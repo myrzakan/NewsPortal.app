@@ -7,23 +7,16 @@ import CreateCategory from './CreateCategory';
 import DeletePosts from './DeletePosts';
 import DeleteCategory from './DeleteCategory';
 
+import firebaseConfig from '../FirebaseConfig';
+
 import cls from './Admin.module.scss'
 
 import logo from '../Logo/375.2.png'
 
-const firebaseConfig = {
-  // Настройки конфигурации Firebase
-  apiKey: "AIzaSyCxHT4bGzaKIl8DYK-qwWPuKJAPqlMgaOg",
-  authDomain: "press-e5741.firebaseapp.com",
-  databaseURL: "https://press-e5741-default-rtdb.asia-southeast1.firebasedatabase.app",
-  projectId: "press-e5741",
-  storageBucket: "press-e5741.appspot.com",
-  messagingSenderId: "325042443581",
-  appId: "1:325042443581:web:96832ff63420bda07a6154"
-  // ...
-};
 
-firebase.initializeApp(firebaseConfig);
+if (!firebase.apps.length) {
+  firebase.initializeApp(firebaseConfig);
+}
 
 const AdminPanel = () => {
   const [categories, setCategories] = useState([]);

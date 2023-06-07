@@ -12,22 +12,22 @@ const Ad = () => {
 
       React.useEffect(() => {
         const animationData = [
-          { selector: cls.title_one, duration: 0.2, delay: 0 },
-          { selector: cls.title_three, duration: 0.2, delay: 0.1 },
-          { selector: cls.title_three, duration: 0.2, delay: 0.2 },
-          { selector: cls.title_four, duration: 0.2, delay: 0.3 },
-          { selector: cls.title_five, duration: 0.2, delay: 0.4 },
-          { selector: cls.title_six, duration: 0.2, delay: 0.5 },
-          { selector: cls.title_seven, duration: 0.2, delay: 0.6 },
-          { selector: cls.title_eight, duration: 0.2, delay: 0.7 },
-          { selector: cls.title_nine, duration: 0.2, delay: 0.8 },
-          { selector: cls.title_ten, duration: 0.2, delay: 0.9 }
+          { selector: cls.title_one, delay: 0 },
+          { selector: cls.title, delay: 0.1 },
+          { selector: cls.titleThree, delay: 0.2 },
+          { selector: cls.title_four, delay: 0.3 },
+          { selector: cls.title_five, delay: 0.4 },
+          { selector: cls.title_six, delay: 0.5 },
+          { selector: cls.title_seven, delay: 0.6 },
+          { selector: cls.title_eight, delay: 0.7 },
+          { selector: cls.title_nine, delay: 0.8 },
+          { selector: cls.titleTen, delay: 0.9 }
         ];
       
         animationData.forEach(({ selector, duration, delay }) => {
           gsap.from('.' + selector, {
             opacity: 0,
-            duration,
+            duration: 0.2,
             delay,
             x: 30
           });
@@ -41,7 +41,7 @@ const Ad = () => {
         <div className={cls.adContainer}>
             <h1 className={cls.title_one}>Реклама на News Line:</h1>
 
-            <p className={cls.title2}>
+            <p className={cls.title}>
                 Хотите достичь широкой аудитории и продвинуть свой бренд или продукт?
                  <br />
                 Реклама на <strong> News Line </strong> предоставляет вам возможность привлечь внимание 
@@ -50,7 +50,7 @@ const Ad = () => {
 
             <br />
 
-            <p className={cls.title_three}>
+            <p className={cls.titleThree}>
                 Мы предлагаем различные рекламные форматы и 
                 партнерские возможности, 
                 чтобы удовлетворить ваши потребности и цели.
@@ -123,7 +123,7 @@ const Ad = () => {
 
             <br />
 
-            <p className={cls.title_ten}>
+            <p className={cls.titleTen}>
                 Свяжитесь с нами через указанные контактные данные на странице
                 <Link to='/contact'><span> "Котакты". <br /> </span></Link> 
                 Мы будем рады помочь вам достичь ваших рекламных целей и успешно 

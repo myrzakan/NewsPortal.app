@@ -8,7 +8,7 @@
     max-height: 100rem;
 
     h3 {
-        color: #29AB87;
+        color: #DBD7D2;
         margin-bottom: 20px;
     }
 
@@ -17,7 +17,7 @@
         margin:  100px 0px;
         position: relative;
         left: 50px;
-        margin: 100px 300px;
+        margin: 100px 200px;
         
         
         
@@ -28,7 +28,13 @@
         }
 
         .f_about {
-            width: 300px;
+            width: 400px;
+            text-align: center;
+
+            p {
+                color: #29AB87;
+                font-weight: bold;
+            }
         }
 
         ul li {
@@ -37,16 +43,62 @@
         }
 
         a {
-            color: #f9f9f9;
+            color: #DBD7D2;
+            font-size: 15px;
+            font-weight: bold;
+            margin-left: 5px;
+            
+        }
+
+        a:hover {
+            color: #29AB87;
         }
     }
 
     .copyRight {
+
         text-align: center;
+
+        img {
+            width: 120px;
+            position: absolute;
+            bottom: 140px;
+            right: 56.5rem;
+        }
+
         p {
             margin: 10px 0;
-            color: #F0FFF0;
+            color: #DBD7D2;
             font-weight: bold;
+        }
+    }
+
+
+    .contact {
+        p {
+            color: #29AB87;
+            font-weight: bold;
+
+
+            .clickableText {
+                color: #DBD7D2;
+                cursor: pointer;
+            }
+
+            .clickableText:hover {
+                text-decoration: underline;
+            }
+        }
+    }
+
+    .social {
+        ul {
+            display: flex;
+
+            li a {
+                font-size: 30px;
+                margin: 10px;
+            }
         }
     }
 }
