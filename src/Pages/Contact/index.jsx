@@ -11,6 +11,20 @@ const Contact = () => {
       }, []);
 
 
+    const handlePhoneClick = () => {
+        window.location.href = 'tel:+996500002007';
+      };
+    
+    const handleEmailClick = () => {
+        window.location.href = 'mailto:news@line.kg';
+    };
+
+    const handleAddressClick = () => {
+        window.location.href = 'https://www.google.com/maps/search/?api=1&query=г.+Бишкек, проспект Эркиндик 46';
+    };
+
+
+
 
     React.useEffect(() => {
       const animationData = [
@@ -46,7 +60,7 @@ const Contact = () => {
             <p className={cls.title_two}>
                 Мы ценим ваши вопросы, отзывы и предложения. Наша команда всегда готова 
                 общаться с вами и помочь вам в любых вопросах, 
-                связанных с проектом <strong>"News Line". </strong>
+                связанных с проектом <strong>"News Line"</strong>. 
                 Мы стремимся предоставлять вам актуальные новости и интересную информацию из разных сфер жизни.
             </p>
 
@@ -64,20 +78,32 @@ const Contact = () => {
             
             <br />
 
-            <p className={cls.title_five}>
-                <span>Телефон: </span>+996 (500) 002 007
+            <p 
+                className={cls.title_five}
+                onClick={handlePhoneClick}
+            >
+                <span>Телефон: </span>
+                <strong className={cls.href}>+996 (500) 002 007</strong>
             </p>
 
             <br />
 
-            <p className={cls.title_six}>
-                <span>Emali: <strong>news@line.kg</strong></span>
+            <p 
+                className={cls.title_six}
+                onClick={handleEmailClick}
+            >
+                <span>Emali:</span>
+                <strong className={cls.href}> news@line.kg</strong>
             </p> 
 
             <br />
 
-            <p className={cls.title_seven}>
-                <span>Адрес</span>г. Бишкек, проспект Эркиндик 46
+            <p 
+                className={cls.title_seven}
+                onClick={handleAddressClick}
+            >
+                <span>Адрес:</span>
+                <strong className={cls.href}> г. Бишкек, проспект Эркиндик 46</strong>
             </p>
 
             <br />
@@ -91,7 +117,7 @@ const Contact = () => {
 
             <p className={cls.title_9}>
                 Если у вас есть интересные новости, статьи или медиаматериалы, которые вы бы хотели предложить
-                для публикации на <strong> "News Line", </strong> 
+                для публикации на <strong> "News Line"</strong>,  
                 мы будем рады рассмотреть ваше предложение. 
                 Присылайте свои материалы на указанный выше email, и наша редакционная команда рассмотрит их с интересом.
             </p>

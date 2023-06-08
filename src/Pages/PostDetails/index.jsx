@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React from 'react';
 import { useParams } from 'react-router-dom';
 import firebase from 'firebase/compat/app';
 import 'firebase/compat/database';
@@ -9,9 +9,9 @@ import cls from './PostDetaills.module.scss';
 
 const PostDetails = () => {
   const { postId } = useParams();
-  const [post, setPost] = useState(null);
+  const [post, setPost] = React.useState(null);
 
-  useEffect(() => {
+  React.useEffect(() => {
     if (!firebase.apps.length) {
       firebase.initializeApp(firebaseConfig);
     }
@@ -29,7 +29,7 @@ const PostDetails = () => {
     };
   }, [postId]);
 
-  useEffect(() => {
+  React.useEffect(() => {
     window.scrollTo(0, 0); // Прокручиваем страницу в начало при монтировании компонента
   }, []);
 
@@ -44,11 +44,17 @@ const PostDetails = () => {
 
   return (
     <div className={cls.container}>
+      {/* <============== Post Detals Title =============> */}
       <h2 className={cls.title}>{post.title}</h2>
+
+      {/* <=============== Post Detals Img ==================> */}
       {post.imageUrl && <img src={post.imageUrl} alt="Post" className={cls.imgPost} />}
+
+      <p className={cls.category} >/{post.category}</p>
+      <p className={cls.time}>{formattedTimestamp}</p>
+
+      {/* <================= Post Detals Description ===============> */}
       <div className={cls.description} dangerouslySetInnerHTML={content}></div>
-      <p className={cls.category}>Category: {post.category}</p>
-      <p className={cls.time}>Timestamp: {formattedTimestamp}</p>
     </div>
   );
 };

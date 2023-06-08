@@ -47,18 +47,18 @@ function App() {
         <Route path="/"
           element={
             <>
-              {isLoading ? null : <Header />}
-              {isLoading ? null : <PostList />}
-              {isLoading ? null : <Footer />}
+              <Header />
+              <PostList />
+              <Footer />
             </>
           }
         /> {/* <=== PostDetals ===> */}
         <Route path="/postDetails/:postId"
           element={
             <>
-              {isLoading ? null : <Header />}
-              {isLoading ? null : <PostDetails />}
-              {isLoading ? null : <Footer />}
+              <Header />
+              <PostDetails />
+              <Footer />
             </>
           }
         /> {/* <=== end ===> */}
@@ -67,9 +67,9 @@ function App() {
          <Route path="/about"
           element={
             <>
-              {isLoading ? null : <Header />}
-              {isLoading ? null : <About />}
-              {isLoading ? null : <Footer />}
+              <Header />
+              <About />
+              <Footer />
             </>
           }
         /> {/* <=== end ===> */}
@@ -79,9 +79,9 @@ function App() {
          <Route path="/contact"
           element={
             <>
-              {isLoading ? null : <Header />}
-              {isLoading ? null : <Contact />}
-              {isLoading ? null : <Footer />}
+              <Header />
+              <Contact />
+              <Footer />
             </>
           }
         /> {/* <=== end ===> */}
@@ -91,9 +91,9 @@ function App() {
          <Route path="/termsOfUse"
           element={
             <>
-              {isLoading ? null : <Header />}
-              {isLoading ? null : <TermsOfUse />}
-              {isLoading ? null : <Footer />}
+              <Header />
+              <TermsOfUse />
+              <Footer />
             </>
           }
         /> {/* <=== end ===> */}
@@ -103,9 +103,9 @@ function App() {
          <Route path="/advertising"
           element={
             <>
-              {isLoading ? null : <Header />}
-              {isLoading ? null : <Ad />}
-              {isLoading ? null : <Footer />}
+              <Header />
+              <Ad />
+              <Footer />
             </>
           }
         /> {/* <=== end ===> */}
@@ -115,9 +115,9 @@ function App() {
          <Route path="/policy"
           element={
             <>
-              {isLoading ? null : <Header />}
-              {isLoading ? null : <Policy />}
-              {isLoading ? null : <Footer />}
+              <Header />
+              <Policy />
+              <Footer />
             </>
           }
         /> {/* <=== end ===> */}

@@ -4,7 +4,7 @@
   justify-content: center;
 
 
-  margin-top: 250px;
+  margin-top: 50px;
   margin-bottom: 400px;
   font-size: 35px;
 }  
@@ -21,17 +21,13 @@ body {
     margin-left: 500px;
     width: 53rem;
     
-
-
-
     
     }
     
     .postlist {
-      background-color: #f9f9f9;
       border-radius: 8px;
       padding: 20px;
-      margin-bottom: 20px;
+      margin-bottom: 60px;
       box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
     }
     
@@ -44,6 +40,7 @@ body {
       margin-bottom: 10px;
       color: black;
       font-weight: 500;
+      width: 100%;
     }
 
     .postlist h2:hover {
@@ -53,8 +50,6 @@ body {
 
     ul {
       list-style: none;
-    
-
     }
     
     .postlist p {
@@ -70,7 +65,15 @@ body {
 
     .postImg {
         width: 800px;
-        height: 450px;
+        height: 500px;
         object-fit: cover;
         border-radius: 6px;
+    }
+
+    .no_results {
+      margin-bottom: 630px;
+      text-align: center;
+      position: relative;
+      top: 200px;
+      font-size: 30px;
     }
