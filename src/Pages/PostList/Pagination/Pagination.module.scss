@@ -1,0 +1,54 @@
+/* Pagination.module.scss */
+
+.pagination {
+    display: flex;
+    justify-content: center;
+    margin-top: 20px;
+    margin-bottom: 50px;
+  }
+  
+  .page_arrow {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 30px;
+    height: 30px;
+    background-color: #f1f1f1;
+    color: #333;
+    border: none;
+    border-radius: 50%;
+    cursor: pointer;
+    font-size: 16px;
+    margin: 0 5px;
+    transition: background-color 0.3s ease;
+  
+    &:hover {
+      background-color: #ccc;
+    }
+  }
+  
+  .page_number {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 40px;
+    height: 40px;
+    background-color: #f1f1f1;
+    color: #333;
+    border: none;
+    border-radius: 50%;
+    cursor: pointer;
+    font-size: 16px;
+    margin: 0 5px;
+    transition: background-color 0.3s ease;
+  
+    &:hover {
+      background-color: #ccc;
+    }
+  
+    &.active {
+      background-color: #333;
+      color: #fff;
+    }
+  }
+  

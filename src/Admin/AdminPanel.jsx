@@ -1,17 +1,24 @@
-import React, { useEffect, useState } from 'react';
+
+import React  from 'react';
+
+// <=============== Firebase ==============>
 import firebase from 'firebase/compat/app';
 import 'firebase/compat/database';
 
+// <================ Components ============>
 import CreatePostForm from './CreatePosts';
 import CreateCategory from './CreateCategory';
 import DeletePosts from './DeletePosts';
 import DeleteCategory from './DeleteCategory';
 
+// <============= Firebase Configuration ==============> 
 import firebaseConfig from '../FirebaseConfig';
 
+// <============ SCSS style ===========>
 import cls from './Admin.module.scss'
 
-import logo from '../Logo/375.2.png'
+// <========= Website Logo ==============>
+import logo from '../Logo/NewsLine_silver.png'
 
 
 if (!firebase.apps.length) {
@@ -19,11 +26,11 @@ if (!firebase.apps.length) {
 }
 
 const AdminPanel = () => {
-  const [categories, setCategories] = useState([]);
-  const [posts, setPosts] = useState([]);
-  const [loading, setLoading] = useState(true);
+  const [categories, setCategories] = React.useState([]);
+  const [posts, setPosts] = React.useState([]);
+  const [loading, setLoading] = React.useState(true);
 
-  useEffect(() => {
+  React.useEffect(() => {
     const database = firebase.database();
     const categoriesRef = database.ref('categories');
     const postsRef = database.ref('posts');
@@ -64,7 +71,9 @@ const AdminPanel = () => {
   }, []);
 
   if (loading) {
-    return <div className={cls.loading}>Loading...</div>;
+    return <div className={cls.loading}>
+      <img src={logo} alt="log" />
+    </div>;
   }
 
   return (

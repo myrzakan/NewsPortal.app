@@ -1,20 +1,10 @@
-@font-face {
-    font-family: 'raleway_c';
-    src: url(../../../public/fonts/raleway-v22-cyrillic-300.woff2);
-    font-weight: 300;
-  }
-  
-  @font-face {
-    font-family: 'raleway_c';
-    src: url(../../../public/fonts/raleway-v22-cyrillic-100.woff2);
-    font-weight: 100;
-  }
+
  
 
   .CreateCategoryContainer {
     border: solid 1px #fff;
     box-shadow: 0px 2px 10px 3px rgba(34, 60, 80, 0.2);
-    background-color: #F7F7F7;
+    background-color: #E5E4E2;
     border-radius: 6px;
 
     width: 49rem;
@@ -42,7 +32,7 @@
       left: 150px;
       margin-top: 89px;
       border: none;
-      background-color: #EDEAE0;
+      background-color: #DBD7D2;
       padding: 10px;
       font-size: 18px;
       border-radius: 4px;

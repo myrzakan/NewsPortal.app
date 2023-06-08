@@ -1,8 +1,12 @@
 import React from 'react';
+
 import { useParams } from 'react-router-dom';
+
+// <=============== Firebase ===============>
 import firebase from 'firebase/compat/app';
 import 'firebase/compat/database';
 
+// <============= Firebase Configuration =================> 
 import firebaseConfig from '../../FirebaseConfig';
 
 import cls from './PostDetaills.module.scss';

@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom'
 
 import cls from './Header.module.scss'
 
-import Logo from '../../Logo/press.png'
+import Logo from '../../Logo/NewsLine_green.png'
 
 
 

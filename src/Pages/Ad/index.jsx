@@ -1,5 +1,7 @@
 import React from 'react'
+
 import { Link } from 'react-router-dom'
+
 import gsap from 'gsap'
 
 import cls from './Ad.module.scss'
@@ -10,30 +12,31 @@ const Ad = () => {
         window.scrollTo(0, 0); 
       }, []);
 
-      React.useEffect(() => {
-        const animationData = [
-          { selector: cls.title_one, delay: 0 },
-          { selector: cls.title, delay: 0.1 },
-          { selector: cls.titleThree, delay: 0.2 },
-          { selector: cls.title_four, delay: 0.3 },
-          { selector: cls.title_five, delay: 0.4 },
-          { selector: cls.title_six, delay: 0.5 },
-          { selector: cls.title_seven, delay: 0.6 },
-          { selector: cls.title_eight, delay: 0.7 },
-          { selector: cls.title_nine, delay: 0.8 },
-          { selector: cls.titleTen, delay: 0.9 }
-        ];
-      
-        animationData.forEach(({ selector, duration, delay }) => {
-          gsap.from('.' + selector, {
-            opacity: 0,
-            duration: 0.2,
-            delay,
-            x: 30
-          });
-          
+    // <============ Gsap Animations =========>
+    React.useEffect(() => {
+      const animationData = [
+        { selector: cls.title_one, delay: 0 },
+        { selector: cls.title, delay: 0.1 },
+        { selector: cls.titleThree, delay: 0.2 },
+        { selector: cls.title_four, delay: 0.3 },
+        { selector: cls.title_five, delay: 0.4 },
+        { selector: cls.title_six, delay: 0.5 },
+        { selector: cls.title_seven, delay: 0.6 },
+        { selector: cls.title_eight, delay: 0.7 },
+        { selector: cls.title_nine, delay: 0.8 },
+        { selector: cls.titleTen, delay: 0.9 }
+      ];
+    
+      animationData.forEach(({ selector, duration, delay }) => {
+        gsap.from('.' + selector, {
+          opacity: 0,
+          duration: 0.2,
+          delay,
+          x: 30
         });
-      }, []);
+        
+      });
+    }, []);
     
 
 
@@ -42,10 +45,13 @@ const Ad = () => {
             <h1 className={cls.title_one}>Реклама на News Line:</h1>
 
             <p className={cls.title}>
-                Хотите достичь широкой аудитории и продвинуть свой бренд или продукт?
+                Хотите достичь широкой аудитории и продвинуть 
+                свой бренд или продукт?
                  <br />
-                Реклама на <strong> News Line </strong> предоставляет вам возможность привлечь внимание 
-                миллионов читателей, заинтересованных в актуальных новостях и информации.
+                Реклама на <strong> News Line </strong>
+                предоставляет вам возможность привлечь внимание 
+                миллионов читателей, заинтересованных в 
+                актуальных новостях и информации.
             </p>
 
             <br />
@@ -87,8 +93,9 @@ const Ad = () => {
                 <strong> Видеореклама: </strong> <br />
                 Видеоролики имеют сильное воздействие на зрителей. 
                 Размещение видеорекламы на <strong> News Line </strong> 
-                позволит вам донести ваше сообщение с помощью визуального контента и звука,
-                 создавая более яркое впечатление и запоминаемость.
+                позволит вам донести ваше сообщение с помощью
+                визуального контента и звука,
+                создавая более яркое впечатление и запоминаемость.
             </p>
             
             <br />

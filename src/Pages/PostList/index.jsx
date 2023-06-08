@@ -1,12 +1,26 @@
-import React, { useState, useEffect, useRef } from 'react';
-import { Link } from 'react-router-dom';
+// PostList.jsx
+import React from 'react';
+
+// <======================= Gsap Animations ========================>
 import { gsap } from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
+
+// <======================== Firebase ===============================>
 import firebase from 'firebase/compat/app';
 import 'firebase/compat/database';
+
+// <============== Firebase Configuration ==============> 
 import firebaseConfig from '../../FirebaseConfig';
+
+// <================= SCSS style ===============>
 import cls from './PostList.module.scss';
-import logo from '../../Logo/press.png';
+
+// <=============== Website Logo ====================>
+import logo from '../../Logo/NewsLine_green.png';
+
+// <=============== Componenets ================>
+import PostItem from './PostItem';
+import Pagination from './Pagination';
 
 // Инициализация Firebase приложения
 if (!firebase.apps.length) {
@@ -14,21 +28,30 @@ if (!firebase.apps.length) {
 }
 
 const PostList = () => {
-  const [posts, setPosts] = useState([]);
-  const [loading, setLoading] = useState(true);
-  const [categories, setCategories] = useState([]);
-  const [selectedCategory, setSelectedCategory] = useState(null);
-  const [searchText, setSearchText] = useState('');
 
-  const postListRef = useRef(null);
-  const postRefs = useRef([]);
+  // <================ Post ==================>
+  const [posts, setPosts] = React.useState([]);
 
-  const [currentPage, setCurrentPage] = useState(1);
-  const itemsPerPage = 5;
-  const maxVisiblePages = 5;
+  //<================= Loading =====================>
+  const [loading, setLoading] = React.useState(true);
+
+  // <================= Category post ================================> 
+  const [categories, setCategories] = React.useState([]);
+  const [selectedCategory, setSelectedCategory] = React.useState(null);
+
+  // <=================== Search Post ===================>
+  const [searchText, setSearchText] = React.useState('');
+
+  // <=================== Pagination =====================>
+  const [currentPage, setCurrentPage] = React.useState(1);
+  const [postsPerPage] = React.useState(5);
+
+  // <========== Gsap Animations =======>
+  const postListRef = React.useRef(null);
+  const postRefs = React.useRef([]);
 
   // Загрузка данных из Firebase и установка состояний
-  useEffect(() => {
+  React.useEffect(() => {
     gsap.registerPlugin(ScrollTrigger);
 
     const fetchData = async () => {
@@ -60,12 +83,12 @@ const PostList = () => {
   }, []);
 
   // Прокрутка страницы в начало при монтировании компонента
-  useEffect(() => {
+  React.useEffect(() => {
     window.scrollTo(0, 0);
   }, []);
 
   // Анимация для списка постов при изменении выбранной категории
-  useEffect(() => {
+  React.useEffect(() => {
     if (postListRef.current) {
       gsap.from(postListRef.current.children, {
         opacity: 0,
@@ -86,12 +109,13 @@ const PostList = () => {
   // Обработчик выбора категории
   const selectCategory = (category) => {
     setSelectedCategory(category);
-    setCurrentPage(1); // Сброс текущей страницы при выборе новой категории
+    setCurrentPage(1);
   };
 
   // Обработчик изменения текста поиска
   const handleSearch = (event) => {
     setSearchText(event.target.value);
+    setCurrentPage(1);
   };
 
   // Фильтрация постов по тексту поиска и/или выбранной категории
@@ -114,43 +138,23 @@ const PostList = () => {
     ? posts.filter((post) => post.category === selectedCategory)
     : posts;
 
-  // Пагинация
-  const totalPages = Math.ceil(filteredPosts.length / itemsPerPage);
+  // Пагинация - вычисление индексов постов текущей страницы
+  const indexOfLastPost = currentPage * postsPerPage;
+  const indexOfFirstPost = indexOfLastPost - postsPerPage;
+  const currentPosts = filteredPosts.slice(indexOfFirstPost, indexOfLastPost);
 
-  // Определение границ отображаемых страниц
-  let startPage, endPage;
-  if (totalPages <= maxVisiblePages) {
-    // Если общее количество страниц меньше или равно максимальному количеству отображаемых страниц,
-    // показываем все страницы
-    startPage = 1;
-    endPage = totalPages;
-  } else {
-    // Если общее количество страниц больше максимального количества отображаемых страниц,
-    // определяем границы в зависимости от текущей страницы
-    const maxVisiblePagesHalf = Math.floor(maxVisiblePages / 2);
-    if (currentPage <= maxVisiblePagesHalf) {
-      startPage = 1;
-      endPage = maxVisiblePages;
-    } else if (currentPage + maxVisiblePagesHalf >= totalPages) {
-      startPage = totalPages - maxVisiblePages + 1;
-      endPage = totalPages;
-    } else {
-      startPage = currentPage - maxVisiblePagesHalf;
-      endPage = currentPage + maxVisiblePagesHalf;
-    }
-  }
+  const totalPosts = filteredPosts.length;
 
-  // Обработчик изменения страницы
+  // Изменение текущей страницы
   const handlePageChange = (pageNumber) => {
     setCurrentPage(pageNumber);
-    window.scrollTo(0, 0); // Прокрутка страницы в верхнюю часть
+    window.scrollTo(0, 0);
   };
-
-  const hasResults = filteredPosts.length > 0;
 
   return (
     <div className={cls.post_container}>
       <h1>Список постов</h1>
+      {/* <======== Search ========> */}
       <div className={cls.search}>
         <input
           type="text"
@@ -159,6 +163,8 @@ const PostList = () => {
           onChange={handleSearch}
         />
       </div>
+
+      {/* <========= Category ========> */}
       <div className={cls.categories}>
         <button onClick={() => selectCategory(null)}>Все</button>
         {categories.map((category) => (
@@ -168,6 +174,7 @@ const PostList = () => {
         ))}
       </div>
 
+       {/* <======= Loading =========> */}
       {loading ? (
         <div className={cls.loading}>
           <img onClick={() => selectCategory(null)} src={logo} alt="logo" />
@@ -175,57 +182,21 @@ const PostList = () => {
       ) : (
         <>
           <ul ref={postListRef}>
-            {hasResults ? (
-              filteredPosts
-                .slice((currentPage - 1) * itemsPerPage, currentPage * itemsPerPage)
-                .map((post, index) => (
-                  <li
-                    key={post.id}
-                    className={cls.postlist}
-                    ref={(el) => (postRefs.current[index] = el)}
-                  >
-                    {post.imageUrl && <img src={post.imageUrl} alt="Пост" className={cls.postImg} />}
-                    <p>
-                      {post.category} / {new Date(post.timestamp).toLocaleString()}
-                    </p>
-                    <Link to={`/postDetails/${post.id}`}>
-                      <h2>{post.title}</h2>
-                    </Link>
-                  </li>
-                ))
+            {currentPosts.length > 0 ? (
+              currentPosts.map((post, index) => (
+                <PostItem key={post.id} post={post} ref={(el) => (postRefs.current[index] = el)} />
+              ))
             ) : (
               <div className={cls.no_results}>Нет результатов</div>
             )}
           </ul>
-          {totalPages > 1 && (
-            <div className={cls.pagination}>
-              <button
-                className={cls.page_arrow}
-                disabled={currentPage === 1}
-                onClick={() => handlePageChange(currentPage - 1)}
-              >
-                &lt;
-              </button>
-              {Array.from({ length: endPage - startPage + 1 }, (_, i) => startPage + i).map(
-                (pageNumber) => (
-                  <button
-                    key={pageNumber}
-                    className={`${cls.page_number} ${pageNumber === currentPage ? cls.active : ''}`}
-                    onClick={() => handlePageChange(pageNumber)}
-                  >
-                    {pageNumber}
-                  </button>
-                )
-              )}
-              <button
-                className={cls.page_arrow}
-                disabled={currentPage === totalPages}
-                onClick={() => handlePageChange(currentPage + 1)}
-              >
-                &gt;
-              </button>
-            </div>
-          )}
+          {/* <======== Pagination ========> */}
+          <Pagination
+            currentPage={currentPage}
+            postsPerPage={postsPerPage}
+            totalPosts={totalPosts}
+            onPageChange={handlePageChange}
+          />
         </>
       )}
     </div>

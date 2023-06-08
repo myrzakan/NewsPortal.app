@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom'
 import { AiOutlineArrowRight } from 'react-icons/ai'
 import { FaFacebook, FaTwitter, FaInstagram } from 'react-icons/fa'
 
-import logo from '../../Logo/press.png'
+import logo from '../../Logo/NewsLine_green.png'
 import cls from './Footer.module.scss'
 
 const Footer = () => {
