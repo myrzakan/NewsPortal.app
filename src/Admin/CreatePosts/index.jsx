@@ -1,9 +1,15 @@
 import React, { useState } from 'react';
+
+// <================= Firebase ==================>
 import firebase from 'firebase/compat/app';
 import 'firebase/compat/database';
 import 'firebase/compat/storage';
+
+// <================== Toastify ===============>
 import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+
+// <================= React Quill ================>
 import ReactQuill from 'react-quill';
 import 'react-quill/dist/quill.snow.css';
 

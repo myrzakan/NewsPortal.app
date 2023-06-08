@@ -1,6 +1,8 @@
 
 import React  from 'react';
 
+import { Link } from 'react-router-dom'
+
 // <=============== Firebase ==============>
 import firebase from 'firebase/compat/app';
 import 'firebase/compat/database';
@@ -26,9 +28,12 @@ if (!firebase.apps.length) {
 }
 
 const AdminPanel = () => {
+  
   const [categories, setCategories] = React.useState([]);
   const [posts, setPosts] = React.useState([]);
   const [loading, setLoading] = React.useState(true);
+
+
 
   React.useEffect(() => {
     const database = firebase.database();
@@ -77,9 +82,10 @@ const AdminPanel = () => {
   }
 
   return (
+    
     <div className={cls.AdminPanelContainer}>
       <h1>Admin Panel</h1>
-      <img src={logo} alt="logo" />
+      <Link to='/'><img src={logo} alt="logo" /></Link>
       <CreatePostForm categories={categories} />
       <CreateCategory />
       <DeleteCategory categories={categories} />

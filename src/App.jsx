@@ -1,10 +1,11 @@
-import React, { useState, useEffect } from 'react';
+import React from 'react';
 import { Routes, Route } from 'react-router-dom';
 import { ToastContainer } from 'react-toastify';
 
 // <============== Admin Panel =============>
-import AdminPanel from './Admin/AdminPanel';
+import Authentication from './Admin/Authentication';
 
+import AdminPanel from './Admin/AdminPanel'
 
 // <============ Pages ================>
 import PostList from './Pages/PostList';
@@ -20,14 +21,8 @@ import Footer from './Components/Footer/Index';
 import Header from './Components/Header';
 
 function App() {
-  const [isLoading, setIsLoading] = useState(true); // Добавлено состояние isLoading
 
-  useEffect(() => {
-    // Имитация задержки загрузки данных (может быть заменена на реальный код загрузки)
-    setTimeout(() => {
-      setIsLoading(false);
-    }, 2000);
-  }, []);
+
 
   return (
     <div>
@@ -38,7 +33,17 @@ function App() {
           path="/admin"
           element={
             <>
-              {isLoading ? null : <AdminPanel />}
+              <Authentication />
+            </>
+          }
+        />  {/* <=== end ===> */}
+
+        {/* <=== Admin Panel ===> */}
+        <Route
+          path="/AdminPanel"
+          element={
+            <>
+              <AdminPanel />
             </>
           }
         />  {/* <=== end ===> */}

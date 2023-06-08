@@ -15,15 +15,23 @@ const CreateCategory = () => {
   };
 
   const handleCategoryCreate = () => {
+    if (category.trim() === '') {
+      // Если поле категории пустое или содержит только пробельные символы
+      toast.error('Please enter a category name', {
+        position: 'top-center',
+      });
+      return;
+    }
+  
     const database = firebase.database();
     const categoriesRef = database.ref('categories');
-
+  
     const newCategoryRef = categoriesRef.push();
     const newCategory = {
       id: newCategoryRef.key,
       name: category,
     };
-
+  
     newCategoryRef
       .set(newCategory)
       .then(() => {
@@ -36,6 +44,7 @@ const CreateCategory = () => {
         console.log(error);
       });
   };
+  
 
   React.useEffect(() => {
     const categoriesRef = firebase.database().ref('categories');
