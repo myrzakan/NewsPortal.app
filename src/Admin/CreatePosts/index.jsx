@@ -116,6 +116,19 @@ const CreatePostForm = ({categories}) => {
         <div className={cls.discription_Container}>
           <ReactQuill
             value={content}
+            modules={{
+              toolbar: [
+                ['bold', 'italic', 'underline', 'strike'], // Жирный, курсив, подчеркнутый, зачеркнутый
+                // ['link', 'image'], // Ссылка, изображение
+                [{ list: 'ordered' }, { list: 'bullet' }], // Нумерованный и маркированный список
+                ['blockquote', 'code-block'], // Блок цитаты, блок кода
+                [{ header: [1, 2, 3, 4, 5, 6, false] }], // Заголовки
+                [{ color: [] }, { background: [] }], // Цвет текста и фона
+                [{ font: [] }], // Шрифт
+                [{ align: [] }], // Выравнивание текста
+                ['clean'], // Очистить форматирование
+              ],
+            }}
             onChange={handleContentChange}
             placeholder="Содержание поста"
             className={cls.input_Discription}

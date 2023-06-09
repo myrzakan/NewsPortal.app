@@ -1,9 +1,16 @@
+
+// Create Category
 import React from 'react';
+
+// <== Подключение модуля Firebase (compat/app для совместимости с Firebase v8) ==>
 import firebase from 'firebase/compat/app';
 import 'firebase/compat/database';
+
+// <================== Toastify ================>
 import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
+// <================ SCSS style ===============>
 import cls from './CreateCategory.module.scss';
 
 const CreateCategory = () => {

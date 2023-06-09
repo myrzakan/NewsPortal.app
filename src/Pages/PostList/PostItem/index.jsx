@@ -5,7 +5,7 @@ import { Link } from 'react-router-dom';
 
 import cls from '../PostList.module.scss';
 
-const PostItem = ({ post, ref }) => {
+const PostItem = React.forwardRef(({ post }, ref ) => {
   return (
     // <=============== Post ==============>
     <li className={cls.postlist} ref={ref}>
@@ -19,6 +19,6 @@ const PostItem = ({ post, ref }) => {
       </Link>
     </li>
   );
-};
+})
 
 export default PostItem;

@@ -1,27 +1,43 @@
+
+// Delete Category
 import React from 'react';
+
+// <== Подключение модуля Firebase (compat/app для совместимости с Firebase v8) ==>
 import firebase from 'firebase/compat/app';
 import 'firebase/compat/database';
+
+// <============== Toastify ============>
 import { toast } from 'react-toastify';
 
+// <=============== SCSS style ===============>
 import cls from './DeleteCategory.module.scss';
 
+
 const DeleteCategory = ({ categories }) => {
+  // <=== Обработчик удаления категории ===>
   const handleDeleteCategory = (categoryId) => {
-    const handleCategory = window.confirm('Are you sure you want to delete this category?');
+    // <==== Всплывающее окно с подтверждением удаления категории ====>
+    const handleCategory = window.confirm('Вы уверены, что хотите удалить эту категорию?');
     if (!handleCategory) {
-      return;
+      return; // <== Если пользователь отменил удаление, выходим из функции ==>
     }
+    // <== Инициализация базы данных Firebase ==>
     const database = firebase.database();
+
+    // <== Получение ссылки на категорию, которую нужно удалить ==>
     const categoryRef = database.ref(`categories/${categoryId}`);
+
+    // <== Удаляем категорию из базы данных Firebase ==>
     categoryRef
       .remove()
       .then(() => {
-        toast.warning('Category deleted successfully', {
+        // <=== Успешное удаление категории ===>
+        toast.warning('Категория успешно удалена', {
           position: 'top-center'
         });
       })
       .catch((error) => {
-        console.log(error);
+        toast.error(error); // <== Обработка ошибок при удалении категории ==>
       });
   };
 
