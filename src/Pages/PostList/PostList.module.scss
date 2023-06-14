@@ -10,6 +10,9 @@
   font-size: 35px;
 }  
 
+body {
+  background-color: var(--color-bg);
+}
 
 
 
@@ -27,23 +30,24 @@
       border-radius: 8px;
       padding: 20px;
       margin-bottom: 60px;
-      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
     }
     
     .postlist:hover {
-      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+      
+      box-shadow: var(--shadow);
     }
     
     .postlist h2 {
       font-size: 24px;
       margin-bottom: 10px;
-      color: black;
+      color: var(--color-text);
       font-weight: 500;
       width: 100%;
     }
 
     .postlist h2:hover {
-      color: #01796F;
+      color: var(--color-text-base);
 
     }
 
@@ -58,7 +62,7 @@
     
     .postlist .timestamp {
       font-style: italic;
-      color: #888;
+      color: var(--color-text);
     }
     
 
@@ -75,4 +79,42 @@
       position: relative;
       top: 200px;
       font-size: 30px;
+    }
+
+
+    // category 
+
+
+    .categories {
+      
+      button {
+        padding: 5px 10px;
+        margin: 20px 5px;
+        border: none;
+        border-radius: 5px;
+        outline: none;
+      }
+
+      button:active {
+        background-color: var(--color-text-base);
+      }
+    }
+
+
+    // search 
+
+    .search {
+      
+      
+
+      input {
+        padding: 5px;
+        outline: none;
+        border: none;
+        border-radius: 5px;
+        background-color: var(--color-bg-base);
+        color: var(--color-text);
+
+        height: 30px;
+      }
     }

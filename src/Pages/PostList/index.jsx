@@ -153,7 +153,6 @@ const PostList = () => {
 
   return (
     <div className={cls.post_container}>
-      <h1>Список постов</h1>
       {/* <======== Search ========> */}
       <div className={cls.search}>
         <input

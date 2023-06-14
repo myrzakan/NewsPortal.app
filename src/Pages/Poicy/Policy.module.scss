@@ -49,18 +49,18 @@
     }
 
     span {
-        color: black;
+        color: var(--color-text);
         font-weight: bold;
     }
 
     strong {
-        color: #00A86B;
+        color: var(--color-text-base);
         font-size: 20px;
     }
 
     a:hover {
         span {
-            color: #00A86B;
+            color: var(--color-text-base);
         }
     }
 }

@@ -1,13 +1,13 @@
 
 // <======= React =======>
-import React from "react"; 
+import React from 'react'; 
 
 // <== Подключение модуля Firebase (compat/app для совместимости с Firebase v8) ==>
-import firebase from "firebase/compat/app"; 
-import "firebase/compat/database";
+import firebase from 'firebase/compat/app'; 
+import 'firebase/compat/database';
 
 // <== Подключение модуля react-toastify для отображения уведомлений ==>
-import { toast } from "react-toastify";
+import { toast } from 'react-toastify';
 
 // <============= SCSS style ==============>
 import cls from "./DeletePost.module.scss";
@@ -21,13 +21,13 @@ const DeletePosts = ({ posts }) => {
   // <== Состояние для отфильтрованных постов ==>
   const [filteredPosts, setFilteredPosts] = React.useState(posts);
 
-
   // <== Обработчик удаления поста ==>
   const handleDeletePost = (postId) => {
+    
     //                                    <== Запрос на подтверждение удаления ==>
     const shouldDelete = window.confirm("Вы действительно хотите удалить этот пост?");
-    if (!shouldDelete) { // <== Если пользователь не подтвердил удаление ==>
-      return; // <== Прерывание выполнения функции ==>
+    if (!shouldDelete) { 
+      return; 
     }
 
     // <== Получение ссылки на базу данных Firebase ==>
@@ -39,7 +39,7 @@ const DeletePosts = ({ posts }) => {
     postRef
       .remove() // <== Удаление поста из базы данных Firebase ==>
       .then(() => {
-        toast.warning("Post successfully deleted", { // <== Отображение уведомления об успешном удалении ==>
+        toast.warning("Post successfully deleted", {
           position: "top-center",
           autoClose: 2000,
         });
@@ -49,7 +49,7 @@ const DeletePosts = ({ posts }) => {
         setFilteredPosts(updatedPosts);
       })
       .catch((error) => {
-        toast.error(error); // <== Вывод ошибки при удаление поста ==>
+        toast.error(error);
       });
   };
 

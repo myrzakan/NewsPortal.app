@@ -8,13 +8,42 @@
   font-family: 'Raleway', sans-serif;
 }
 
-body {
-  background-color: #E5E4E2;
-}
+
 
 
 a {
   text-decoration: none;
+}
+
+
+body[data-theme='dark'] {
+  --color-text: #FEFEFA;  
+  --color-text-base: #29AB87;
+  --color-bg: #333;
+  --color-bg-base: #555555;
+  --transition-duration: 0.8s;
+
+  --shadow: rgba(245, 245, 245, 0.2) 0 0 8px;
+
+}
+
+body[data-theme='light'] {
+  --color-text: #010B13;
+  --color-text-base: #0070FF;
+  --color-bg: #E5E4E2;
+  --color-bg-base: #EDEAE0;
+  --transition-duration: 0.8s;
+
+  --shadow: rgba(149, 157, 165, 0.2) 0 8px 24px; 
+  
+}
+
+body {
+  
+  color: var(--color-text);
+  /* background-color: var(--color-bg); */
+  transition: var(--transition-duration);
+  
 }
 
 

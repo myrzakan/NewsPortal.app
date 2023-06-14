@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom'
 import { AiOutlineArrowRight } from 'react-icons/ai'
 import { FaFacebook, FaTwitter, FaInstagram } from 'react-icons/fa'
 
-import logo from '../../Logo/NewsLine_green.png'
+import logo from '../../Logo/free-icon-18-3564251.png'
 import cls from './Footer.module.scss'
 
 const Footer = () => {
@@ -37,10 +37,10 @@ const Footer = () => {
                 <div className={cls.f_links}>
                     <h3>Ссылки</h3>
                     <ul>
-                        <li>
+                        {/* <li>
                             <AiOutlineArrowRight/>
                             <Link to='/'>Главная</Link>
-                        </li>
+                        </li> */}
                         <li>
                             <AiOutlineArrowRight/>
                             <Link to='/about'>О проекте</Link>
@@ -114,10 +114,13 @@ const Footer = () => {
             </div>
 
             <div className={cls.copyRight}>
-                <img src={logo} alt="logo" />
-                <p>© {new Date().getFullYear()} Все права защищены.</p>
-                <p>Использование материалов разрешено только с письменного разрешения компании.</p>
-                <p>Любое копирование, воспроизведение или распространение контента без разрешения запрещено.</p>
+                {/* <img src={logo} alt="logo" /> */}
+                <h1>18+</h1>
+                <div>
+                    <p>© {new Date().getFullYear()} Все права защищены.</p>
+                    <p>Использование материалов разрешено только с письменного разрешения компании.</p>
+                    <p>Любое копирование, воспроизведение или распространение контента без разрешения запрещено.</p>
+                </div>
             </div>
 
         </div>
