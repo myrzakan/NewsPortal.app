@@ -1,9 +1,6 @@
 
-body {
-  background-color: #333;
-}
 
-   
+
 .loading {
   font-family: 'raleway_c';
   display: flex;
@@ -16,7 +13,10 @@ body {
 }  
 
 .AdminPanelContainer {
-  
+  background-color: #333;
+  position: absolute;
+  width: 100%;
+
 
 
   h1 {

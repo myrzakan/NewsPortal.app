@@ -41,7 +41,7 @@ body[data-theme='light'] {
 body {
   
   color: var(--color-text);
-  /* background-color: var(--color-bg); */
+  background-color: var(--color-bg);
   transition: var(--transition-duration);
   
 }

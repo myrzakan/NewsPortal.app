@@ -15,8 +15,8 @@ import firebaseConfig from '../../FirebaseConfig';
 // <================= SCSS style ===============>
 import cls from './PostList.module.scss';
 
-// <=============== Website Logo ====================>
-import logo from '../../Logo/NewsLine_green.png';
+// <=============== Loader ====================>
+import { Radio } from  'react-loader-spinner'
 
 // <=============== Componenets ================>
 import PostItem from './PostItem';
@@ -34,6 +34,13 @@ const PostList = () => {
 
   //<================= Loading =====================>
   const [loading, setLoading] = React.useState(true);
+
+  // <================ Loader Color ==================>
+  // const [theme, setTheme] = React.useState('light')
+  // const lightThemeColors = ['#0ecff1', '#1f8f7c', '#611509'];
+  // const darkThemeColors = ['#1d1c1c', '#ece4e4', '#eb1111'];
+
+  // const colors = theme === 'light' ? lightThemeColors : darkThemeColors;
 
   // <================= Category post ================================> 
   const [categories, setCategories] = React.useState([]);
@@ -170,13 +177,21 @@ const PostList = () => {
           <button key={category} onClick={() => selectCategory(category)}>
             {category}
           </button>
-        ))}
+        )).reverse()}
       </div>
 
        {/* <======= Loading =========> */}
       {loading ? (
         <div className={cls.loading}>
-          <img onClick={() => selectCategory(null)} src={logo} alt="logo" />
+          <Radio
+          visible={true}
+          height="80"
+          width="80"
+          ariaLabel="radio-loading"
+          wrapperStyle={{}}
+          wrapperClass="radio-wrapper"
+          colors={[ '#29AB87', '#29AB87', '#29AB87']}
+          />
         </div>
       ) : (
         <>

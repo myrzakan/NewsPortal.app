@@ -39,6 +39,10 @@
   font-size: 20px;
 }
 
+.description :visited {
+  color: var(--color-text-base);
+}
+
 .title {
   font-size: 29px;
   font-weight: bold;
