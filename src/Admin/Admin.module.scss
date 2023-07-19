@@ -14,7 +14,8 @@
 
 .AdminPanelContainer {
   background-color: #333;
-  position: absolute;
+  position: relative;
+  z-index: 1;
   width: 100%;
 
 

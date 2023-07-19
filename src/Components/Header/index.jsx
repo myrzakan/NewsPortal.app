@@ -1,66 +1,36 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { BsMoonFill, BsMoon } from 'react-icons/bs';
-import { Link, useLocation } from 'react-router-dom';
-
+import { Link } from 'react-router-dom';
 import cls from './Header.module.scss';
-
 import Green from '../../Logo/Logo_green.png';
 import Blue from '../../Logo/Logo_blue.png';
 
-const Header = ({ theme, toggleTheme }) => {
-  const location = useLocation();
+const Header = () => {
+  const [theme, setTheme] = React.useState(() => {
+    const storedTheme = localStorage.getItem('theme');
+    return storedTheme || 'light';
+  });
 
-  React.useEffect(() => {
+  useEffect(() => {
     document.body.setAttribute('data-theme', theme);
+    localStorage.setItem('theme', theme);
   }, [theme]);
 
-  const handleThemeToggle = () => {
-    toggleTheme();
+  const toggleTheme = () => {
+    setTheme(prevTheme => (prevTheme === 'light' ? 'dark' : 'light'));
   };
 
   return (
     <div className={cls.headerContainer}>
-      <div onClick={handleThemeToggle} className={cls.theme}>
-        {theme === 'light' ? (
-          <>
-            <BsMoonFill size="14px" />
-            <span style={{ marginLeft: '0.75rem' }}>Dark Theme</span>
-          </>
-        ) : (
-          <>
-            <BsMoon size="14px" />
-            <span style={{ marginLeft: '0.75rem' }}>Light Theme</span>
-          </>
-        )}
+      <div onClick={toggleTheme} className={cls.theme}>
+        {theme === 'light' ? <BsMoonFill size="20px" /> : <BsMoon size="20px" />}
       </div>
       <Link to="/">
         <img src={theme === 'light' ? Blue : Green} alt="logo" />
       </Link>
-      {/* <nav>
-        <Link to="/"></Link>
-        <Link to="/about">О проекте</Link>
-        <Link to="/contact">Контакт</Link>
-        <Link to="/termsOfUse">Правило и использование</Link>
-        <Link to="/advertising">Реклама</Link>
-        <Link to="/policy">Политика конфиденциальности</Link>
-      </nav> */}
       <div className={cls.one}></div>
     </div>
   );
 };
 
-const HeaderWrapper = () => {
-  const [theme, setTheme] = React.useState(
-    localStorage.getItem('theme') || 'light'
-  );
-
-  const toggleTheme = () => {
-    const newTheme = theme === 'light' ? 'dark' : 'light';
-    setTheme(newTheme);
-    localStorage.setItem('theme', newTheme);
-  };
-
-  return <Header theme={theme} toggleTheme={toggleTheme} />;
-};
-
-export default HeaderWrapper;
+export default Header;

@@ -72,7 +72,7 @@ const Footer = () => {
                             onClick={handlePhoneClick} 
                             className={cls.clickableText}> +996 (500) 002 007
                         </span>
-                     </p>
+                    </p>
 
                     <p>
                         Email: 

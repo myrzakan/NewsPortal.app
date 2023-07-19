@@ -2,17 +2,22 @@
 .policyContainer {
 
     margin: 0px 545px;
-    margin-bottom: 100px;
-    margin-top: 150px;
+    margin-bottom: 80px;
+    margin-top: 70px;
     position: relative;
     right: 25px;
 
 
-    .title_one {
+    h1 {
+        font-weight: bold;
+        font-size: 30px;
+    }
+
+    .title1 {
         margin: 0px 0;
     }
 
-    .title_two {
+    .title2 {
         font-size: 19px;
     }
 
@@ -40,7 +45,7 @@
         font-size: 19px;
     }
 
-    .title_nine {
+    .title9 {
         font-size: 19px;
     }
 
