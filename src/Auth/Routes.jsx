@@ -5,7 +5,7 @@ import { SignUp } from './SignUp'
 // import NotFound from 'components/NotFound'
 
 
-export const Layout = () => {
+export const AuthRoutes = () => {
   return (
     <Routes>
       <Route path="/signin" element={<SignIn/>}/>
@@ -13,4 +13,4 @@ export const Layout = () => {
       {/* <Route path="*" element={<NotFound/>}/> */}
     </Routes>
   )
-}
+} 

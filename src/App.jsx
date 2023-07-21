@@ -9,10 +9,10 @@ import Policy from './Pages/Policy';
 import Contact from './Pages/Contact';
 import Ad from './Pages/Ad';
 import TermsOfUse from './Pages/TermsOfUse';
-import { Layout } from './Auth/Layout';
+import { AuthRoutes } from './Auth/Routes';
 import Footer from './Components/Footer/Index';
 import Header from './Components/Header';
-import BurgerMenu from './BurgerMenu';
+// import BurgerMenu from './BurgerMenu';
 
 function App() {
   const location = useLocation();
@@ -23,12 +23,12 @@ function App() {
       {showHeaderFooter && (
         <>
           <Header />
-          <BurgerMenu />
+          {/* <BurgerMenu /> */}
         </>
       )}
 
       <Routes>
-        <Route path="/auth/*" element={<Layout />} />
+        <Route path="/auth/*" element={<AuthRoutes />} />
         {showHeaderFooter && (
           <>
             <Route path="/AdminPanel" element={<AdminPanel />} />

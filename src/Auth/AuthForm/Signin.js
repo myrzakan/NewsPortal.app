@@ -1,15 +1,15 @@
 import axios from 'axios';
 import { toast } from 'react-toastify';
 
-export const Signin = async (body, navigate) => {
+export const Signin = async (data, navigate) => {
   try {
-    const response = await axios.post('http://127.0.0.1:8090/api/collections/users/auth-with-password', body);
+    const response = await axios.post('http://127.0.0.1:8090/api/collections/users/auth-with-password', data);
     
     // Проверяем успешность авторизации
     if (response.status === 200) {
       // Обрабатываем успешную авторизацию
       // ...
-      localStorage.setItem('pocketbase_auth', JSON.stringify(body))
+      localStorage.setItem('pocketbase_auth', JSON.stringify(data))
 
       // Переходим на главную страницу
       navigate('/');
@@ -24,6 +24,6 @@ export const Signin = async (body, navigate) => {
       type: 'error'
     });
   } finally {
-    console.log(body);
+    console.log(data);
   }
 };

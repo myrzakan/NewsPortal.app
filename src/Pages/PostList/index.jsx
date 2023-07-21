@@ -21,6 +21,7 @@ import { Radio } from  'react-loader-spinner'
 // <=============== Componenets ================>
 import PostItem from './PostItem';
 import Pagination from './Pagination';
+import NoAccess from '../../Components/NoAccess';
 
 // Инициализация Firebase приложения
 if (!firebase.apps.length) {
@@ -157,6 +158,12 @@ const PostList = () => {
     setCurrentPage(pageNumber);
     window.scrollTo(0, 0);
   };
+
+
+  // const pbAuth = localStorage.getItem('pocketbase_auth')
+
+  // if (pbAuth) return <NoAccess/>
+
 
   return (
     <div className={cls.post_container}>

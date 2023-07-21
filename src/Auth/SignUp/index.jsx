@@ -33,6 +33,8 @@ export const SignUp = () => {
 
   const onSubmit = async (data) => {
     await signUp(data, navigate);
+
+  // console.log(data);
   };
 
   return (
