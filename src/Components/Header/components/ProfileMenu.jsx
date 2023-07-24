@@ -9,10 +9,12 @@ export default function ProfileSection() {
 
   const onSignOut = React.useCallback(() => {
     localStorage.removeItem('pocketbase_auth')
+    localStorage.removeItem('user')
     navigate('/')
   }, [])
 
-  // const pbAuth = JSON.parse(localStorage.getItem('pocketbase_auth'));
+  const user = JSON.parse(localStorage.getItem('user'));
+
 
   return (
     <HStack spacing={{ base: '0', md: '6' }}>
@@ -43,9 +45,9 @@ export default function ProfileSection() {
                 spacing="1px"
                 ml="2"
               >
-                <Text fontSize="sm">d</Text>
+                <Text fontSize="sm">{user.username}</Text>
                 <Text fontSize="xs" color="gray.600">
-                  d
+                  {user.email}
                 </Text>
               </VStack>
               <Box display={{ base: 'none', md: 'flex' }}>

@@ -1,7 +1,6 @@
 
 import React  from 'react';
 
-
 import { Link } from 'react-router-dom'
 
 // <== Подключение модуля Firebase (compat/app для совместимости с Firebase v8) ==>

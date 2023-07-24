@@ -4,14 +4,32 @@ import { useForm } from 'react-hook-form';
 import { Forms } from '../../helpers/Forms';
 import { BiHide, BiShow } from 'react-icons/bi';
 import { Link, useNavigate } from 'react-router-dom';
+import { useDispatch } from 'react-redux'
+import { setUser } from 'store/slices/userSlice'
 
 import { Signin } from '../AuthForm/Signin';
+import { getAuth, signInWithEmailAndPassword } from "firebase/auth";
 
 export const SignIn = () => {
+
+  const [ email, setEmail ] = React.useState('')
+  const [ password, setPassword ] = React.useState('')
+
+
   const [showPass, setShowPass] = React.useState(false);
   const navigate = useNavigate(); // Добавлено: получение функции navigate
 
   const tooglePassword = () => setShowPass(prev => !prev);
+  const dispatch = useDispatch()
+
+  
+  const handleLogin = ( e ) => {
+    const auth = getAuth();
+    e.preventDefault()
+    signInWithEmailAndPassword(auth, email, password)
+      .then(console.log)
+      .catch(console.error)
+  }
 
   const {
     register,
@@ -19,9 +37,16 @@ export const SignIn = () => {
     formState: { errors },
   } = useForm();
 
+
   const onSubmit = async (data) => {
     await Signin(data, navigate); // Изменено: передача функции navigate
   };
+
+
+  React.useEffect(() => {
+    window.scrollTo(0, 0); 
+  }, []);
+
 
   return (
     <div className="flex items-center justify-center w-full min-h-screen">
@@ -29,11 +54,13 @@ export const SignIn = () => {
         <h1 className="mb-3 text-4xl font-medium text-center">Авторизация</h1>
         <Card className="p-5">
           <FormControl isInvalid={errors.email} className="mb-3">
-            <FormLabel>Email или Имя пользователя</FormLabel>
+            <FormLabel>Email</FormLabel>
             <Input
               type="email"
+              value={email}
               size="lg"
               placeholder="example@example.com"
+              onChange={(e) => setEmail(e.target.value)}
               {...register('identity', Forms.Rules.Identity)}
             />
             <FormErrorMessage>
@@ -46,8 +73,10 @@ export const SignIn = () => {
             <InputGroup>
               <Input
                 type={showPass ? 'text' : 'password'}
+                value={password}
                 placeholder="********"
                 size="lg"
+                onChange={(e) => setPassword(e.target.value)}
                 {...register('password', Forms.Rules.Password)}
               />
               <InputRightElement className="!w-12">
@@ -62,7 +91,7 @@ export const SignIn = () => {
           </FormControl>
 
           <Button
-            onClick={handleSubmit(onSubmit)}
+            onClick={handleSubmit(handleLogin)}
             colorScheme="telegram"
             size="lg"
             className="mt-3"

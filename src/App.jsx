@@ -1,5 +1,5 @@
 import React from 'react';
-import { Routes, Route, useLocation } from 'react-router-dom';
+import { Routes, Route } from 'react-router-dom';
 import { ToastContainer } from 'react-toastify';
 import AdminPanel from './Admin/AdminPanel';
 import PostList from './Pages/PostList';
@@ -15,35 +15,24 @@ import Header from './Components/Header';
 // import BurgerMenu from './BurgerMenu';
 
 function App() {
-  const location = useLocation();
-  const showHeaderFooter = !location.pathname.startsWith('/auth');
-
   return (
     <div>
-      {showHeaderFooter && (
-        <>
-          <Header />
-          {/* <BurgerMenu /> */}
-        </>
-      )}
+      <Header />
+      {/* <BurgerMenu /> */}
 
       <Routes>
         <Route path="/auth/*" element={<AuthRoutes />} />
-        {showHeaderFooter && (
-          <>
-            <Route path="/AdminPanel" element={<AdminPanel />} />
-            <Route path="/" element={<PostList />} />
-            <Route path="/postDetails/:postId" element={<PostDetails />} />
-            <Route path="/about" element={<About />} />
-            <Route path="/contact" element={<Contact />} />
-            <Route path="/termsOfUse" element={<TermsOfUse />} />
-            <Route path="/advertising" element={<Ad />} />
-            <Route path="/policy" element={<Policy />} />
-          </>
-        )}
+        <Route path="/AdminPanel" element={<AdminPanel />} />
+        <Route path="/" element={<PostList />} />
+        <Route path="/postDetails/:postId" element={<PostDetails />} />
+        <Route path="/about" element={<About />} />
+        <Route path="/contact" element={<Contact />} />
+        <Route path="/termsOfUse" element={<TermsOfUse />} />
+        <Route path="/advertising" element={<Ad />} />
+        <Route path="/policy" element={<Policy />} />
       </Routes>
 
-      {showHeaderFooter && <Footer />}
+      <Footer />
       <ToastContainer />
     </div>
   );

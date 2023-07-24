@@ -7,6 +7,7 @@ import Blue from '../../Logo/Logo_blue.png';
 import ProfileMenu from './components/ProfileMenu';
 import AutchButton from './components/AuthButton'
 
+
 const Header = () => {
   const [theme, setTheme] = React.useState(() => {
     const storedTheme = localStorage.getItem('theme');
@@ -33,7 +34,9 @@ const Header = () => {
         <img src={theme === 'light' ? Blue : Green} alt="logo" />
       </Link>
     
-    {!pb ? <AutchButton/> : <ProfileMenu/>}
+    {/* {!pb ? <AutchButton/> : <ProfileMenu/>} */}
+
+
 
       <div className={cls.one}></div>
     </div>

@@ -21,6 +21,7 @@ export const signUp = async (data, navigate) => {
       }
     });
 
+    localStorage.setItem('user', JSON.stringify(data))
   
     // Перенаправление на страницу входа в случае успешной регистрации
     navigate('../SignIn');
