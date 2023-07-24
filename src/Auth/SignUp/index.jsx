@@ -11,11 +11,6 @@ import { signUp } from '../AuthForm/Signup'
 
 import { BiHide, BiShow } from 'react-icons/bi'
 
-//TODO Сделать isloading 
-//TODO Сделать аторизацию и запрос пользователя от базы
-//TODO Сделать No Found и NoAcces
-
-
 export const SignUp = () => {
 
   const dispatch = useDispatch() 
@@ -38,20 +33,28 @@ export const SignUp = () => {
   const handleRegister = async (data) => {
     const { email, password } = data;
     const auth = getAuth();
-    console.log(auth);
+    // console.log(auth);
     try {
       const userCredential = await createUserWithEmailAndPassword(auth, email, password);
       const user = userCredential.user;
+      console.log(user);
+      dispatch(setUser({
+        name: user.name,
+        email: user.email,
+        id: user.uid,
+        token: user.accessToken
+      }));
+
+      navigate('/')
       // Обработка успешной регистрации пользователя (если нужно)
-      // dispatch(setUser(user));
-      // navigate('/dashboard'); // Перенаправление на страницу после регистрации
     } catch (error) {
-      const errorCode = error.code;
+      // const errorCode = error.code;
       console.log(error);
-      const errorMessage = error.message;
+      // const errorMessage = error.message;
       // Обработка ошибки регистрации пользователя (если нужно)
     }
-  }
+  };
+  
 
 
   React.useEffect(() => {
@@ -173,7 +176,10 @@ export const SignUp = () => {
           >Регистрация</Button>
 
           <div className="mt-3 text-center">
-            <p>Есть аккаунт? <Link className="text-blue-600 underline" to="../SignIn">Авторизуйтесь</Link></p>
+            <p>Есть аккаунт? 
+              <Link className="text-blue-600 underline" to="../SignIn">
+                Авторизуйтесь
+              </Link></p>
           </div>
         </Card>
       </div>
