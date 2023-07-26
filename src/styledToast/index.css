@@ -1,15 +1,23 @@
-/* Удаление фона для уведомлений об успехе */
-.custom-toast-success {
-  background-color: transparent !important;
-  color: #fff !important;
-  border-radius: 8px !important;
-  box-shadow: none !important;
+/* toastStyles.css */
+
+/* Стили для уведомлений с appearance='success' */
+.toastify__toast--success {
+  background-color: green;
+  color: white;
 }
 
-/* Удаление фона для уведомлений об ошибке */
-.custom-toast-error {
-  background-color: transparent !important;
-  color: #fff !important;
-  border-radius: 8px !important;
-  box-shadow: none !important;
+/* Стили для уведомлений с appearance='error' */
+.toastify__toast--error {
+  background-color: red;
+  color: white;
+  position: relative;
+  top: 200px;
+  
 }
+
+/* Общие стили для всех уведомлений */
+.toastify__toast {
+  border-radius: 4px;
+  padding: 10px;
+}
+

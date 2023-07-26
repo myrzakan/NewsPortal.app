@@ -4,21 +4,26 @@ import { useForm } from "react-hook-form";
 import { Link, useNavigate } from "react-router-dom";
 import { Forms } from '../../helpers/Forms'
 import { getAuth, createUserWithEmailAndPassword } from "firebase/auth";
-import { useDispatch } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
 import { setUser } from 'store/slices/userSlice'
 import { BiHide, BiShow } from 'react-icons/bi'
 import { toast } from "react-toastify";
+import { useToasts } from 'react-toast-notifications'
 
 export const SignUp = () => {
 
   const dispatch = useDispatch() 
-  const [name, setName] = React.useState('');
+  const { addToast } = useToasts();
 
+  const [name, setName] = React.useState('');
   const [showPass, setShowPass] = React.useState(false);
   const [showConfirmPass, setConfirmPass] = React.useState(false);
+  const [isLoading, setIsLoading] = React.useState(false);
 
   const tooglePassword = () => setShowPass(prev => !prev);
-  const toogleConfirmPassword = () => setConfirmPass(prev => !prev);
+  const toogleConfirmPassword = () => setConfirmPass(prev => !prev)
+
+  // const user = useSelector((state) => state.user)
 
   const {
     register,
@@ -31,8 +36,11 @@ export const SignUp = () => {
 
   const handleRegister = async (data) => {
     const { email, password, username } = data;
-    const auth = getAuth();
+    const auth = getAuth();    
+    setIsLoading(true)
     // console.log(auth);
+
+
     try {
       const userCredential = await createUserWithEmailAndPassword(auth, email, password);
       const user = userCredential.user;
@@ -45,19 +53,37 @@ export const SignUp = () => {
       }));
 
       navigate('/')
+      addToast(`Аккаунт успешно создан ${username}`, {
+        appearance: 'success',
+        autoDismiss: 'true'
+      })
       // Обработка успешной регистрации пользователя (если нужно)
     } catch (error) {
       // const errorCode = error.code;
       console.log(error);
 
-      if (error.code === 'auth/email-already-in-use') {
-        // Обработка ошибки неверного пароля
-        toast.error('Этот электронный адрес уже занят', {
-          position: 'top-center',
-          autoClose: 2000,
-          className: 'custom-toast-error'
-        });
+        if (error.code === 'auth/email-already-in-use') {
+        // Показать сообщение об ошибке, когда электронная почта уже используется
+        addToast(
+          'Ошибка: Этот электронный адрес уже существует', 
+          { 
+            appearance: 'error', 
+            autoDismiss: true,
+            className: 'toastify__toast--error'});
+      } else if (error.code === 'auth/invalid-email') {
+        // Показать сообщение об ошибке для недопустимого формата email
+        addToast(
+          'Ошибка: Недопустимый формат email', 
+          { appearance: 'error', 
+            autoDismiss: true,});
+      }  else {
+        // Показать сообщение об ошибке для других ошибок от Firebase
+        addToast(
+          'Ошибка: ' + error.message, 
+          { appearance: 'error', 
+            autoDismiss: true,});
       }
+      setIsLoading(false)
       // const errorMessage = error.message;
       // Обработка ошибки регистрации пользователя (если нужно)
     }
@@ -71,7 +97,7 @@ export const SignUp = () => {
 
 
   return (
-    <div className="flex items-center justify-center w-full min-h-screen">
+    <div className="flex items-center justify-center w-full min-h-screen bg-[var(--color-bg)] ">
 
       <div className="w-1/3">
         <h1 className="mb-3 text-4xl font-medium text-center">Регистрация</h1>
@@ -79,7 +105,7 @@ export const SignUp = () => {
         <Card className="p-5 " bg='[var(--color-bg)]'>
 
           <FormControl
-            className="mb-3 bg-[var(--color-bg)]"
+            className="mb-3 bg-[var(--color-bg)] transition"
             isInvalid={errors.username}
           >
             <FormLabel
@@ -90,7 +116,6 @@ export const SignUp = () => {
             <Input
               placeholder="spiderman"
               size="lg"
-              
               defaultValue={name}
               onChange={(e) => setName(e.target.value)}
               {
@@ -135,8 +160,9 @@ export const SignUp = () => {
                 }
               />
               <InputRightElement className="">
-                <Button size="" onClick={tooglePassword}>
-                  {showPass ? <BiHide className="text-[var(--color-text-base)] bg-[var(--color-bg)] text-[20px]"/> : <BiShow className="text-[var(--color-text-base)] text-[20px]"/>}
+                <Button size="" h='' bg='[var(--color-bg)]' onClick={tooglePassword}>
+                  {showPass ? <BiHide className="text-[var(--color-text-base)] bg-[var(--color-bg)] text-[20px]"/> 
+                  : <BiShow className="text-[var(--color-text-base)] bg-[var(--color-bg)] text-[20px]"/>}
                 </Button>
               </InputRightElement>
             </InputGroup>
@@ -171,7 +197,8 @@ export const SignUp = () => {
                   bg='[var(--color-bg)]'
                   onClick={toogleConfirmPassword}
                 >
-                  {showConfirmPass ? <BiHide className="text-[var(--color-text-base)] bg-[var(--color-bg)] text-[20px]"/> : <BiShow className="text-[var(--color-text-base)] text-[20px]"/>}
+                  {showConfirmPass ? <BiHide className="text-[var(--color-text-base)] bg-[var(--color-bg)] text-[20px]"/>
+                    : <BiShow className="text-[var(--color-text-base)] bg-[var(--color-bg)] text-[20px]"/>}
                 </Button>
               </InputRightElement>
             </InputGroup>
@@ -184,8 +211,11 @@ export const SignUp = () => {
             onClick={handleSubmit(handleRegister)}
             colorScheme="telegram"
             size="lg"
-            className="mt-3"
-          >Регистрация</Button>
+            disabled={isLoading}
+            className={`mt-3 ${isLoading ? 'opacity-60 cursor-not-allowed' : ''}`}
+          >
+            {isLoading ? 'Регистрация...' : 'Регистрация'}
+          </Button>
 
           <div className="mt-3 text-center">
             <p>Есть аккаунт? 
@@ -198,3 +228,5 @@ export const SignUp = () => {
     </div>
   )
 }
+
+

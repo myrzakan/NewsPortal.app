@@ -5,9 +5,9 @@ import { Link } from 'react-router-dom';
 
 export default function WithoutNavbar() {
   return (
-    <Box>
+    <Box className='flex items-center justify-end mr-16'>
       <Link to="../../../Auth/SignIn">
-        <Button fontSize={'sm'} fontWeight={400} variant={'link'}>
+        <Button fontSize={'sm'} fontWeight={400} variant={'link'} className='mr-3'>
           Sign In
         </Button>
       </Link>

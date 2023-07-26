@@ -9,7 +9,7 @@ a {
 }
 
 * {
-  background-color: var(--color-bg);
+  /* background-color: var(--color-bg); */
   font-family: 'Raleway', sans-serif;
   /* color: var(--color-text); */
   /* transition: var(--transition-duration); */
@@ -17,8 +17,14 @@ a {
 
 
 
+#root {
+  background-color: var(--color-bg);
+  transition-duration: 0.5s;
+}
 
-
+.custom-transition {
+  transition-duration: var(--transition-duration, 0.3s);
+}
 
 body[data-theme='dark'] {
   --color-text: #FEFEFA;  

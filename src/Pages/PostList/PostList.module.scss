@@ -17,6 +17,7 @@
     margin-left: 525px;
     width: 53rem;
     padding-top: 60px;
+    // background-color: var(--color-bg);
     
     
     }
@@ -109,6 +110,7 @@
         border-radius: 5px;
         background-color: var(--color-bg-base);
         color: var(--color-text);
+        transition: var(--transition-duration);
 
         height: 30px;
         width: 800px;

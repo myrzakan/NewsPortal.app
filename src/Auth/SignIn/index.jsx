@@ -5,17 +5,18 @@ import { Forms } from '../../helpers/Forms';
 import { BiHide, BiShow } from 'react-icons/bi';
 import { Link, useNavigate } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
-import { toast } from 'react-toastify';
-import 'react-toastify/dist/ReactToastify.css';
-import { setUser } from 'store/slices/userSlice';
+import { useToasts } from 'react-toast-notifications'; // Импортируем useToasts
 import '../../styledToast/index.css';
 
 import { getAuth, signInWithEmailAndPassword } from "firebase/auth";
 import { app } from '../../FirebaseConfig';
+import { setUser } from 'store/slices/userSlice';
 
 export const SignIn = () => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
+  const [isLoading, setIsLoading] = React.useState(false);
+
   const {
     handleSubmit,
     register,
@@ -26,18 +27,22 @@ export const SignIn = () => {
   const [showPass, setShowPass] = React.useState(false);
   const tooglePassword = () => setShowPass((prev) => !prev);
 
+  const { addToast } = useToasts(); 
+
+
+
   const handleLogin = async (formData) => {
+    setIsLoading(true)
     try {
       const auth = getAuth(app);
       const { email, password, username } = formData;
 
       if (!email || !password) {
-        toast.error('Ошибка: Введите email и пароль', {
-          position: 'top-center',
-          autoClose: 2000,
-          className: 'custom-toast-error'
+        addToast('Ошибка: Введите email и пароль', { // Используем addToast для вывода уведомления
+          appearance: 'error',
+          autoDismiss: true,
         });
-        return; // Проверка, что email и password заполнены
+        return;
       }
   
       const userCredential = await signInWithEmailAndPassword(auth, email, password);
@@ -48,46 +53,47 @@ export const SignIn = () => {
         email: user.email,
         id: user.uid,
         token: user.accessToken,
-      }));
-      
-      // Очистить поля ввода после успешного входа
+      }))
+
       reset();
-      console.log(user);
-      console.log(formData);
-      
+      // console.log(user);
+      // console.log(formData);
       navigate('/');
+      addToast('Успешно вошли', {
+        appearance: 'success',
+        autoDismiss: 'true'
+      })
     } catch (error) {
       console.error(error);
-      // Показать специфическое сообщение об ошибке от Firebase
+
       if (error.code === 'auth/wrong-password') {
-      // Обработка ошибки неверного пароля
-      toast.error('Ошибка: Неверный пароль', {
-        position: 'top-center',
-        autoClose: 2000,
-        className: 'custom-toast-error'
-      });
-    } else if (error.code === 'auth/invalid-email') {
-      // Обработка ошибки неверного формата email
-      toast.error('Ошибка: Неверный формат email', {
-        position: 'top-center',
-        autoClose: 2000,
-        className: 'custom-toast-error'
-      });
-    } else if (error.code === 'auth/user-not-found') {
-       // Обработка ошибки неверного формата email
-        toast.error('Ошибка: Пользователь не найден', {
-        position: 'top-center',
-        autoClose: 2000,
-        className: 'custom-toast-error'
-      });
-    } else {
-      // Обработка других ошибок от Firebase
-      toast.error('Ошибка: ' + error.message, {
-        position: 'top-center',
-        autoClose: 2000,
-        className: 'custom-toast-error'
-      });
-    }
+        addToast('Ошибка: Неверный пароль', {
+          appearance: 'error',
+          autoDismiss: true,
+          className: '.toastify__toast--error'
+        });
+      } else if (error.code === 'auth/invalid-email') {
+        addToast('Ошибка: Неверный формат email', {
+          appearance: 'error',
+          autoDismiss: true,
+        });
+      } else if (error.code === 'auth/user-not-found') {
+        addToast('Ошибка: Пользователь не найден', {
+          appearance: 'error',
+          autoDismiss: true,
+        });
+      } else if (error.code === 'auth/too-many-requests') {
+        addToast('Ошибка: Доступ к этому аккаунту временно заблокирован из-за слишком многих неудачных попыток входа. Вы можете сбросить пароль для восстановления доступа или повторить попытку позже.', {
+          appearance: 'error',
+          autoDismiss: true,
+        });
+      } else {
+        addToast('Ошибка: ' + error.message, {
+          appearance: 'error',
+          autoDismiss: true,
+        });
+      }
+      setIsLoading(false)
     }
   };
 
@@ -100,8 +106,8 @@ export const SignIn = () => {
     <div className="flex items-center justify-center w-full min-h-screen">
       <div className="w-1/3">
         <h1 className="mb-3 text-4xl font-medium text-center">Авторизация</h1>
-        <Card className="p-5">
-          <form onSubmit={handleSubmit(handleLogin)}>
+        <Card className="p-5" bg='[var(--color-bg )] custom-transition'>
+          <form onSubmit={handleSubmit(handleLogin)} className='bg-[var(--color-bg)]'>
             <FormControl isInvalid={errors.email} className="mb-3">
               <FormLabel>Email</FormLabel>
               <Input
@@ -122,11 +128,17 @@ export const SignIn = () => {
                   type={showPass ? 'text' : 'password'}
                   placeholder="********"
                   size="lg"
-                  {...register('password', Forms.Rules.Password)}
+                  {...register('password', Forms.Rules.PasswordSignIn)}
                 />
                 <InputRightElement className="!w-12">
-                  <Button h="1.75rem" size="sm" onClick={tooglePassword}>
-                    {showPass ? <BiHide /> : <BiShow />}
+                  <Button 
+                    size=''
+                    h=''
+                    bg='[var(--color-bg)]'
+                    onClick={tooglePassword}>
+                      {showPass ? 
+                        <BiHide className="text-[var(--color-text-base)] bg-[var(--color-bg)] text-[20px]"/> 
+                        : <BiShow className="text-[var(--color-text-base)] bg-[var(--color-bg)] text-[20px]"/>}
                   </Button>
                 </InputRightElement>
               </InputGroup>
@@ -139,9 +151,10 @@ export const SignIn = () => {
               type="submit"
               colorScheme="telegram"
               size="lg"
-              className="mt-3"
+              disabled={isLoading}
+              className={`mt-3 w-[37.5rem] ${isLoading ? 'opacity-60 cursor-not-allowed' : ''}`}
             >
-              Войти
+              {isLoading ? 'Войти...' : 'Войти'}
             </Button>
           </form>
 

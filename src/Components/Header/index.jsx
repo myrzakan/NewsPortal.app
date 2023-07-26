@@ -1,7 +1,6 @@
 import React, { useEffect } from 'react';
-import { BsMoonFill, BsMoon } from 'react-icons/bs';
+import { BsSun, BsMoon } from 'react-icons/bs';
 import { Link } from 'react-router-dom';
-import cls from './Header.module.scss';
 import Green from '../../Logo/Logo_green.png';
 import Blue from '../../Logo/Logo_blue.png';
 import { ProfileSection } from './components/ProfileMenu';
@@ -42,17 +41,21 @@ const Header = () => {
   }, [isAuth, userData, dispatch]);
 
   return (
-    <div className={cls.headerContainer}>
-      <div onClick={toggleTheme} className={cls.theme}>
-        {theme === 'light' ? <BsMoonFill size="20px" /> : <BsMoon size="20px" />}
+    <div className='w-[100%] h-[110px] bg-[var(--color-bg)] fixed top-0 z-[3] transition-all duration-400'>
+      <div onClick={toggleTheme} className='relative left-[94rem] top-[35px] cursor-pointer'>
+        {theme === 'light' ? <BsMoon size="22px" /> : <BsSun size="22px" />}
       </div>
       <Link to="/">
-        <img src={theme === 'light' ? Blue : Green} alt="logo" />
+        <img 
+          className='absolute left-[50rem] top-[-25px] w-[250px] h-[120px] pt-[10px] z-0 object-cover'
+          src={theme === 'light' ? Blue : Green} 
+          alt="logo" /
+          >
       </Link>
 
       {!isAuthenticated ? <AuthButton /> : <ProfileSection/>} {/* Исправлено: AuthButton */}
 
-      <div className={cls.one}></div>
+      <div className='bg-[var(--color-text-base)] w-[100%] h-[15px] relative top-[30px]'></div>
     </div>
   );
 };  
