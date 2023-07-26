@@ -5,7 +5,7 @@ import { Provider } from 'react-redux'
 import { store } from './store';
 import App from './App';
 import './index.css'
-import './FirebaseConfig'
+import FirebaseConfig from './FirebaseConfig'
 
 import { ChakraProvider } from '@chakra-ui/react';
 

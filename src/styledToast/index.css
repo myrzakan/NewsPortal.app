@@ -1,0 +1,15 @@
+/* Удаление фона для уведомлений об успехе */
+.custom-toast-success {
+  background-color: transparent !important;
+  color: #fff !important;
+  border-radius: 8px !important;
+  box-shadow: none !important;
+}
+
+/* Удаление фона для уведомлений об ошибке */
+.custom-toast-error {
+  background-color: transparent !important;
+  color: #fff !important;
+  border-radius: 8px !important;
+  box-shadow: none !important;
+}

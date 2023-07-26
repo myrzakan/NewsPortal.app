@@ -4,6 +4,7 @@ import firebase from 'firebase/compat/app';
 import 'firebase/compat/database';
 import { initializeApp } from 'firebase/app'
 import { getAnalytics } from "firebase/analytics";
+import { getAuth } from 'firebase/auth';
 
 
 const firebaseConfig = {
@@ -18,10 +19,10 @@ const firebaseConfig = {
     // ...
   };
   
-  const app = initializeApp(firebaseConfig);
+  export const app = initializeApp(firebaseConfig);
   const analytics = getAnalytics(app);
-
+  const auth = getAuth()
 
 export default firebaseConfig
 
-  
+// auth.app.options.debug = true; 

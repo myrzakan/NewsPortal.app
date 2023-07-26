@@ -4,44 +4,92 @@ import { useForm } from 'react-hook-form';
 import { Forms } from '../../helpers/Forms';
 import { BiHide, BiShow } from 'react-icons/bi';
 import { Link, useNavigate } from 'react-router-dom';
-import { useDispatch } from 'react-redux'
-import { setUser } from 'store/slices/userSlice'
+import { useDispatch } from 'react-redux';
+import { toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+import { setUser } from 'store/slices/userSlice';
+import '../../styledToast/index.css';
 
-import { Signin } from '../AuthForm/Signin';
 import { getAuth, signInWithEmailAndPassword } from "firebase/auth";
+import { app } from '../../FirebaseConfig';
 
 export const SignIn = () => {
-
-  const [ email, setEmail ] = React.useState('')
-  const [ password, setPassword ] = React.useState('')
-
-
-  const [showPass, setShowPass] = React.useState(false);
-  const navigate = useNavigate(); // Добавлено: получение функции navigate
-
-  const tooglePassword = () => setShowPass(prev => !prev);
-  const dispatch = useDispatch()
-
-  
-  const handleLogin = ( e ) => {
-    const auth = getAuth();
-    e.preventDefault()
-    signInWithEmailAndPassword(auth, email, password)
-      .then(console.log)
-      .catch(console.error)
-  }
-
+  const navigate = useNavigate();
+  const dispatch = useDispatch();
   const {
-    register,
     handleSubmit,
+    register,
     formState: { errors },
+    reset,
   } = useForm();
 
+  const [showPass, setShowPass] = React.useState(false);
+  const tooglePassword = () => setShowPass((prev) => !prev);
 
-  const onSubmit = async (data) => {
-    await Signin(data, navigate); // Изменено: передача функции navigate
+  const handleLogin = async (formData) => {
+    try {
+      const auth = getAuth(app);
+      const { email, password, username } = formData;
+
+      if (!email || !password) {
+        toast.error('Ошибка: Введите email и пароль', {
+          position: 'top-center',
+          autoClose: 2000,
+          className: 'custom-toast-error'
+        });
+        return; // Проверка, что email и password заполнены
+      }
+  
+      const userCredential = await signInWithEmailAndPassword(auth, email, password);
+      const user = userCredential.user;
+      
+      dispatch(setUser({  
+        name: username,
+        email: user.email,
+        id: user.uid,
+        token: user.accessToken,
+      }));
+      
+      // Очистить поля ввода после успешного входа
+      reset();
+      console.log(user);
+      console.log(formData);
+      
+      navigate('/');
+    } catch (error) {
+      console.error(error);
+      // Показать специфическое сообщение об ошибке от Firebase
+      if (error.code === 'auth/wrong-password') {
+      // Обработка ошибки неверного пароля
+      toast.error('Ошибка: Неверный пароль', {
+        position: 'top-center',
+        autoClose: 2000,
+        className: 'custom-toast-error'
+      });
+    } else if (error.code === 'auth/invalid-email') {
+      // Обработка ошибки неверного формата email
+      toast.error('Ошибка: Неверный формат email', {
+        position: 'top-center',
+        autoClose: 2000,
+        className: 'custom-toast-error'
+      });
+    } else if (error.code === 'auth/user-not-found') {
+       // Обработка ошибки неверного формата email
+        toast.error('Ошибка: Пользователь не найден', {
+        position: 'top-center',
+        autoClose: 2000,
+        className: 'custom-toast-error'
+      });
+    } else {
+      // Обработка других ошибок от Firebase
+      toast.error('Ошибка: ' + error.message, {
+        position: 'top-center',
+        autoClose: 2000,
+        className: 'custom-toast-error'
+      });
+    }
+    }
   };
-
 
   React.useEffect(() => {
     window.scrollTo(0, 0); 
@@ -53,51 +101,49 @@ export const SignIn = () => {
       <div className="w-1/3">
         <h1 className="mb-3 text-4xl font-medium text-center">Авторизация</h1>
         <Card className="p-5">
-          <FormControl isInvalid={errors.email} className="mb-3">
-            <FormLabel>Email</FormLabel>
-            <Input
-              type="email"
-              value={email}
-              size="lg"
-              placeholder="example@example.com"
-              onChange={(e) => setEmail(e.target.value)}
-              {...register('identity', Forms.Rules.Identity)}
-            />
-            <FormErrorMessage>
-              {errors.email && errors.email.message}
-            </FormErrorMessage>
-          </FormControl>
-
-          <FormControl isInvalid={errors.password} className="mb-3">
-            <FormLabel>Пароль</FormLabel>
-            <InputGroup>
+          <form onSubmit={handleSubmit(handleLogin)}>
+            <FormControl isInvalid={errors.email} className="mb-3">
+              <FormLabel>Email</FormLabel>
               <Input
-                type={showPass ? 'text' : 'password'}
-                value={password}
-                placeholder="********"
+                type="email"
                 size="lg"
-                onChange={(e) => setPassword(e.target.value)}
-                {...register('password', Forms.Rules.Password)}
+                placeholder="example@example.com"
+                {...register('email', Forms.Rules.Email)}
               />
-              <InputRightElement className="!w-12">
-                <Button h="1.75rem" size="sm" onClick={tooglePassword}>
-                  {showPass ? <BiHide /> : <BiShow />}
-                </Button>
-              </InputRightElement>
-            </InputGroup>
-            <FormErrorMessage>
-              {errors.password && errors.password.message}
-            </FormErrorMessage>
-          </FormControl>
+              <FormErrorMessage>
+                {errors.email && errors.email.message}
+              </FormErrorMessage>
+            </FormControl>
 
-          <Button
-            onClick={handleSubmit(handleLogin)}
-            colorScheme="telegram"
-            size="lg"
-            className="mt-3"
-          >
-            Войти
-          </Button>
+            <FormControl isInvalid={errors.password} className="mb-3">
+              <FormLabel>Пароль</FormLabel>
+              <InputGroup>
+                <Input
+                  type={showPass ? 'text' : 'password'}
+                  placeholder="********"
+                  size="lg"
+                  {...register('password', Forms.Rules.Password)}
+                />
+                <InputRightElement className="!w-12">
+                  <Button h="1.75rem" size="sm" onClick={tooglePassword}>
+                    {showPass ? <BiHide /> : <BiShow />}
+                  </Button>
+                </InputRightElement>
+              </InputGroup>
+              <FormErrorMessage>
+                {errors.password && errors.password.message}
+              </FormErrorMessage>
+            </FormControl>
+
+            <Button
+              type="submit"
+              colorScheme="telegram"
+              size="lg"
+              className="mt-3"
+            >
+              Войти
+            </Button>
+          </form>
 
           <div className="mt-3 text-center">
             <p>

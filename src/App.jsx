@@ -12,6 +12,7 @@ import TermsOfUse from './Pages/TermsOfUse';
 import { AuthRoutes } from './Auth/Routes';
 import Footer from './Components/Footer/Index';
 import Header from './Components/Header';
+
 // import BurgerMenu from './BurgerMenu';
 
 function App() {

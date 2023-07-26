@@ -6,14 +6,13 @@ import { Forms } from '../../helpers/Forms'
 import { getAuth, createUserWithEmailAndPassword } from "firebase/auth";
 import { useDispatch } from 'react-redux'
 import { setUser } from 'store/slices/userSlice'
-
-import { signUp } from '../AuthForm/Signup'
-
 import { BiHide, BiShow } from 'react-icons/bi'
+import { toast } from "react-toastify";
 
 export const SignUp = () => {
 
   const dispatch = useDispatch() 
+  const [name, setName] = React.useState('');
 
   const [showPass, setShowPass] = React.useState(false);
   const [showConfirmPass, setConfirmPass] = React.useState(false);
@@ -31,7 +30,7 @@ export const SignUp = () => {
   const navigate = useNavigate();
 
   const handleRegister = async (data) => {
-    const { email, password } = data;
+    const { email, password, username } = data;
     const auth = getAuth();
     // console.log(auth);
     try {
@@ -39,7 +38,7 @@ export const SignUp = () => {
       const user = userCredential.user;
       console.log(user);
       dispatch(setUser({
-        name: user.name,
+        name: username,
         email: user.email,
         id: user.uid,
         token: user.accessToken
@@ -50,6 +49,15 @@ export const SignUp = () => {
     } catch (error) {
       // const errorCode = error.code;
       console.log(error);
+
+      if (error.code === 'auth/email-already-in-use') {
+        // Обработка ошибки неверного пароля
+        toast.error('Этот электронный адрес уже занят', {
+          position: 'top-center',
+          autoClose: 2000,
+          className: 'custom-toast-error'
+        });
+      }
       // const errorMessage = error.message;
       // Обработка ошибки регистрации пользователя (если нужно)
     }
@@ -68,20 +76,23 @@ export const SignUp = () => {
       <div className="w-1/3">
         <h1 className="mb-3 text-4xl font-medium text-center">Регистрация</h1>
 
-        <Card className="p-5 bg-neutral-900">
+        <Card className="p-5 " bg='[var(--color-bg)]'>
 
           <FormControl
-            className="mb-3 bg-[var(--color-bg-base)]"
+            className="mb-3 bg-[var(--color-bg)]"
             isInvalid={errors.username}
           >
             <FormLabel
-              className="bg-[var(--color-bg-base)]"
+              className="bg-[var(--color-bg)]"
             >
               Имя пользователя
             </FormLabel>
             <Input
               placeholder="spiderman"
               size="lg"
+              
+              defaultValue={name}
+              onChange={(e) => setName(e.target.value)}
               {
                 ...register('username', Forms.Rules.Username)
               }
@@ -123,9 +134,9 @@ export const SignUp = () => {
                   ...register('password', Forms.Rules.Password)
                 }
               />
-              <InputRightElement className="!w-12">
-                <Button h="1.75rem" size="sm" onClick={tooglePassword}>
-                  {showPass ? <BiHide /> : <BiShow />}
+              <InputRightElement className="">
+                <Button size="" onClick={tooglePassword}>
+                  {showPass ? <BiHide className="text-[var(--color-text-base)] bg-[var(--color-bg)] text-[20px]"/> : <BiShow className="text-[var(--color-text-base)] text-[20px]"/>}
                 </Button>
               </InputRightElement>
             </InputGroup>
@@ -153,13 +164,14 @@ export const SignUp = () => {
                   })
                 }
               />
-              <InputRightElement className="!w-12">
+              <InputRightElement className="">
                 <Button
-                  h="1.75rem"
-                  size="sm"
+                  size=''
+                  h=''
+                  bg='[var(--color-bg)]'
                   onClick={toogleConfirmPassword}
                 >
-                  {showConfirmPass ? <BiHide /> : <BiShow />}
+                  {showConfirmPass ? <BiHide className="text-[var(--color-text-base)] bg-[var(--color-bg)] text-[20px]"/> : <BiShow className="text-[var(--color-text-base)] text-[20px]"/>}
                 </Button>
               </InputRightElement>
             </InputGroup>
