@@ -4,13 +4,15 @@ import { useForm } from 'react-hook-form';
 import { Forms } from '../../helpers/Forms';
 import { BiHide, BiShow } from 'react-icons/bi';
 import { Link, useNavigate } from 'react-router-dom';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { useToasts } from 'react-toast-notifications'; // Импортируем useToasts
 import '../../styledToast/index.css';
 
-import { getAuth, signInWithEmailAndPassword } from "firebase/auth";
+import { getAuth, signInWithEmailAndPassword, signInWithPopup} from "firebase/auth";
+import { auth, provider } from 'FirebaseConfig'
 import { app } from '../../FirebaseConfig';
 import { setUser } from 'store/slices/userSlice';
+import { setGoogleUserData } from 'store/slices/useGoogleSlice';
 
 export const SignIn = () => {
   const navigate = useNavigate();
@@ -27,45 +29,70 @@ export const SignIn = () => {
   const [showPass, setShowPass] = React.useState(false);
   const tooglePassword = () => setShowPass((prev) => !prev);
 
-  const { addToast } = useToasts(); 
+  const { addToast } = useToasts();
 
-
-
-  const handleLogin = async (formData) => {
-    setIsLoading(true)
-    try {
-      const auth = getAuth(app);
-      const { email, password, username } = formData;
-
-      if (!email || !password) {
-        addToast('Ошибка: Введите email и пароль', { // Используем addToast для вывода уведомления
+  const handleLoginGoogle = () => {
+    signInWithPopup(auth, provider)
+      .then((result) => {
+        const user = result.user;
+        dispatch(setGoogleUserData({
+          displayName: user.displayName,
+          email: user.email,
+        }));
+        console.log(user);
+        navigate('/');
+      })
+      .catch((error) => {
+        console.error('Error signing in with Google:', error);
+        addToast('Ошибка: Не удалось войти с помощью Google', {
           appearance: 'error',
           autoDismiss: true,
         });
-        return;
-      }
-  
-      const userCredential = await signInWithEmailAndPassword(auth, email, password);
-      const user = userCredential.user;
-      
-      dispatch(setUser({  
-        name: username,
-        email: user.email,
-        id: user.uid,
-        token: user.accessToken,
-      }))
+      });
+  };
 
-      reset();
-      // console.log(user);
-      // console.log(formData);
-      navigate('/');
-      addToast('Успешно вошли', {
-        appearance: 'success',
-        autoDismiss: 'true'
-      })
+  const handleLogin = async ({email, password, formData}) => {
+    setIsLoading(true);
+    try {
+      // const { email, password, username } = formData;
+
+      // Проверяем, являются ли учетные данные администратора
+      if (email === 'admin@admin.com' && password === 'adminadmin') {
+        // Установим флаг isAdmin в true, если учетные данные совпадают с администратором
+        // setIsAdmin(true);
+        setIsLoading(false);
+        reset();
+        navigate('/');
+        addToast('Вы успешно вошли как администратор', {
+          appearance: 'success',
+          autoDismiss: true,
+        });
+      } else {
+        // Если учетные данные не являются админскими, выполняем обычный вход с Firebase
+        const auth = getAuth(app);
+        // const { email, password, username } = formData;
+        const userCredential = await signInWithEmailAndPassword(auth, email, password);
+        const user = userCredential.user;
+
+        // Обычная обработка входа пользователя
+        // ...
+        dispatch(setUser({  
+          // name: username || '',
+          email: user.email,
+          id: user.uid,
+          token: user.accessToken,
+        }));
+
+        setIsLoading(false);
+        reset();
+        navigate('/');
+        addToast('Успешно вошли как пользователь', {
+          appearance: 'success',
+          autoDismiss: true,
+        });
+      }
     } catch (error) {
       console.error(error);
-
       if (error.code === 'auth/wrong-password') {
         addToast('Ошибка: Неверный пароль', {
           appearance: 'error',
@@ -100,7 +127,6 @@ export const SignIn = () => {
   React.useEffect(() => {
     window.scrollTo(0, 0); 
   }, []);
-
 
   return (
     <div className="flex items-center justify-center w-full min-h-screen">
@@ -152,9 +178,13 @@ export const SignIn = () => {
               colorScheme="telegram"
               size="lg"
               disabled={isLoading}
-              className={`mt-3 w-[37.5rem] ${isLoading ? 'opacity-60 cursor-not-allowed' : ''}`}
+              className={`mt-3 w-[100%] ${isLoading ? 'opacity-60 cursor-not-allowed' : ''}`}
             >
               {isLoading ? 'Войти...' : 'Войти'}
+            </Button>
+
+            <Button onClick={handleLoginGoogle}>
+              Google
             </Button>
           </form>
 

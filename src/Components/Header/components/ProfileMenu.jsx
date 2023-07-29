@@ -1,14 +1,21 @@
 import React from 'react';
 import { FiLogOut } from 'react-icons/fi';
 import { useDispatch, useSelector } from 'react-redux';
+import { removeAdmin } from 'store/slices/useAdminSlice';
 import { removeUser } from 'store/slices/userSlice';
 
 export const ProfileSection = () => {
   const dispatch = useDispatch();
   const user = useSelector((state) => state.user);
+  const google = useSelector((state) => state.google)
+  const admin = useSelector((state) => state.admin)
+
+
 
   const onSignOut = () => {
-    dispatch(removeUser());
+    dispatch(removeUser())
+    dispatch(removeAdmin())
+
   };
 
   return (

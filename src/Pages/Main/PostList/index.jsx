@@ -10,18 +10,15 @@ import firebase from 'firebase/compat/app';
 import 'firebase/compat/database';
 
 // <============== Firebase Configuration ==============> 
-import firebaseConfig from '../../FirebaseConfig';
+import firebaseConfig from '../../../FirebaseConfig';
 
 // <================= SCSS style ===============>
 import cls from './PostList.module.scss';
 
-// <=============== Loader ====================>
-import { Radio } from  'react-loader-spinner'
-
 // <=============== Componenets ================>
 import PostItem from './PostItem';
 import Pagination from './Pagination';
-import NoAccess from '../../Components/NoAccess';
+import NoAccess from '../../../Components/NoAccess';
 
 // Инициализация Firebase приложения
 if (!firebase.apps.length) {
@@ -35,13 +32,6 @@ const PostList = () => {
 
   //<================= Loading =====================>
   const [loading, setLoading] = React.useState(true);
-
-  // <================ Loader Color ==================>
-  // const [theme, setTheme] = React.useState('light')
-  // const lightThemeColors = ['#0ecff1', '#1f8f7c', '#611509'];
-  // const darkThemeColors = ['#1d1c1c', '#ece4e4', '#eb1111'];
-
-  // const colors = theme === 'light' ? lightThemeColors : darkThemeColors;
 
   // <================= Category post ================================> 
   const [categories, setCategories] = React.useState([]);
@@ -189,16 +179,8 @@ const PostList = () => {
 
        {/* <======= Loading =========> */}
       {loading ? (
-        <div className={cls.loading}>
-          <Radio
-          visible={true}
-          height="80"
-          width="80"
-          ariaLabel="radio-loading"
-          wrapperStyle={{}}
-          wrapperClass="radio-wrapper"
-          colors={[ '#29AB87', '#29AB87', '#29AB87']}
-          />
+        <div className='mb-[630px] bg-[#333] text-[#333]'>
+        Loading
         </div>
       ) : (
         <>

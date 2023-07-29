@@ -23,103 +23,164 @@ const Footer = () => {
 
 
     return (
-        <div className={cls.footerContainer}>
-            <div className={cls.one}></div>
-            <div className={cls.container}>
-                <div className={cls.f_about}>
-                    <h3>О нас</h3>
-                    <p>
+        <div className='h-[590px]'>
+            <div className='bg-[var(--color-text-base)] w-[100%] h-4'></div>
+            <div className='flex relative left-[50px] my-[100px] mx-[200px]'>
+                <div className='w-[400px] text-center mx-[50px]'>
+                    <h3 className='mt-[20px] font-bold text-[var(--color-text)] mb-2'>
+                        О нас
+                    </h3>
+                    <p className='text-[var(--color-text-base)] font-bold'>
                         Мы предлагаем самые свежие новости и актуальную информацию нашим читателям.
                         Наша цель - держать вас в курсе всех событий и происшествий, происходящих в мире.
                     </p>
                 </div>
 
-                <div className={cls.f_links}>
-                    <h3>Ссылки</h3>
+                <div className='mx-[50px]'>
+                    <h3 className='mt-[20px] font-bold text-[var(--color-text)] mb-2'>
+                        Ссылки
+                    </h3>
                     <ul>
-                        {/* <li>
+                        <li className='flex text-[var(--color-text-base)]'>
                             <AiOutlineArrowRight/>
-                            <Link to='/'>Главная</Link>
-                        </li> */}
-                        <li>
-                            <AiOutlineArrowRight/>
-                            <Link to='/about'>О проекте</Link>
+                            <Link 
+                                to='/about'
+                                className='text-[var(--color-text)] text-[15px] font-bold ml-[5px] 
+                                        hover:text-[var(--color-text-base)]'
+                            >
+                                О проекте
+                            </Link>
                         </li>
-                        <li>
+
+                        <li className='flex text-[var(--color-text-base)]'>
                             <AiOutlineArrowRight/>
-                            <Link to='/contact'>Контакты</Link>
+                            <Link 
+                                to='/contact'
+                                className='text-[var(--color-text)] text-[15px] font-bold ml-[5px] 
+                                        hover:text-[var(--color-text-base)]'
+                            >
+                                Контакты
+                            </Link>
                         </li>
-                        <li>
+
+                        <li className='flex text-[var(--color-text-base)]'>
                             <AiOutlineArrowRight/>
-                            <Link to='/termsOfUse'>Правила использования</Link>
+                            <Link 
+                                to='/termsOfUse'
+                                className='text-[var(--color-text)] text-[15px] font-bold ml-[5px] 
+                                        hover:text-[var(--color-text-base)]'
+                            >
+                                Правила использования
+                            </Link>
                         </li>
-                        <li>
+
+                        <li className='flex text-[var(--color-text-base)]'>
                             <AiOutlineArrowRight/>
-                            <Link to='/advertising'>Реклама</Link>
+                            <Link 
+                                to='/advertising'
+                                className='text-[var(--color-text)] text-[15px] font-bold ml-[5px] 
+                                        hover:text-[var(--color-text-base)]'
+                            >
+                                Реклама
+                            </Link>
                         </li>
-                        <li>
+
+                        <li className='flex text-[var(--color-text-base)]'>
                             <AiOutlineArrowRight/>
-                            <Link to='/policy'>Политика конфиденциальности</Link>
+                            <Link 
+                                to='/policy'
+                                className='text-[var(--color-text)] text-[15px] font-bold ml-[5px] 
+                                        hover:text-[var(--color-text-base)]'
+                            >
+                                Политика конфиденциальности
+                            </Link>
                         </li>
+
                     </ul>
                 </div>
 
-                <div className={cls.contact}>
-                    <h3>Свяжитесь с нами</h3>
-                    <p>
+                <div className='mx-[50px]'>
+                    <h3 className='mt-[20px] font-bold text-[var(--color-text)] mb-2'>
+                        Свяжитесь с нами
+                    </h3>
+                    <p className='text-[var(--color-text-base)] font-bold'>
                         Телефон: 
                         <span 
                             onClick={handlePhoneClick} 
-                            className={cls.clickableText}> +996 (500) 002 007
+                            className='text-[var(--color-text)] cursor-pointer hover:underline'
+                        > 
+                        +996 (500) 002 007
                         </span>
                     </p>
 
-                    <p>
+                    <p className='text-[var(--color-text-base)] font-bold'>
                         Email: 
                         <span 
                             onClick={handleEmailClick} 
-                            className={cls.clickableText}> news@line.kg
+                            className='text-[var(--color-text)] cursor-pointer hover:underline'
+                        >
+                            news@line.kg
                         </span>
                     </p>
 
-                    <p>
+                    <p className='text-[var(--color-text-base)] font-bold'>
                         Адрес: 
                         <span 
                             onClick={handleAddressClick} 
-                            className={cls.clickableText}> г. Бишкек, проспект Эркиндик 46
+                            className='text-[var(--color-text)] cursor-pointer hover:underline'
+                        >
+                            г. Бишкек, проспект Эркиндик 46
                         </span>
                     </p>
                 </div>
 
-                <div className={cls.social}>
-                    <h3>Мы в социальных сетях</h3>
-                    <ul>
-                        <li>
-                            <a href="https://www.facebook.com/example" target="_blank" rel="noopener noreferrer">
-                                <FaFacebook />
+                <div className='mx-[50px]'>
+                    <h3 className='mt-[20px] font-bold text-[var(--color-text)] mb-2'>
+                        Мы в социальных сетях
+                    </h3>
+                    <ul className='flex text-[var(--color-text-base)]'>
+                        <li className='mx-2 mt-2'>
+                            <a 
+                                href="https://www.facebook.com/example" 
+                                target="_blank" rel="noopener noreferrer"
+                                // className=''
+                            >
+                                <FaFacebook size='30px'/>
                             </a>
                         </li>
-                        <li>
-                            <a href="https://www.twitter.com/example" target="_blank" rel="noopener noreferrer">
-                                <FaTwitter />
+                        <li className='mx-2 mt-2'>
+                            <a 
+                                href="https://www.twitter.com/example" 
+                                target="_blank" rel="noopener noreferrer"
+                                // className=''
+                            >
+                                <FaTwitter size='30px'/>
                             </a>
                         </li>
-                        <li>
-                            <a href="https://www.instagram.com/example" target="_blank" rel="noopener noreferrer">
-                                <FaInstagram />
+                        <li className='mx-2 mt-2'>
+                            <a 
+                                href="https://www.instagram.com/example" 
+                                target="_blank" rel="noopener noreferrer"
+                            >
+                                <FaInstagram size='30px'/>
                             </a>
                         </li>
                     </ul>
                 </div>
             </div>
 
-            <div className={cls.copyRight}>
-                {/* <img src={logo} alt="logo" /> */}
-                <h1>18+</h1>
-                <div>
-                    <p>© {new Date().getFullYear()} Все права защищены.</p>
-                    <p>Использование материалов разрешено только с письменного разрешения компании.</p>
-                    <p>Любое копирование, воспроизведение или распространение контента без разрешения запрещено.</p>
+            <div className='text-center'>
+                <h1 className='text-[var(--color-text-base)] text-[25px] font-bold'>18+</h1>
+                <div className='mt-[20px] mb-[50px]'>
+                    <p className='m-1 text-[var(--color-text)] font-bold'>
+                        © {new Date().getFullYear()} Все права защищены.
+                    </p>
+                    <p className='m-1 text-[var(--color-text)] font-bold' >
+                        Использование материалов разрешено только с письменного разрешения компании.
+                    </p>
+                    <p className='text-[var(--color-text)] font-bold' >
+                        Любое копирование, воспроизведение или распространение контента без разрешения запрещено.
+                    </p>
                 </div>
             </div>
 

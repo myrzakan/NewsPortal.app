@@ -13,7 +13,8 @@ import 'react-toastify/dist/ReactToastify.css';
 import ReactQuill from 'react-quill';
 import 'react-quill/dist/quill.snow.css';
 
-import cls from './CreatePost.module.scss'
+
+import './CreatePost.css'
 
 const CreatePostForm = ({categories}) => {
   const [title, setTitle] = useState('');
@@ -97,23 +98,24 @@ const CreatePostForm = ({categories}) => {
   };
 
   return (
-    <div className={cls.AdminCreatePost}>
-      <h2 className={cls.titleCreate}>Create Post</h2>
-      <form onSubmit={handleSubmit}>
+    <div className=' max-h-[100rem] h-[50rem]  pt-[50px]'>
+      <form onSubmit={handleSubmit} className='w-[700px]'>
         {/* Заголовок поста */}
-        <div className={cls.title_Container}>
+        <div className='flex justify-center'>
           <input
             type="text"
             id="title"
             value={title}
             onChange={handleTitleChange}
             placeholder="Заголовок поста"
-            className={cls.input_Title}
+            className='relative left-[595px] mt-[100px] w-[700px] pl-2  h-10 
+            bg-[var(--color-bg)] border border-[#7a7777] 
+            rounded-lg focus:outline-none placeholder:italic '
           />
         </div>
 
         {/* Содержание поста */}
-        <div className={cls.discription_Container}>
+        <div className='flex  mt-3 ml-[265px] w-[700px] relative left-[20.6rem]' >
           <ReactQuill
             value={content}
             modules={{
@@ -131,22 +133,19 @@ const CreatePostForm = ({categories}) => {
             }}
             onChange={handleContentChange}
             placeholder="Содержание поста"
-            className={cls.input_Discription}
+            className='w-[700px] h-[18rem] custom-editor'
           />
         </div>
 
         {/* Выбор категории поста */}
-        <div className={cls.category_Container}>
-          <label htmlFor="category" className={cls.titleCategory}>
-            Category:
-          </label>
+        <div className='relative left-[37.2rem] top-[5rem]'>
           <select
             id="category"
             value={category}
             onChange={handleCategoryChange}
-            className={cls.selectCategory}
+            className='bg-[var(--color-bg)] border border-[#7a7777] p-2 rounded-lg'
           >
-            <option value="" className={cls.select_default}>
+            <option value="" className=''>
               Select a category
             </option>
             {categories.map((category) => (
@@ -158,15 +157,12 @@ const CreatePostForm = ({categories}) => {
         </div>
 
         {/* Картинка поста */}
-        <div className={cls.image_Container}>
-          <label htmlFor="image" className={cls.titleImage}>
-            Image:
-          </label>
+        <div className='relative left-[65rem] top-[3rem]'>
           <input
             type="file"
             id="image"
             onChange={handleImageChange}
-            className={cls.inputImage}
+            className=''
           />
         </div>
 
@@ -174,7 +170,9 @@ const CreatePostForm = ({categories}) => {
         <button
           type="submit"
           disabled={isLoading}
-          className={cls.buttonCreate}
+          className={`mt-[70px] w-[700px] p-3 relative left-[37.2rem]
+          bg-[var(--color-text-base)] rounded-lg hover:opacity-[0.6] 
+          ${isLoading ? 'opacity-60 cursor-not-allowed' : ''}`}
         >
           {isLoading ? 'Creating...' : 'Create Post'}
         </button>

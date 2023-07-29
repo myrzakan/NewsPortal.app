@@ -4,7 +4,7 @@ import firebase from 'firebase/compat/app';
 import 'firebase/compat/database';
 import { initializeApp } from 'firebase/app'
 import { getAnalytics } from "firebase/analytics";
-import { getAuth } from 'firebase/auth';
+import { getAuth, GoogleAuthProvider} from 'firebase/auth';
 
 
 const firebaseConfig = {
@@ -22,7 +22,10 @@ const firebaseConfig = {
   export const app = initializeApp(firebaseConfig);
   const analytics = getAnalytics(app);
   const auth = getAuth()
+  const provider = new GoogleAuthProvider()
 
-export default firebaseConfig
+  export {auth, provider}
+
+  export default firebaseConfig
 
 // auth.app.options.debug = true; 

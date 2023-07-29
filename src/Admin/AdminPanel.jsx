@@ -1,8 +1,6 @@
 
 import React  from 'react';
 
-import { Link } from 'react-router-dom'
-
 // <== Подключение модуля Firebase (compat/app для совместимости с Firebase v8) ==>
 import firebase from 'firebase/compat/app';
 import 'firebase/compat/database';
@@ -16,11 +14,8 @@ import DeleteCategory from './DeleteCategory';
 // <============= Firebase Configuration ==============> 
 import firebaseConfig from '../FirebaseConfig';
 
-// <============ SCSS style ===========>
-import cls from './Admin.module.scss'
-
 // <========= Website Logo ==============>
-import logo from '../Logo/NewsLine_silver.png'
+import logo from '../Logo/Logo_blue.png'
 
 
 if (!firebase.apps.length) {
@@ -76,19 +71,17 @@ const AdminPanel = () => {
   }, []);
 
   if (loading) {
-    return <div className={cls.loading}>
+    return <div className='mt-[150x] mb-[540px]'>
       <img src={logo} alt="log" />
     </div>;
   }
 
   return (
     
-    <div className={cls.AdminPanelContainer}>
-      <h1>Admin Panel</h1>
-      <Link to='/'><img src={logo} alt="logo" /></Link>
+    <div>
       <CreatePostForm categories={categories} />
-      <CreateCategory />
-      <DeleteCategory categories={categories} />
+      {/* <CreateCategory /> */}
+      {/* <DeleteCategory categories={categories} /> */}
       <DeletePosts posts={posts} />
     </div>
   );

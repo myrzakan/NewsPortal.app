@@ -3,8 +3,8 @@ import { Routes, Route } from 'react-router-dom';
 import { ToastContainer } from 'react-toastify';
 import { ToastProvider } from 'react-toast-notifications'
 import AdminPanel from './Admin/AdminPanel';
-import PostList from './Pages/PostList';
-import PostDetails from './Pages/PostDetails';
+import PostList from './Pages/Main/PostList';
+import PostDetails from './Pages/Main/PostDetails';
 import About from './Pages/About';
 import Policy from './Pages/Policy';
 import Contact from './Pages/Contact';
@@ -14,6 +14,7 @@ import { AuthRoutes } from './Auth/Routes';
 import Footer from './Components/Footer/Index';
 import Header from './Components/Header';
 import './styledToast/index.css'
+import CreatePostForm from 'Admin/CreatePosts';
 
 // import BurgerMenu from './BurgerMenu';
 
@@ -27,6 +28,7 @@ function App() {
         <Routes>
           <Route path="/auth/*" element={<AuthRoutes />} />
           <Route path="/AdminPanel" element={<AdminPanel />} />
+          <Route path='/createPost' element={<CreatePostForm/>}/>
           <Route path="/" element={<PostList />} />
           <Route path="/postDetails/:postId" element={<PostDetails />} />
           <Route path="/about" element={<About />} />

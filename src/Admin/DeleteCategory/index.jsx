@@ -9,9 +9,6 @@ import 'firebase/compat/database';
 // <============== Toastify ============>
 import { toast } from 'react-toastify';
 
-// <=============== SCSS style ===============>
-import cls from './DeleteCategory.module.scss';
-
 
 const DeleteCategory = ({ categories }) => {
   // <=== Обработчик удаления категории ===>
@@ -42,13 +39,14 @@ const DeleteCategory = ({ categories }) => {
   };
 
   return (
-    <div className={cls.DeleteCategoryContainer}>
-      <h2>Categories</h2>
-      <ul>
+    <div 
+      className='w-[700px] p-2 relative left-[596px] 
+      bottom-[100px] border border-[#7a7777] rounded-lg'>
+      <ul className=''>
         {categories.map((category) => (
           <li 
             key={category.id} 
-            className={cls.category} 
+            className='w-[120px] cursor-pointer hover:text-[var(--color-text-base)]' 
             onClick={() => handleDeleteCategory(category.id)}
           >
             <p>{category.name}</p>

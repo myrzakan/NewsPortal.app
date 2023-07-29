@@ -10,9 +10,6 @@ import 'firebase/compat/database';
 import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
-// <================ SCSS style ===============>
-import cls from './CreateCategory.module.scss';
-
 const CreateCategory = () => {
   const [category, setCategory] = React.useState('');
   const [categories, setCategories] = React.useState([]);
@@ -48,7 +45,7 @@ const CreateCategory = () => {
         setCategory('');
       })
       .catch((error) => {
-        console.log(error);
+        
       });
   };
   
@@ -73,17 +70,21 @@ const CreateCategory = () => {
   }, []);
 
   return (
-    <div className={cls.CreateCategoryContainer}>
-      <h2>Create Category</h2>
+    <div  className='relative left-[37.2rem] bottom-[110px] 
+          rounded-lg border border-[#7a7777] w-[700px] p-[50px]'>
       <div>
         <input
           type="text"
           onChange={handleCategoryChange}
           value={category}
           placeholder="Category Name"
-          className={cls.input_create_category}
+          className='w-[300px] h-9 px-2 rounded-lg border border-[#7a7777] 
+          focus:outline-none bg-[var(--color-bg)]'
         />
-        <button onClick={handleCategoryCreate} className={cls.button_create_category}>
+        <button 
+            onClick={handleCategoryCreate} 
+            className='ml-10 w-[200px] p-1.5 rounded-lg 
+            bg-[var(--color-text-base)] hover:opacity-[0.6]'>
           Create Category
         </button>
       </div>

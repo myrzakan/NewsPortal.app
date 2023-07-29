@@ -4,10 +4,9 @@ import { useForm } from "react-hook-form";
 import { Link, useNavigate } from "react-router-dom";
 import { Forms } from '../../helpers/Forms'
 import { getAuth, createUserWithEmailAndPassword } from "firebase/auth";
-import { useDispatch, useSelector } from 'react-redux'
+import { useDispatch } from 'react-redux'
 import { setUser } from 'store/slices/userSlice'
 import { BiHide, BiShow } from 'react-icons/bi'
-import { toast } from "react-toastify";
 import { useToasts } from 'react-toast-notifications'
 
 export const SignUp = () => {
@@ -23,7 +22,6 @@ export const SignUp = () => {
   const tooglePassword = () => setShowPass(prev => !prev);
   const toogleConfirmPassword = () => setConfirmPass(prev => !prev)
 
-  // const user = useSelector((state) => state.user)
 
   const {
     register,
@@ -37,6 +35,7 @@ export const SignUp = () => {
   const handleRegister = async (data) => {
     const { email, password, username } = data;
     const auth = getAuth();    
+    // const firestore = getFirestore();
     setIsLoading(true)
     // console.log(auth);
 
@@ -45,6 +44,9 @@ export const SignUp = () => {
       const userCredential = await createUserWithEmailAndPassword(auth, email, password);
       const user = userCredential.user;
       console.log(user);
+
+  
+       // Сохранение данных пользователя в Redux Store
       dispatch(setUser({
         name: username,
         email: user.email,
@@ -62,7 +64,9 @@ export const SignUp = () => {
       // const errorCode = error.code;
       console.log(error);
 
-        if (error.code === 'auth/email-already-in-use') {
+      // <ErrorSignUp/>
+
+        if (error.code === 400) {
         // Показать сообщение об ошибке, когда электронная почта уже используется
         addToast(
           'Ошибка: Этот электронный адрес уже существует', 

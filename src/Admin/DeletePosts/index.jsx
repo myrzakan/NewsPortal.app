@@ -9,8 +9,6 @@ import 'firebase/compat/database';
 // <== Подключение модуля react-toastify для отображения уведомлений ==>
 import { toast } from 'react-toastify';
 
-// <============= SCSS style ==============>
-import cls from "./DeletePost.module.scss";
 
 // <== Объявление компонента DeletePosts и передача ему пропсов ==>
 const DeletePosts = ({ posts }) => {
@@ -98,41 +96,73 @@ const DeletePosts = ({ posts }) => {
   };
 
   return (
-    <div className={cls.delete_Container}> 
-      <div className={cls.filter}> 
+    <div className='relative bottom-[100px] left-[40px] w-[300px]'> 
+      <div className='relative top-[10px] left-[34.8rem] w-[700px] 
+          h-[100px] mb-[50px] border border-[#7a7777] rounded-lg bg-[var(--color-bg)]'> 
         <input
           type="date"
           value={selectedDate ? selectedDate.toISOString().slice(0, 10) : ""} // Отображение выбранной даты в элементе input
-          onChange={handleDateChange} // Обработчик изменения выбранной даты
+          onChange={handleDateChange}
+          className=' p-1 w-[160px] relative left-9 top-7 border 
+          border-[#7a7777] rounded-lg bg-[var(--color-bg)] focus:outline-none'
         />
-        <button onClick={handleSearch} className={cls.buttonSearch}> 
-          Поиск
+        <button 
+          onClick={handleSearch} 
+          className='relative top-7 left-[100px] w-[170px] 
+          bg-[var(--color-text-base)] p-1 px-7 rounded-lg hover:opacity-[0.6]'
+          > 
+            Поиск
         </button>
-        <button onClick={handleSortByDate} className={cls.buttonSort}> 
-          Сортировать по дате
+        <button 
+          onClick={handleSortByDate} 
+          className='relative left-[120px] top-7 w-[170px] p-1 px-7 
+          bg-[var(--color-text-base)] rounded-lg hover:opacity-[0.6]'
+          > 
+            Сортировать
         </button>
       </div>
-      <ul>
+
+      <ul className='relative left-[557px] bottom-2'>
         {filteredPosts.length > 0 ? ( // Если есть отфильтрованные посты
           // Отображение списка отфильтрованных постов
           filteredPosts.map((post) => (
-            <li key={post.id} className={cls.post}>
+            <li 
+              key={post.id} 
+              className='border border-[#7a7777]
+              rounded-lg my-4 p-4 w-[700px]'>
               <h3>{post.title}</h3>
               <p>
-                Категория: <span>{post.category}</span>
+                Категория: 
+                <span 
+                  className='text-[var(--color-text-base)]'
+                >
+                  {post.category}
+                </span>
               </p>
               <p>
                 Временная метка:{" "}
-                <span>{new Date(post.timestamp).toLocaleString()}</span>
+                <span  
+                  className='text-[var(--color-text-base)]'
+                >
+                  {new Date(post.timestamp).toLocaleString()}
+                </span>
               </p>
-              <button onClick={() => handleDeletePost(post.id)}> 
-                Удалить пост
+              <button 
+                onClick={() => handleDeletePost(post.id)} 
+                className=' bg-[var(--color-text-base)] 
+                rounded-lg p-1 mt-1 hover:opacity-[0.6]'
+              > 
+                Удалить
               </button>
             </li>
           ))
         ) : (
           // Отображение сообщения, если нет результатов
-          <li className={cls.noResults}>Нет результатов</li>
+          <li className='w-[700px] h-10 pl-2 pt-1.5 border
+            border-[#7a7777] rounded-lg flex justify-center'
+            >
+              Нет результатов
+          </li>
         )}
       </ul>
     </div>
