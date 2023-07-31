@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 
 
 
-export default function WithoutNavbar() {
+export const AuthButton = () => {
   return (
     <Box className='flex items-center justify-end mr-16'>
       <Link to="../../../Auth/SignIn">

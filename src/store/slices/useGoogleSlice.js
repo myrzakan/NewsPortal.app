@@ -5,6 +5,7 @@ import { createSlice } from '@reduxjs/toolkit';
 const initialState = {
   displayName: '',
   email: '',
+  isAuthenticated: false,
 };
 
 const googleSlice = createSlice({
@@ -14,10 +15,12 @@ const googleSlice = createSlice({
     setGoogleUserData: (state, action) => {
       state.displayName = action.payload.displayName || '';
       state.email = action.payload.email || '';
+      state.isAuthenticated = true;
     },
     clearGoogleUserData: (state) => {
-      state.displayName = '';
-      state.email = '';
+      state.displayName = null;
+      state.email = null;
+      state.isAuthenticated = false;
     },
   },
 });

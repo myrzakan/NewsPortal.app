@@ -6,6 +6,7 @@ const initialState = {
     name: 'admin', 
     email: 'admin@admin.com',
     password: 'adminadmin',
+    isAuthenticated: false,
   },
 };
 
@@ -17,13 +18,12 @@ const adminSlice = createSlice({
       state.adminCredentials.name = action.payload.name;
       state.adminCredentials.email = action.payload.email;
       state.adminCredentials.password = action.payload.password;
+      state.isAuthenticated = true;
     },
     removeAdmin(state) {
-      state.adminCredentials = {
-        name: null,
-        email: null,
-        password: null,
-      };
+      state.name = null;
+      state.email = null;
+      state.isAuthenticated = false;
     },
   },
 });

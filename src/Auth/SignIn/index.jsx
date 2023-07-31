@@ -4,7 +4,7 @@ import { useForm } from 'react-hook-form';
 import { Forms } from '../../helpers/Forms';
 import { BiHide, BiShow } from 'react-icons/bi';
 import { Link, useNavigate } from 'react-router-dom';
-import { useDispatch, useSelector } from 'react-redux';
+import { useDispatch} from 'react-redux';
 import { useToasts } from 'react-toast-notifications'; // Импортируем useToasts
 import '../../styledToast/index.css';
 
@@ -31,6 +31,7 @@ export const SignIn = () => {
 
   const { addToast } = useToasts();
 
+
   const handleLoginGoogle = () => {
     signInWithPopup(auth, provider)
       .then((result) => {
@@ -39,7 +40,10 @@ export const SignIn = () => {
           displayName: user.displayName,
           email: user.email,
         }));
-        console.log(user);
+        addToast(`Успешно вошли ${user.displayName}`, {
+          appearance: 'info',
+          autoDismiss: 'true'
+        })
         navigate('/');
       })
       .catch((error) => {

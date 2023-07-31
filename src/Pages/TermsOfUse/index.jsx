@@ -1,65 +1,65 @@
 import React from 'react'
-
 import { Link } from 'react-router-dom'
-
 import gsap from 'gsap'
-
-import cls from './TermsOfUse.module.scss'
 
 const TermsOfUse = () => {
 
     React.useEffect(() => {
         window.scrollTo(0, 0); 
-      }, []);
+    }, []);
 
     // <============= Gsap Animations ============>   
     React.useEffect(() => {
-      const animationData = [
-        { selector: cls.title_one, delay: 0.1 },
-        { selector: cls.title_two, delay: 0.2 },
-        { selector: cls.title_three, delay: 0.3 },
-        { selector: cls.title_four, delay: 0.4 },
-        { selector: cls.title_five, delay: 0.5 },
-        { selector: cls.title_six, delay: 0.6 },
-        { selector: cls.title_seven, delay: 0.7 },
-        { selector: cls.title_eight, delay: 0.8 },
-        { selector: cls.title_nine, delay: 0.9 }
-      ];
+        const animationData = [
+            { selector: 'Title', delay: 0.1 },
+            { selector: 'title1', delay: 0.2 },
+            { selector: 'title2', delay: 0.3 },
+            { selector: 'title3', delay: 0.4 },
+            { selector: 'title4', delay: 0.5 },
+            { selector: 'title5', delay: 0.6 },
+            { selector: 'title6', delay: 0.7 },
+            { selector: 'title7', delay: 0.8 },
+            { selector: 'title8', delay: 0.9 }
+    ];
     
-      animationData.forEach(({ selector, delay }) => {
+    animationData.forEach(({ selector, delay }) => {
         gsap.from('.' + selector, {
-          opacity: 0,
-          duration: 0.2,
-          delay,
-          x: 30
+            opacity: 0,
+            duration: 0.2,
+            delay,
+            x: 30
+            });
         });
-      });
-    }, []);
-  
+    },[]);
+
 
 
     return (
-        <div className={cls.Container}>
-            <h1 className={cls.title_one}>Правила и использование News Line:</h1>
+        <div className='mx-[545px] mb-[80px] mt-[110px] pt-[20px] relative right-[25px]'>
+            <h1 className='mb-4 font-bold text-[30px] Title'>
+                Правила и использование News Line:
+            </h1>
 
-            <br />
-
-            <p className={cls.title_two}>
-                Добро пожаловать на <strong>News Line!</strong> 
+            <p className='title1 text-xl'>
+                Добро пожаловать на 
+                <strong className='text-[var(--color-text-base)]'> News Line! </strong> 
                 Мы рады предоставить вам доступ к нашему 
                 информационному порталу и обеспечить вас актуальными 
                 новостями и интересными материалами. 
                 Чтобы гарантировать комфортное и безопасное взаимодействие
-                 с нашим сайтом, пожалуйста, ознакомьтесь с
+                с нашим сайтом, пожалуйста, ознакомьтесь с
                 нижеследующими правилами и условиями использования:
             </p>
 
             <br />
 
-            <p className={cls.title_three}>
-                {/* <span>1. </span> */}
-                <strong> Авторские права: </strong> <br />
-                Все материалы, опубликованные на <strong> News Line, </strong> 
+            <p className='title2 text-xl'>
+                <strong className='text-[var(--color-text-base)]'> 
+                    Авторские права: 
+                </strong> 
+                <br />
+                Все материалы, опубликованные на 
+                <strong className='text-[var(--color-text-base)]'> News Line</strong>, 
                 являются интеллектуальной собственностью и 
                 защищены авторскими правами. Копирование, воспроизведение или 
                 распространение контента без явного разрешения 
@@ -69,9 +69,11 @@ const TermsOfUse = () => {
 
             <br />
 
-            <p className={cls.title_four}>
-                {/* <span>2. </span> */}
-                <strong> Правила публикации комментариев: </strong> <br />
+            <p className='title3 text-xl'>
+                <strong className='text-[var(--color-text-base)]'> 
+                    Правила публикации комментариев: 
+                </strong> 
+                <br />
                 Мы приветствуем ваше активное участие в дискуссиях на 
                 нашем сайте через комментарии. 
                 Однако, просим вас соблюдать этические нормы и 
@@ -84,9 +86,10 @@ const TermsOfUse = () => {
 
             <br />
 
-            <p className={cls.title_five}>
-                {/* <span>3. </span> */}
-                <strong> Информационная ответственность: </strong> <br />
+            <p className='title4 text-xl'>
+                <strong className='text-[var(--color-text-base)]'>
+                    Информационная ответственность: 
+                </strong> <br />
                 Мы стремимся предоставлять актуальную и достоверную информацию, 
                 однако не можем гарантировать полную точность материалов. 
                 Пользователи несут ответственность 
@@ -99,11 +102,13 @@ const TermsOfUse = () => {
 
             <br />
 
-            <p className={cls.title_six}>
-                {/* <span>4. </span> */}
-                <strong> Безопасность и конфиденциальность: </strong> <br />
+            <p className='title5 text-xl'>
+                <strong className='text-[var(--color-text-base)]'> 
+                    Безопасность и конфиденциальность: 
+                </strong> 
+                <br />
                 Мы прилагаем все усилия для обеспечения безопасности вашей
-                 личной информации при использовании нашего сайта. 
+                личной информации при использовании нашего сайта. 
                 Однако, мы не несем ответственности за возможные утечки данных, 
                 вызванные внешними факторами или действиями третьих лиц. 
                 Рекомендуется принимать меры предосторожности при обмене личными 
@@ -112,10 +117,12 @@ const TermsOfUse = () => {
 
             <br />
 
-            <p className={cls.title_seven}>
-                {/* <span>5. </span> */}
-                <strong> Внешние ссылки: </strong> <br />
-                На <strong> News Line </strong> могут быть размещены ссылки 
+            <p className='title6 text-xl'>
+                <strong className='text-[var(--color-text-base)]'> 
+                    Внешние ссылки: 
+                </strong> <br />
+                На <strong className='text-[var(--color-text-base)]'> News Line </strong> 
+                могут быть размещены ссылки 
                 на внешние ресурсы и сторонние веб-сайты. 
                 Мы не контролируем содержание и политику конфиденциальности 
                 этих сайтов, поэтому не несем 
@@ -126,22 +133,26 @@ const TermsOfUse = () => {
 
             <br />
 
-            <p className={cls.title_eight}>
-                Мы призываем всех пользователей <strong> News Line </strong> 
+            <p className='title7 text-xl'>
+                Мы призываем всех пользователей 
+                <strong className='text-[var(--color-text-base)]'> News Line </strong> 
                 соблюдать эти правила и условия использования, 
                 чтобы обеспечить качественное и безопасное взаимодействие на нашем сайте. 
                 Если у вас возникли вопросы, замечания или жалобы, пожалуйста, свяжитесь с нами 
                 через наши контактные данные, указанные на странице
             <br />
 
-            <Link to='/contact'><span>"Контакты"</span></Link>
+            <Link to='/contact'><span className='text-[var(--color-text-base)] cursor-pointer'>
+                "Контакты"
+            </span></Link>
             
             </p>
 
             <br />
 
-            <p className={cls.title_nine}>
-                Благодарим вас за использование <strong> News Line! </strong>
+            <p className='title8 text-xl'>
+                Благодарим вас за использование 
+                <strong className='text-[var(--color-text-base)]'> News Line! </strong>
                 Мы надеемся, что наш сайт станет вашим надежным 
                 источником информации и вдохновения.
             </p>

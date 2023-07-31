@@ -21,10 +21,10 @@ import CreatePostForm from 'Admin/CreatePosts';
 function App() {
   return (
     <div>
+      <ToastProvider placement="top-center">
       <Header />
       {/* <BurgerMenu /> */}
 
-      <ToastProvider placement="top-center">
         <Routes>
           <Route path="/auth/*" element={<AuthRoutes />} />
           <Route path="/AdminPanel" element={<AdminPanel />} />

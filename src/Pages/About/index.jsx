@@ -1,7 +1,4 @@
 import React from 'react';
-
-import cls from './About.module.scss';
-
 import gsap from 'gsap'
 
 const About = () => {
@@ -13,14 +10,14 @@ const About = () => {
   // <========== Gsap Animations ===========>
   React.useEffect(() => {
     const animationData = [
-      { selector: cls.aboutTitle, delay: 0 },
-      { selector: cls.title1, delay: 0.1 },
-      { selector: cls.title2, delay: 0.2 },
-      { selector: cls.title3, delay: 0.3 },
-      { selector: cls.title4, delay: 0.4 },
-      { selector: cls.title5, delay: 0.5 },
-      { selector: cls.title_six, delay: 0.6 },
-      { selector: cls.title_seven, delay: 0.7 }
+      { selector: 'Title', delay: 0 },
+      { selector: 'title1', delay: 0.1 },
+      { selector: 'title2', delay: 0.2 },
+      { selector: 'title3', delay: 0.3 },
+      { selector: 'title4', delay: 0.4 },
+      { selector: 'title5', delay: 0.5 },
+      { selector: 'title6', delay: 0.6 },
+      { selector: 'title7', delay: 0.7 }
     ];
   
     animationData.forEach(({ selector, duration, delay }) => {
@@ -36,11 +33,11 @@ const About = () => {
 
 
   return (
-    <div className={cls.aboutContainer}>
-          <h1 className={cls.aboutTitle}>О проекте</h1>
+    <div className='mx-[545px] mb-[80px] mt-[110px] pt-[20px] relative right-[25px]'>
+          <h1 className='mb-4 font-bold text-[30px] Title'>О проекте</h1>
 
-          <p className={cls.title1}>
-            <span>"News Line" </span>
+          <p className='title1 text-xl'>
+            <span className='text-[var(--color-text-base)]'>"News Line" </span>
             - это инновационный проект, созданный с целью 
             предоставления пользователю полного и всестороннего
             информационного опыта. Мы стремимся стать вашим
@@ -50,7 +47,7 @@ const About = () => {
 
           <br />
 
-          <p className={cls.title2}>
+          <p className='title2 text-xl'>
             Наша команда состоит из опытных журналистов и редакторов, 
             которые тщательно отбирают и анализируют новости со
             всего мира. Мы следим за глобальными событиями, региональными 
@@ -62,8 +59,8 @@ const About = () => {
 
           <br />
 
-          <p className={cls.title3}>
-            <span>"News Line" </span>
+          <p className='title3 text-xl'>
+            <span className='text-[var(--color-text-base)]'>"News Line" </span>
             предлагает множество категорий новостей, чтобы каждый читатель 
             мог найти информацию по своим интересам. Вы
             сможете узнавать о последних политических событиях, 
@@ -74,9 +71,9 @@ const About = () => {
 
           <br />
 
-          <p className={cls.title4}>
+          <p className='title4 text-xl'>
             Мы понимаем, что ваше время ценно, поэтому
-            <span> "News Line" </span>
+            <span className='text-[var(--color-text-base)]'> "News Line" </span>
             предоставляет легкий и удобный интерфейс, который 
             позволяет вам быстро найти нужную информацию. Вы сможете
             осуществлять поиск по ключевым словам, фильтровать новости 
@@ -86,7 +83,7 @@ const About = () => {
 
           <br />
 
-          <p className={cls.title5}>
+          <p className='title5 text-xl'>
             Мы гордимся своей независимостью и объективностью в 
             отображении новостей. Мы представляем разные точки
             зрения, анализируем факты и предоставляем достоверную 
@@ -96,8 +93,8 @@ const About = () => {
 
           <br />
 
-          <p className={cls.title_six}>
-            <span>"News Line" </span>
+          <p className='title6 text-xl'>
+            <span className='text-[var(--color-text-base)]'>"News Line" </span>
             также предоставляет возможность взаимодействия с 
             нашей командой. Вы можете оставлять комментарии, делиться
             своими мыслями и обсуждать новостные материалы с 
@@ -107,9 +104,9 @@ const About = () => {
 
           <br />
 
-          <p className={cls.title_seven}>
+          <p className='title7 text-xl'>
             Присоединяйтесь к
-            <span> "News Line" </span>
+            <span className='text-[var(--color-text-base)]'> "News Line" </span>
             уже сегодня и будьте в курсе самых актуальных новостей 
             и событий со всего мира. Мы работаем для вас, чтобы
             вы всегда оставались информированными и вдохновленными.
