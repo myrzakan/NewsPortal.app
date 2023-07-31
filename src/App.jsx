@@ -11,10 +11,10 @@ import Contact from './Pages/Contact';
 import Ad from './Pages/Ad';
 import TermsOfUse from './Pages/TermsOfUse';
 import { AuthRoutes } from './Auth/Routes';
+import NotFound from './NotFound'
 import Footer from './Components/Footer/Index';
 import Header from './Components/Header';
 import './styledToast/index.css'
-import CreatePostForm from 'Admin/CreatePosts';
 
 // import BurgerMenu from './BurgerMenu';
 
@@ -28,8 +28,8 @@ function App() {
         <Routes>
           <Route path="/auth/*" element={<AuthRoutes />} />
           <Route path="/AdminPanel" element={<AdminPanel />} />
-          <Route path='/createPost' element={<CreatePostForm/>}/>
           <Route path="/" element={<PostList />} />
+          <Route path='*' element={<NotFound/>}/>
           <Route path="/postDetails/:postId" element={<PostDetails />} />
           <Route path="/about" element={<About />} />
           <Route path="/contact" element={<Contact />} />

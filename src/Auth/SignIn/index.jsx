@@ -40,11 +40,13 @@ export const SignIn = () => {
           displayName: user.displayName,
           email: user.email,
         }));
+        localStorage.setItem('google', JSON.stringify(user))
         addToast(`Успешно вошли ${user.displayName}`, {
           appearance: 'info',
           autoDismiss: 'true'
         })
         navigate('/');
+        console.log(user);
       })
       .catch((error) => {
         console.error('Error signing in with Google:', error);
@@ -62,8 +64,6 @@ export const SignIn = () => {
 
       // Проверяем, являются ли учетные данные администратора
       if (email === 'admin@admin.com' && password === 'adminadmin') {
-        // Установим флаг isAdmin в true, если учетные данные совпадают с администратором
-        // setIsAdmin(true);
         setIsLoading(false);
         reset();
         navigate('/');
@@ -94,6 +94,7 @@ export const SignIn = () => {
           appearance: 'success',
           autoDismiss: true,
         });
+        localStorage.setItem('user', JSON.stringify(user))
       }
     } catch (error) {
       console.error(error);
@@ -138,13 +139,14 @@ export const SignIn = () => {
         <h1 className="mb-3 text-4xl font-medium text-center">Авторизация</h1>
         <Card className="p-5" bg='[var(--color-bg )] custom-transition'>
           <form onSubmit={handleSubmit(handleLogin)} className='bg-[var(--color-bg)]'>
-            <FormControl isInvalid={errors.email} className="mb-3">
+            <FormControl isInvalid={errors.email} className="mb-3 ">
               <FormLabel>Email</FormLabel>
               <Input
                 type="email"
                 size="lg"
                 placeholder="example@example.com"
                 {...register('email', Forms.Rules.Email)}
+                className='border'
               />
               <FormErrorMessage>
                 {errors.email && errors.email.message}
@@ -187,7 +189,12 @@ export const SignIn = () => {
               {isLoading ? 'Войти...' : 'Войти'}
             </Button>
 
-            <Button onClick={handleLoginGoogle}>
+            <p className='text-center my-2 text-[#7a7777]'>или</p>
+
+            <Button 
+              onClick={handleLoginGoogle}
+              className='w-full'
+            >
               Google
             </Button>
           </form>

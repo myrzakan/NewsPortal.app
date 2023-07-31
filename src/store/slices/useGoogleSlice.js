@@ -6,6 +6,7 @@ const initialState = {
   displayName: '',
   email: '',
   isAuthenticated: false,
+  token: null
 };
 
 const googleSlice = createSlice({
@@ -16,11 +17,13 @@ const googleSlice = createSlice({
       state.displayName = action.payload.displayName || '';
       state.email = action.payload.email || '';
       state.isAuthenticated = true;
+      state.token = action.payload.token
     },
     clearGoogleUserData: (state) => {
       state.displayName = null;
       state.email = null;
       state.isAuthenticated = false;
+      state.token = null;
     },
   },
 });

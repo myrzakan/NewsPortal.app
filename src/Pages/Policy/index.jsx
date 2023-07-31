@@ -1,10 +1,6 @@
 import React from "react";
-
 import { Link } from "react-router-dom";
-
 import { gsap } from "gsap";
-
-import cls from "./Policy.module.scss";
 
 const Policy = () => {
   React.useEffect(() => {
@@ -14,39 +10,35 @@ const Policy = () => {
   // <============== Gsap Animations ===========>
   React.useEffect(() => {
     const animationData = [
-      { selector: "." + cls.title1, delay: 0 },
-      { selector: "." + cls.title2, delay: 0.1 },
-      { selector: "." + cls.title_three, delay: 0.2 },
-      { selector: "." + cls.title_four, delay: 0.3 },
-      { selector: "." + cls.title_five, delay: 0.4 },
-      { selector: "." + cls.title_six, delay: 0.5 },
-      { selector: "." + cls.title_seven, delay: 0.6 },
-      { selector: "." + cls.title_eight, delay: 0.7 },
-      { selector: "." + cls.title9, delay: 0.8 },
-      { selector: "." + cls.title_ten, delay: 0.9 },
+        { selector: 'Title', delay: 0 },
+        { selector: 'title1', delay: 0.1 },
+        { selector: 'title2', delay: 0.2 },
+        { selector: 'title3', delay: 0.3 },
+        { selector: 'title4', delay: 0.4 },
+        { selector: 'title5', delay: 0.5 },
+        { selector: 'title6', delay: 0.6 },
+        { selector: 'title7', delay: 0.7 },
+        { selector: 'title8', delay: 0.8 },
+        { selector: 'title9', delay: 0.9 }
     ];
 
-    animationData.forEach(({ selector, delay }) => {
-      const element = document.querySelector(selector);
-      if (element) {
-        gsap.from(element, {
-          opacity: 0,
-          duration: 0.2,
-          delay,
-          x: 30,
-        });
-      }
-    });
-  }, []);
+animationData.forEach(({ selector, delay }) => {
+    gsap.from('.' + selector, {
+        opacity: 0,
+        duration: 0.2,
+        delay,
+        x: 30
+    });       
+});
+}, []);
 
   return (
-    <div className={cls.policyContainer}>
-      <h1 className={cls.title1}>Политика конфиденциальности News Line:</h1>
+    <div className='mx-[545px] mb-[80px] mt-[110px] pt-[20px] relative right-[25px]'>
+      <h1 className='mb-4 font-bold text-[30px] Title'> Политика конфиденциальности News Line:</h1>
 
-      <br />
-
-      <p className={cls.title2}>
-        Мы в <strong>News Line</strong> ценим вашу конфиденциальность и
+      <p className='title1 text-xl'>
+        Мы в <strong className="text-[var(--color-text-base)]">News Line </strong> 
+        ценим вашу конфиденциальность и
         стремимся обеспечить безопасность и защиту ваших личных данных. Эта
         политика конфиденциальности объясняет, как мы собираем, используем,
         защищаем и раскрываем информацию, которую вы предоставляете при
@@ -55,8 +47,9 @@ const Policy = () => {
 
       <br />
 
-      <p className={cls.title_three}>
-        <strong>Сбор информации:</strong> <br />
+      <p className='title2 text-xl'>
+        <strong className="text-[var(--color-text-base)]">Сбор информации:</strong>
+        <br />
         Мы собираем только ту информацию, которую вы сознательно предоставляете
         нам, например, при заполнении формы подписки на новости или оставлении
         комментария. Это может включать ваше имя, адрес электронной почты или
@@ -65,8 +58,9 @@ const Policy = () => {
 
       <br />
 
-      <p className={cls.title_four}>
-        <strong>Использование информации:</strong> <br />
+      <p className='title3 text-xl'>
+        <strong className="text-[var(--color-text-base)]">Использование информации:</strong> 
+        <br />
         Мы используем предоставленную вами информацию для целей, связанных с
         предоставлением новостной информации, общения с вами и улучшения
         пользовательского опыта нашего сайта. Мы не продаем, не арендуем и не
@@ -76,8 +70,9 @@ const Policy = () => {
 
       <br />
 
-      <p className={cls.title_five}>
-        <strong>Защита информации:</strong> <br />
+      <p className='title4 text-xl'>
+        <strong className="text-[var(--color-text-base)]">Защита информации:</strong> 
+        <br />
         Мы принимаем меры для защиты вашей личной информации от
         несанкционированного доступа, использования или разглашения. Мы
         применяем технические и организационные меры безопасности, чтобы
@@ -86,8 +81,9 @@ const Policy = () => {
 
       <br />
 
-      <p className={cls.title_six}>
-        <strong>Использование файлов cookie:</strong> <br />
+      <p className='title5 text-xl'>
+        <strong className="text-[var(--color-text-base)]">Использование файлов cookie:</strong> 
+        <br />
         Мы можем использовать файлы cookie, чтобы улучшить ваш опыт
         использования нашего сайта. Файлы cookie являются небольшими текстовыми
         файлами, которые сохраняются на вашем устройстве и позволяют нам
@@ -99,8 +95,9 @@ const Policy = () => {
 
       <br />
 
-      <p className={cls.title_seven}>
-        <strong>Ссылки на сторонние ресурсы:</strong> <br />
+      <p className='title6 text-xl'>
+        <strong className="text-[var(--color-text-base)]">Ссылки на сторонние ресурсы:</strong> 
+        <br />
         Наш сайт может содержать ссылки на сторонние веб-сайты, которые имеют
         свои собственные политики конфиденциальности. Мы не несем
         ответственности за содержание и действия этих внешних сайтов.
@@ -110,8 +107,9 @@ const Policy = () => {
 
       <br />
 
-      <p className={cls.title_eight}>
-        <strong>Изменения в политике конфиденциальности:</strong> <br />
+      <p className='title7 text-xl'>
+        <strong className="text-[var(--color-text-base)]">Изменения в политике конфиденциальности:</strong> 
+        <br />
         Мы можем время от времени вносить изменения в нашу политику
         конфиденциальности. Любые изменения будут опубликованы на этой странице,
         и вы будете уведомлены о важных изменениях, если это требуется по
@@ -120,18 +118,18 @@ const Policy = () => {
 
       <br />
 
-      <p className={cls.title9}>
+      <p className='title8 text-xl'>
         Если у вас возникнут вопросы или требуется дополнительная информация о
         нашей политике конфиденциальности, пожалуйста, свяжитесь с нами через
         контактные данные, указанные на странице
         <Link to="/contact">
-          <span>" Контакты",</span>
+          <span className="text-[var(--color-text-base)] cursor-pointer hover:underline"> "Контакты"</span>,
         </Link>
       </p>
 
       <br />
 
-      <p className={cls.title_ten}>
+      <p className='title8 text-xl'>
         Мы ценим ваше доверие и гарантируем, что ваша конфиденциальность
         является нашим приоритетом.
       </p>

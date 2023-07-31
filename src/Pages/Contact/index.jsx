@@ -51,7 +51,6 @@ const Contact = () => {
         <div className='mx-[545px] mb-[80px] mt-[110px] pt-[20px] relative right-[25px]'>
             <h1 className='mb-4 font-bold text-[30px] Title'>Контакты:</h1>
 
-
             <p className='title1 text-xl'>
                 Мы ценим ваши вопросы, отзывы и предложения. 
                 Наша команда всегда готова 
@@ -97,7 +96,7 @@ const Contact = () => {
                 className='title5 text-xl'
                 onClick={handleEmailClick}
             >
-                <span className='font-bold'>Emali:</span>
+                <span className='font-bold'>Emali: </span>
                 <strong className='text-[var(--color-text-base)]'>
                     news@line.kg
                 </strong>
@@ -109,7 +108,7 @@ const Contact = () => {
                 className='title6 text-xl'
                 onClick={handleAddressClick}
             >
-                <span className='font-bold'>Адрес:</span>
+                <span className='font-bold'>Адрес:  </span>
                 <strong className='text-[var(--color-text-base)]'>
                     г. Бишкек, проспект Эркиндик 46
                 </strong>

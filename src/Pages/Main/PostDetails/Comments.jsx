@@ -10,7 +10,7 @@ const Comment = ({ comment }) => {
 
   return (
     <div className="border border-[#7a7777] rounded-lg p-4 my-4 w-[750px]">
-      <p className="text-[var(--color-text)] mb-2">{comment.username}</p>
+      <p className="text-[var(--color-text)] mb-2">{comment.username || comment.user}</p>
       <p className="text-[var(--color-text-base)]">{comment.text}</p>
       <p className="text-sm text-[var(--color-text)]">{formattedTime}</p>
     </div>
@@ -23,6 +23,7 @@ const Comments = ({ postId }) => {
   const [hasComments, setHasComments] = useState(true); // Add state variable for comments
 
   const username = useSelector((state) => state.google);
+  const user = useSelector((state) => state.user)
 
   useEffect(() => {
     const commentsRef = ref(db, 'comments/' + postId);
@@ -51,7 +52,7 @@ const Comments = ({ postId }) => {
     const commentsRef = ref(db, 'comments/' + postId);
     const newComment = {
       text: newCommentText,
-      username: username.displayName,
+      username: username.displayName || user.name,
       timestamp: Date.now(),
     };
     setNewCommentText('');
