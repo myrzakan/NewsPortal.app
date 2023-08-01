@@ -1,28 +1,14 @@
-import { Box, Button } from '@chakra-ui/react';
-import { Link } from 'react-router-dom';
+import { Box, Button } from '@chakra-ui/react'
+import { Link } from 'react-router-dom'
+import { RiUserHeartLine, RiUserHeartFill } from 'react-icons/ri'
 
-
-
-export const AuthButton = () => {
+export const AuthButton = (theme) => {
   return (
-    <Box className='flex items-center justify-end mr-16'>
-      <Link to="../../../Auth/SignIn">
-        <Button fontSize={'sm'} fontWeight={400} variant={'link'} className='mr-3'>
-          Sign In
-        </Button>
-      </Link>
+    <div className="relative left-[113rem] top-[15px] cursor-pointer h-0 w-0 mb-10">
       <Link to="../../../Auth/SignUp">
-        <Button
-          display={{ base: 'none', md: 'inline-flex' }}
-          fontSize={'sm'}
-          fontWeight={600}
-          color={'var(--color-text)'}
-          bg={' var(--color-text-base)'}
-          _hover={{ opacity: 0.7 }}
-        >
-          Sign Up
-        </Button>
+        {theme === 'light' ? <RiUserHeartLine size="24px"/>
+          : <RiUserHeartFill size="24px"  className="object-cover"/>}
       </Link>
-    </Box>
-  );
+    </div>
+  )
 }

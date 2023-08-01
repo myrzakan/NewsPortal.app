@@ -1,27 +1,29 @@
-import React from 'react';
+/* eslint-disable react/no-unescaped-entities */
 
-import cls from './Pagination.module.scss';
+import React from 'react'
+
+import cls from './Pagination.module.scss'
 
 const Pagination = ({ currentPage, postsPerPage, totalPosts, onPageChange }) => {
-  const totalPages = Math.ceil(totalPosts / postsPerPage);
+  const totalPages = Math.ceil(totalPosts / postsPerPage)
 
   // Определение диапазона отображаемых страниц
-  let startPage, endPage;
-  const maxVisiblePages = 5;
+  let startPage, endPage
+  const maxVisiblePages = 5
   if (totalPages <= maxVisiblePages) {
-    startPage = 1;
-    endPage = totalPages;
+    startPage = 1
+    endPage = totalPages
   } else {
-    const maxVisiblePagesHalf = Math.floor(maxVisiblePages / 2);
+    const maxVisiblePagesHalf = Math.floor(maxVisiblePages / 2)
     if (currentPage <= maxVisiblePagesHalf) {
-      startPage = 1;
-      endPage = maxVisiblePages;
+      startPage = 1
+      endPage = maxVisiblePages
     } else if (currentPage + maxVisiblePagesHalf >= totalPages) {
-      startPage = totalPages - maxVisiblePages + 1;
-      endPage = totalPages;
+      startPage = totalPages - maxVisiblePages + 1
+      endPage = totalPages
     } else {
-      startPage = currentPage - maxVisiblePagesHalf;
-      endPage = currentPage + maxVisiblePagesHalf;
+      startPage = currentPage - maxVisiblePagesHalf
+      endPage = currentPage + maxVisiblePagesHalf
     }
   }
 
@@ -47,7 +49,7 @@ const Pagination = ({ currentPage, postsPerPage, totalPosts, onPageChange }) => 
         </button>
       )}
     </div>
-  );
-};
+  )
+}
 
-export default Pagination;
+export default Pagination

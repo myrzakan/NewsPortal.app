@@ -75,8 +75,10 @@ const Header = () => {
       {User.isAuthenticated ||  Google.isAuthenticated ? (
         <ProfileSection addToast={addToast}/>
       ) : (
-        <AuthButton />
+        <AuthButton theme={theme}/>
       )}
+
+      
 
       <div className='bg-[var(--color-text-base)] w-[100%] h-[15px] relative top-[40px]'></div>
     </div>

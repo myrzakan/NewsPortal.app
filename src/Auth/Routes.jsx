@@ -13,4 +13,4 @@ export const AuthRoutes = () => {
       {/* <Route path="*" element={<NotFound/>}/> */}
     </Routes>
   )
-} 
+}

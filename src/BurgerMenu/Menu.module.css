@@ -1,0 +1,40 @@
+.menu-list-enter {
+  opacity: 0;
+  transform: translateX(-100%);
+}
+
+.menu-list-enter-active {
+  opacity: 1;
+  transform: translateX(0%);
+  transition: opacity 300ms, transform 400ms;
+}
+
+.menu-list-exit {
+  opacity: 1;
+  transform: translateX(0%);
+}
+
+.menu-list-exit-active {
+  opacity: 0;
+  transform: translateX(-100%);
+  transition: opacity 300ms, transform 400ms;
+}
+
+
+.menu-background {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: var(--color-bg);
+  z-index: 1; /* Измените значение z-index на 1 или 0 */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Добавьте больший z-index для кнопки закрытия */
+.cursor-pointer {
+  z-index: 2; /* Попробуйте использовать значение 2 или больше */
+}

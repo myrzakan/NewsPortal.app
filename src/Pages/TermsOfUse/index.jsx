@@ -142,7 +142,7 @@ const TermsOfUse = () => {
                 через наши контактные данные, указанные на странице
             <br />
 
-            <Link to='/contact'><span className='text-[var(--color-text-base)] cursor-pointer hover:underline hover:underline'>
+            <Link to='/contact'><span className='text-[var(--color-text-base)] cursor-pointer hover:underline'>
                 "Контакты"
             </span></Link>
             

@@ -1,89 +1,86 @@
 // PostList.jsx
-import React from 'react';
+import React from 'react'
 
 // <======================= Gsap Animations ========================>
-import { gsap } from 'gsap';
-import { ScrollTrigger } from 'gsap/ScrollTrigger';
+import { gsap } from 'gsap'
+import { ScrollTrigger } from 'gsap/ScrollTrigger'
 
 // <======================== Firebase ===============================>
-import firebase from 'firebase/compat/app';
-import 'firebase/compat/database';
+import firebase from 'firebase/compat/app'
+import 'firebase/compat/database'
 
-// <============== Firebase Configuration ==============> 
-import firebaseConfig from '../../../FirebaseConfig';
+// <============== Firebase Configuration ==============>
+import firebaseConfig from '../../../FirebaseConfig'
 
-// <================= SCSS style ===============>
-import cls from './PostList.module.scss';
 
 // <=============== Componenets ================>
-import PostItem from './PostItem';
-import Pagination from './Pagination';
-import NoAccess from '../../../Components/NoAccess';
+import PostItem from './PostItem'
+import Pagination from './Pagination'
 
 // Инициализация Firebase приложения
 if (!firebase.apps.length) {
-  firebase.initializeApp(firebaseConfig);
+  firebase.initializeApp(firebaseConfig)
 }
 
 const PostList = () => {
 
   // <================ Post ==================>
-  const [posts, setPosts] = React.useState([]);
+  const [posts, setPosts] = React.useState([])
 
   //<================= Loading =====================>
-  const [loading, setLoading] = React.useState(true);
+  const [loading, setLoading] = React.useState(true)
 
-  // <================= Category post ================================> 
-  const [categories, setCategories] = React.useState([]);
-  const [selectedCategory, setSelectedCategory] = React.useState(null);
+  // <================= Category post ================================>
+  const [categories, setCategories] = React.useState([])
+  const [selectedCategory, setSelectedCategory] = React.useState(null)
 
   // <=================== Search Post ===================>
-  const [searchText, setSearchText] = React.useState('');
+  const [searchText, setSearchText] = React.useState('')
 
   // <=================== Pagination =====================>
-  const [currentPage, setCurrentPage] = React.useState(1);
-  const [postsPerPage] = React.useState(5);
+  const [currentPage, setCurrentPage] = React.useState(1)
+  const [postsPerPage] = React.useState(5)
 
   // <========== Gsap Animations =======>
-  const postListRef = React.useRef(null);
-  const postRefs = React.useRef([]);
+  const postListRef = React.useRef(null)
+  const postRefs = React.useRef([])
 
   // Загрузка данных из Firebase и установка состояний
   React.useEffect(() => {
-    gsap.registerPlugin(ScrollTrigger);
+    gsap.registerPlugin(ScrollTrigger)
 
     const fetchData = async () => {
       try {
-        const snapshot = await firebase.database().ref('posts').once('value');
-        const postsData = snapshot.val();
+        const snapshot = await firebase.database().ref('posts').once('value')
+        const postsData = snapshot.val()
         if (postsData) {
           const postsList = Object.entries(postsData).map(([id, data]) => ({
             id,
             ...data,
-          }));
+          }))
 
           // Сортировка постов по времени создания (timestamp)
-          postsList.sort((a, b) => b.timestamp - a.timestamp);
+          postsList.sort((a, b) => b.timestamp - a.timestamp)
 
-          setPosts(postsList);
-          setLoading(false);
+          setPosts(postsList)
+          setLoading(false)
 
           // Получение списка категорий путем извлечения уникальных значений из списка постов
-          const categoriesList = Array.from(new Set(postsList.map((post) => post.category)));
-          setCategories(categoriesList);
+          const categoriesList = Array.from(new Set(postsList.map((post) => post.category)))
+          setCategories(categoriesList)
         }
       } catch (error) {
-        console.log(error);
+        console.log(error)
       }
-    };
+    }
 
-    fetchData();
-  }, []);
+    fetchData()
+  }, [])
 
   // Прокрутка страницы в начало при монтировании компонента
   React.useEffect(() => {
-    window.scrollTo(0, 0);
-  }, []);
+    window.scrollTo(0, 0)
+  }, [])
 
   // Анимация для списка постов при изменении выбранной категории
   React.useEffect(() => {
@@ -100,86 +97,93 @@ const PostList = () => {
           end: 'bottom top',
           toggleActions: 'play none none reverse',
         },
-      });
+      })
     }
-  }, [selectedCategory]);
+  }, [selectedCategory])
 
   // Обработчик выбора категории
   const selectCategory = (category) => {
-    setSelectedCategory(category);
-    setCurrentPage(1);
-  };
+    setSelectedCategory(category)
+    setCurrentPage(1)
+  }
 
   // Обработчик изменения текста поиска
   const handleSearch = (event) => {
-    setSearchText(event.target.value);
-    setCurrentPage(1);
-  };
+    setSearchText(event.target.value)
+    setCurrentPage(1)
+  }
 
   // Фильтрация постов по тексту поиска и/или выбранной категории
   const filterPosts = (post) => {
-    const lowerCaseSearchText = searchText.toLowerCase();
-    const lowerCaseTitle = post.title.toLowerCase();
-    const lowerCaseCategory = post.category.toLowerCase();
-    const formattedDate = new Date(post.timestamp).toLocaleString().toLowerCase();
+    const lowerCaseSearchText = searchText.toLowerCase()
+    const lowerCaseTitle = post.title.toLowerCase()
+    const lowerCaseCategory = post.category.toLowerCase()
+    const formattedDate = new Date(post.timestamp).toLocaleString().toLowerCase()
     return (
       lowerCaseTitle.includes(lowerCaseSearchText) ||
       lowerCaseCategory.includes(lowerCaseSearchText) ||
       formattedDate.includes(lowerCaseSearchText)
-    );
-  };
+    )
+  }
 
   // Применение фильтрации для отображения отфильтрованных постов
   const filteredPosts = searchText
     ? posts.filter(filterPosts)
     : selectedCategory
-    ? posts.filter((post) => post.category === selectedCategory)
-    : posts;
+      ? posts.filter((post) => post.category === selectedCategory)
+      : posts
 
   // Пагинация - вычисление индексов постов текущей страницы
-  const indexOfLastPost = currentPage * postsPerPage;
-  const indexOfFirstPost = indexOfLastPost - postsPerPage;
-  const currentPosts = filteredPosts.slice(indexOfFirstPost, indexOfLastPost);
+  const indexOfLastPost = currentPage * postsPerPage
+  const indexOfFirstPost = indexOfLastPost - postsPerPage
+  const currentPosts = filteredPosts.slice(indexOfFirstPost, indexOfLastPost)
 
-  const totalPosts = filteredPosts.length;
+  const totalPosts = filteredPosts.length
 
   // Изменение текущей страницы
   const handlePageChange = (pageNumber) => {
-    setCurrentPage(pageNumber);
-    window.scrollTo(0, 0);
-  };
-
-
-  // const pbAuth = localStorage.getItem('pocketbase_auth')
-
-  // if (pbAuth) return <NoAccess/>
-
+    setCurrentPage(pageNumber)
+    window.scrollTo(0, 0)
+  }
 
   return (
-    <div className={cls.post_container}>
+    <div className="mt-[100px] ml-[525px] w-[53rem] pt-[60px]">
       {/* <======== Search ========> */}
-      <div className={cls.search}>
+      <div>
         <input
           type="text"
           placeholder="Поиск..."
           value={searchText}
           onChange={handleSearch}
+          className="p-1 h-[40px] w-[850px] outline-none border-none rounded-md bg-[var(--color-bg-base)]
+          text-[var(--color-text)] transition-[var(--transtion-duration)]"
         />
       </div>
 
       {/* <========= Category ========> */}
-      <div className={cls.categories}>
-        <button onClick={() => selectCategory(null)}>Все</button>
+      <div>
+        <button
+          onClick={() => selectCategory(null)}
+          className={`py-[5px] px-[10px] my-[20px] mx-[5px] 
+          rounded-lg outline-none ${selectedCategory === null ? 'bg-[var(--color-text-base)] text-[var(--color-text)]' : ''}`}>
+          Все
+        </button>
         {categories.map((category) => (
-          <button key={category} onClick={() => selectCategory(category)}>
+          <button
+            key={category}
+            onClick={() => selectCategory(category)}
+            className={`py-[5px] px-[10px] my-[20px] mx-[5px] rounded-lg outline-none ${
+              selectedCategory === category ? 'bg-[var(--color-text-base)] text-[var(--color-text)]' : '' // Классы для красного фона
+            }`}
+          >
             {category}
           </button>
         )).reverse()}
       </div>
 
-       {/* <======= Loading =========> */}
+      {/* <======= Loading =========> */}
       {loading ? (
-        <div className='mb-[630px] bg-[#333] text-[#333]'>
+        <div className="mb-[630px] bg-[#333] text-[#333]">
         Loading
         </div>
       ) : (
@@ -190,7 +194,7 @@ const PostList = () => {
                 <PostItem key={post.id} post={post} ref={(el) => (postRefs.current[index] = el)} />
               ))
             ) : (
-              <div className={cls.no_results}>Нет результатов</div>
+              <div className="mb-[630px] text-center relative top-[200px] text-[30px]">Нет результатов</div>
             )}
           </ul>
           {/* <======== Pagination ========> */}
@@ -203,7 +207,7 @@ const PostList = () => {
         </>
       )}
     </div>
-  );
-};
+  )
+}
 
-export default PostList;
+export default PostList

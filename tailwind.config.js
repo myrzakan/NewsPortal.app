@@ -7,6 +7,7 @@ module.exports = {
       transitionDuration: {
         'custom': '0.8s',
       },
+    
     },
   },
   plugins: [],

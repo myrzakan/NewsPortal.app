@@ -16,7 +16,6 @@ a {
 }
 
 
-
 #root {
   background-color: var(--color-bg);
   transition-duration: 0.5s;
@@ -47,9 +46,3 @@ body[data-theme='light'] {
   --shadow: rgba(149, 157, 165, 0.2) 0 8px 24px; 
   
 }
-
-
-  /* color: var(--color-text); */
-  /* background-color: var(--color-bg); */
-  /* transition: var(--transition-duration); */
-  /* font-family: 'Raleway', sans-serif; */
