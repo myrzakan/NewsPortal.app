@@ -1,6 +1,6 @@
 /* eslint-disable react/no-unescaped-entities */
-import React from 'react'
 import { gsap } from 'gsap'
+import React from 'react'
 
 const Contact = () => {
 

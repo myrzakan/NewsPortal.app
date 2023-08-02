@@ -7,7 +7,12 @@ module.exports = {
       transitionDuration: {
         'custom': '0.8s',
       },
-    
+      screens: {
+        'xs': '320px',
+        'sd': '480px',
+        'l': '420px',
+        'lq': '360px'
+      },
     },
   },
   plugins: [],

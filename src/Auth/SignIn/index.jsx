@@ -1,23 +1,29 @@
-import { Button, Card, FormControl, FormErrorMessage, FormLabel, Input, InputGroup, InputRightElement } from '@chakra-ui/react'
-import React from 'react'
-import { useForm } from 'react-hook-form'
-import { Forms } from '../../helpers/Forms'
-import { BiHide, BiShow } from 'react-icons/bi'
-import { Link, useNavigate } from 'react-router-dom'
-import { useDispatch } from 'react-redux'
-import { useToasts } from 'react-toast-notifications' // Импортируем useToasts
-import '../../styledToast/index.css'
 
+import { Button, Card, FormControl, FormErrorMessage, FormLabel, Input, InputGroup, InputRightElement } from '@chakra-ui/react'
 import { getAuth, signInWithEmailAndPassword, signInWithPopup } from 'firebase/auth'
 import { auth, provider } from 'FirebaseConfig'
-import { app } from '../../FirebaseConfig'
-import { setUser } from 'store/slices/userSlice'
+import React from 'react'
+import { useForm } from 'react-hook-form'
+import { BiHide, BiShow } from 'react-icons/bi'
+import { useDispatch } from 'react-redux'
+import { Link, useNavigate } from 'react-router-dom'
+import { useToasts } from 'react-toast-notifications' // Импортируем useToasts
 import { setGoogleUserData } from 'store/slices/useGoogleSlice'
+import { setUser } from 'store/slices/userSlice'
+import { getDatabase, ref, onValue } from 'firebase/database'
+
+
+import { app } from '../../FirebaseConfig'
+import { Forms } from '../../helpers/Forms'
+
+import '../../styledToast/index.css'
+
 
 export const SignIn = () => {
   const navigate = useNavigate()
   const dispatch = useDispatch()
   const [isLoading, setIsLoading] = React.useState(false)
+  const [userData, setUserData] = React.useState(null);
 
   const {
     handleSubmit,
@@ -30,6 +36,20 @@ export const SignIn = () => {
   const tooglePassword = () => setShowPass((prev) => !prev)
 
   const { addToast } = useToasts()
+
+
+  React.useEffect(() => {
+    const database = getDatabase();
+    const currentUser = auth.currentUser;
+
+    if (currentUser) {
+      const userRef = ref(database, `users/${currentUser.uid}`);
+      onValue(userRef, (snapshot) => {
+        const data = snapshot.val();
+        setUserData(data);
+      });
+    }
+  }, []);
 
 
   const handleLoginGoogle = () => {
@@ -57,10 +77,11 @@ export const SignIn = () => {
       })
   }
 
-  const handleLogin = async ({ email, password, formData }) => {
+
+
+  const handleLogin = async ({ email, password, }) => {
     setIsLoading(true)
     try {
-      // const { email, password, username } = formData;
 
       // Проверяем, являются ли учетные данные администратора
       if (email === 'admin@admin.com' && password === 'adminadmin') {
@@ -72,16 +93,13 @@ export const SignIn = () => {
           autoDismiss: true,
         })
       } else {
-        // Если учетные данные не являются админскими, выполняем обычный вход с Firebase
         const auth = getAuth(app)
-        // const { email, password, username } = formData;
         const userCredential = await signInWithEmailAndPassword(auth, email, password)
         const user = userCredential.user
 
         // Обычная обработка входа пользователя
         // ...
         dispatch(setUser({
-          // name: username || '',
           email: user.email,
           id: user.uid,
           token: user.accessToken,
@@ -90,7 +108,7 @@ export const SignIn = () => {
         setIsLoading(false)
         reset()
         navigate('/')
-        addToast('Успешно вошли как пользователь', {
+        addToast(`Успешно вошли ${ user.name || userData?.username}`, {
           appearance: 'success',
           autoDismiss: true,
         })

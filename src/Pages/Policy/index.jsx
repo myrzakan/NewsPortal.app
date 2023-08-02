@@ -1,43 +1,43 @@
-import React from "react";
-import { Link } from "react-router-dom";
-import { gsap } from "gsap";
+import { gsap } from 'gsap'
+import React from 'react'
+import { Link } from 'react-router-dom'
 
 const Policy = () => {
   React.useEffect(() => {
-    window.scrollTo(0, 0);
-  }, []);
+    window.scrollTo(0, 0)
+  }, [])
 
   // <============== Gsap Animations ===========>
   React.useEffect(() => {
     const animationData = [
-        { selector: 'Title', delay: 0 },
-        { selector: 'title1', delay: 0.1 },
-        { selector: 'title2', delay: 0.2 },
-        { selector: 'title3', delay: 0.3 },
-        { selector: 'title4', delay: 0.4 },
-        { selector: 'title5', delay: 0.5 },
-        { selector: 'title6', delay: 0.6 },
-        { selector: 'title7', delay: 0.7 },
-        { selector: 'title8', delay: 0.8 },
-        { selector: 'title9', delay: 0.9 }
-    ];
+      { selector: 'Title', delay: 0 },
+      { selector: 'title1', delay: 0.1 },
+      { selector: 'title2', delay: 0.2 },
+      { selector: 'title3', delay: 0.3 },
+      { selector: 'title4', delay: 0.4 },
+      { selector: 'title5', delay: 0.5 },
+      { selector: 'title6', delay: 0.6 },
+      { selector: 'title7', delay: 0.7 },
+      { selector: 'title8', delay: 0.8 },
+      { selector: 'title9', delay: 0.9 },
+    ]
 
-animationData.forEach(({ selector, delay }) => {
-    gsap.from('.' + selector, {
+    animationData.forEach(({ selector, delay }) => {
+      gsap.from('.' + selector, {
         opacity: 0,
         duration: 0.2,
         delay,
-        x: 30
-    });       
-});
-}, []);
+        x: 30,
+      })
+    })
+  }, [])
 
   return (
-    <div className='mx-[545px] mb-[80px] mt-[110px] pt-[20px] relative right-[25px]'>
-      <h1 className='mb-4 font-bold text-[30px] Title'> Политика конфиденциальности News Line:</h1>
+    <div className="mx-[545px] mb-[80px] mt-[110px] pt-[20px] relative right-[25px]">
+      <h1 className="mb-4 font-bold text-[30px] Title"> Политика конфиденциальности News Line:</h1>
 
-      <p className='title1 text-xl'>
-        Мы в <strong className="text-[var(--color-text-base)]">News Line </strong> 
+      <p className="title1 text-xl">
+        Мы в <strong className="text-[var(--color-text-base)]">News Line </strong>
         ценим вашу конфиденциальность и
         стремимся обеспечить безопасность и защиту ваших личных данных. Эта
         политика конфиденциальности объясняет, как мы собираем, используем,
@@ -47,7 +47,7 @@ animationData.forEach(({ selector, delay }) => {
 
       <br />
 
-      <p className='title2 text-xl'>
+      <p className="title2 text-xl">
         <strong className="text-[var(--color-text-base)]">Сбор информации:</strong>
         <br />
         Мы собираем только ту информацию, которую вы сознательно предоставляете
@@ -58,8 +58,8 @@ animationData.forEach(({ selector, delay }) => {
 
       <br />
 
-      <p className='title3 text-xl'>
-        <strong className="text-[var(--color-text-base)]">Использование информации:</strong> 
+      <p className="title3 text-xl">
+        <strong className="text-[var(--color-text-base)]">Использование информации:</strong>
         <br />
         Мы используем предоставленную вами информацию для целей, связанных с
         предоставлением новостной информации, общения с вами и улучшения
@@ -70,8 +70,8 @@ animationData.forEach(({ selector, delay }) => {
 
       <br />
 
-      <p className='title4 text-xl'>
-        <strong className="text-[var(--color-text-base)]">Защита информации:</strong> 
+      <p className="title4 text-xl">
+        <strong className="text-[var(--color-text-base)]">Защита информации:</strong>
         <br />
         Мы принимаем меры для защиты вашей личной информации от
         несанкционированного доступа, использования или разглашения. Мы
@@ -81,8 +81,8 @@ animationData.forEach(({ selector, delay }) => {
 
       <br />
 
-      <p className='title5 text-xl'>
-        <strong className="text-[var(--color-text-base)]">Использование файлов cookie:</strong> 
+      <p className="title5 text-xl">
+        <strong className="text-[var(--color-text-base)]">Использование файлов cookie:</strong>
         <br />
         Мы можем использовать файлы cookie, чтобы улучшить ваш опыт
         использования нашего сайта. Файлы cookie являются небольшими текстовыми
@@ -95,8 +95,8 @@ animationData.forEach(({ selector, delay }) => {
 
       <br />
 
-      <p className='title6 text-xl'>
-        <strong className="text-[var(--color-text-base)]">Ссылки на сторонние ресурсы:</strong> 
+      <p className="title6 text-xl">
+        <strong className="text-[var(--color-text-base)]">Ссылки на сторонние ресурсы:</strong>
         <br />
         Наш сайт может содержать ссылки на сторонние веб-сайты, которые имеют
         свои собственные политики конфиденциальности. Мы не несем
@@ -107,8 +107,8 @@ animationData.forEach(({ selector, delay }) => {
 
       <br />
 
-      <p className='title7 text-xl'>
-        <strong className="text-[var(--color-text-base)]">Изменения в политике конфиденциальности:</strong> 
+      <p className="title7 text-xl">
+        <strong className="text-[var(--color-text-base)]">Изменения в политике конфиденциальности:</strong>
         <br />
         Мы можем время от времени вносить изменения в нашу политику
         конфиденциальности. Любые изменения будут опубликованы на этой странице,
@@ -118,7 +118,7 @@ animationData.forEach(({ selector, delay }) => {
 
       <br />
 
-      <p className='title8 text-xl'>
+      <p className="title8 text-xl">
         Если у вас возникнут вопросы или требуется дополнительная информация о
         нашей политике конфиденциальности, пожалуйста, свяжитесь с нами через
         контактные данные, указанные на странице
@@ -129,12 +129,12 @@ animationData.forEach(({ selector, delay }) => {
 
       <br />
 
-      <p className='title8 text-xl'>
+      <p className="title8 text-xl">
         Мы ценим ваше доверие и гарантируем, что ваша конфиденциальность
         является нашим приоритетом.
       </p>
     </div>
-  );
-};
+  )
+}
 
-export default Policy;
+export default Policy

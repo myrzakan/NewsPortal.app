@@ -1,7 +1,7 @@
 /* eslint-disable react/no-unescaped-entities */
+import gsap from 'gsap'
 import React from 'react'
 import { Link } from 'react-router-dom'
-import gsap from 'gsap'
 
 const Ad = () => {
 

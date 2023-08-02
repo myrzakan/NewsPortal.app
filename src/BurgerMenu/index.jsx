@@ -36,9 +36,9 @@ const BurgerMenu = () => {
     <nav className="md:hidden z-20">
       <div
         onClick={toggleMenu}
-        className="cursor-pointer z-10 fixed top-10 left-10"
+        className="cursor-pointer z-10 fixed top-9 left-3"
       >
-        {showMenu ? <AiOutlineClose size={30} /> : <AiOutlineMenu size={30} />}
+        {showMenu ? <AiOutlineClose size={30} /> : <AiOutlineMenu  className='text-[30px] max-xs:text-[20px] max-sd:text-[26px]'/>}
       </div>
       <CSSTransition
         in={showMenu}

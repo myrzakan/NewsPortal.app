@@ -8,21 +8,23 @@ import {
   InputGroup,
   InputRightElement,
 } from '@chakra-ui/react'
-import React from 'react'
-import { useForm } from 'react-hook-form'
-import { Link, useNavigate } from 'react-router-dom'
-import { Forms } from '../../helpers/Forms'
 import {
   getAuth,
   createUserWithEmailAndPassword,
   signInWithPopup,
 } from 'firebase/auth'
-import { useDispatch } from 'react-redux'
-import { setUser } from 'store/slices/userSlice'
-import { BiHide, BiShow } from 'react-icons/bi'
-import { useToasts } from 'react-toast-notifications'
 import { auth, provider } from 'FirebaseConfig'
+import React from 'react'
+import { useForm } from 'react-hook-form'
+import { BiHide, BiShow } from 'react-icons/bi'
+import { useDispatch } from 'react-redux'
+import { Link, useNavigate } from 'react-router-dom'
+import { useToasts } from 'react-toast-notifications'
 import { setGoogleUserData } from 'store/slices/useGoogleSlice'
+import { setUser } from 'store/slices/userSlice'
+
+import { Forms } from '../../helpers/Forms'
+import { getDatabase, ref, set } from 'firebase/database';
 
 export const SignUp = () => {
   const dispatch = useDispatch()
@@ -77,8 +79,6 @@ export const SignUp = () => {
     const auth = getAuth()
     setIsLoading(true)
 
-
-
     try {
       const userCredential = await createUserWithEmailAndPassword(
         auth,
@@ -86,7 +86,20 @@ export const SignUp = () => {
         password,
       )
       const user = userCredential.user
-      console.log(user)
+      // console.log(user)
+
+         // Создаем новый объект с данными пользователя
+      const userData = {
+        username: username,
+        email: user.email,
+        // id: user.id,
+      };
+  
+        // Получаем доступ к Firebase Realtime Database
+      const database = getDatabase();
+  
+        // Добавляем данные пользователя в базу данных с помощью push()
+      await set(ref(database, 'users/' + user.uid), userData);
 
       // Сохранение данных пользователя в Redux Store
       dispatch(
@@ -112,7 +125,7 @@ export const SignUp = () => {
 
       // <ErrorSignUp/>
 
-      if (error.code === 400) {
+      if (error.code === 'auth/email-already-in-use)') {
         // Показать сообщение об ошибке, когда электронная почта уже используется
         addToast('Ошибка: Этот электронный адрес уже существует', {
           appearance: 'error',
