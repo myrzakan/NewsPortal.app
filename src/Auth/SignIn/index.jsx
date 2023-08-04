@@ -203,6 +203,7 @@ export const SignIn = () => {
             <Button
               onClick={handleLoginGoogle}
               className="w-full"
+              bg='var(--color-text-base)'
             >
               Google
             </Button>

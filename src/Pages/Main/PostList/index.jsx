@@ -150,7 +150,7 @@ const PostList = () => {
             key={category}
             onClick={() => selectCategory(category)}
             className={`py-[5px] px-[10px] my-[20px] mx-[5px] rounded-lg outline-none max-lg:px-[5px] ${
-              selectedCategory === category ? 'bg-[var(--color-text-base)] text-[var(--color-text)]' : '' // Классы для красного фона
+              selectedCategory === category ? 'bg-[var(--color-text-base)] text-[var(--color-text)]' : ''
             }`}
           >
             {category}
@@ -160,8 +160,8 @@ const PostList = () => {
 
       {/* <==================== Loading ======================> */}
       {loading ? (
-        <div className="mb-[630px] bg-[#333] text-[#333]">
-        Loading
+        <div className="mb-[630px] bg-[var(--color-base)] relative left-[23rem] top-[10rem] text-[30px]">
+        Загрузка...
         </div>
       ) : (
         <>

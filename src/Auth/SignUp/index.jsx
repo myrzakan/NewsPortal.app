@@ -259,7 +259,11 @@ export const SignUp = () => {
 
             <p className="text-center my-2 text-[#7a7777]">или</p>
 
-            <Button onClick={handleLoginGoogle} className="w-full">
+            <Button 
+              onClick={handleLoginGoogle} 
+              className="w-full"
+              bg='var(--color-text-base)'
+              >
               Google
             </Button>
 

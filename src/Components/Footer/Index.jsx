@@ -156,13 +156,13 @@ const LargeWithLogoCentered = () => {
 
           <Stack align={'flex-start'}>
             <ListHeader>Подписывайтесь на нас</ListHeader>
-            <Box as="a" href={'#'} className="hover:text-[var(--color-text-base)]">
+            <Box as="a" href={'https://m.facebook.com/login/?locale=ru_RU&refsrc=deprecated'} className="hover:text-[var(--color-text-base)]">
               Facebook
             </Box>
-            <Box as="a" href={'#'} className="hover:text-[var(--color-text-base)]">
+            <Box as="a" href={'https://twitter.com/i/flow/login?input_flow_data=%7B%22requested_variant%22%3A%22eyJsYW5nIjoicnUifQ%3D%3D%22%7D'} className="hover:text-[var(--color-text-base)]">
               Twitter
             </Box>
-            <Box as="a" href={'#'} className="hover:text-[var(--color-text-base)]">
+            <Box as="a" href={'https://www.instagram.com/'} className="hover:text-[var(--color-text-base)]">
               Instagram
             </Box>
           </Stack>
