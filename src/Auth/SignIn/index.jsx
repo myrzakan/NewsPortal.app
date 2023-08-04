@@ -52,6 +52,7 @@ export const SignIn = () => {
   }, []);
 
 
+
   const handleLoginGoogle = () => {
     signInWithPopup(auth, provider)
       .then((result) => {
@@ -83,16 +84,6 @@ export const SignIn = () => {
     setIsLoading(true)
     try {
 
-      // Проверяем, являются ли учетные данные администратора
-      if (email === 'admin@admin.com' && password === 'adminadmin') {
-        setIsLoading(false)
-        reset()
-        navigate('/')
-        addToast('Вы успешно вошли как администратор', {
-          appearance: 'success',
-          autoDismiss: true,
-        })
-      } else {
         const auth = getAuth(app)
         const userCredential = await signInWithEmailAndPassword(auth, email, password)
         const user = userCredential.user
@@ -108,12 +99,12 @@ export const SignIn = () => {
         setIsLoading(false)
         reset()
         navigate('/')
-        addToast(`Успешно вошли ${ user.name || userData?.username}`, {
-          appearance: 'success',
-          autoDismiss: true,
-        })
+        // addToast(`Успешно вошли ${userData?.username}`, {
+        //   appearance: 'success',
+        //   autoDismiss: true,
+        // })
         localStorage.setItem('user', JSON.stringify(user))
-      }
+      
     } catch (error) {
       console.error(error)
       if (error.code === 'auth/wrong-password') {
@@ -152,9 +143,9 @@ export const SignIn = () => {
   }, [])
 
   return (
-    <div className="flex items-center justify-center w-full min-h-screen">
+    <div className="flex items-center justify-center relative w-full min-h-screen max-x4:w-[100%] max-x5:w-[60rem]">
       <div className="w-1/3">
-        <h1 className="mb-3 text-4xl font-medium text-center">Авторизация</h1>
+        <h1 className="mb-3 text-4xl font-medium text-center max-x3:text-[22px]">Авторизация</h1>
         <Card className="p-5" bg="[var(--color-bg)]">
           <form onSubmit={handleSubmit(handleLogin)} className="bg-[var(--color-bg)]">
             <FormControl isInvalid={errors.email} className="mb-3 ">

@@ -9,16 +9,14 @@ a {
 }
 
 * {
-  /* background-color: var(--color-bg); */
   font-family: 'Raleway', sans-serif;
-  /* color: var(--color-text); */
-  /* transition: var(--transition-duration); */
 }
 
 
 #root {
   background-color: var(--color-bg);
   transition-duration: 0.5s;
+  list-style: none;
 }
 
 .custom-transition {

@@ -20,7 +20,7 @@ const Comment = ({ comment }) => {
 const Comments = ({ postId }) => {
   const [comments, setComments] = useState([])
   const [newCommentText, setNewCommentText] = useState('')
-  const [hasComments, setHasComments] = useState(true) // Add state variable for comments
+  const [hasComments, setHasComments] = useState(true)
 
   const username = useSelector((state) => state.google)
   const user = useSelector((state) => state.user)
@@ -33,10 +33,10 @@ const Comments = ({ postId }) => {
       if (commentsData) {
         const commentsArray = Object.values(commentsData)
         setComments(commentsArray.reverse())
-        setHasComments(true) // There are comments, set to true
+        setHasComments(true)
       } else {
         setComments([])
-        setHasComments(false) // No comments, set to false
+        setHasComments(false)
       }
     })
 
@@ -64,7 +64,7 @@ const Comments = ({ postId }) => {
     <div className="max-h-[400px] w-[800px] mb-[100px] relative left-[540px] ">
       <form onSubmit={handleSubmit} className="mb-4">
         <textarea
-          placeholder="Your comment"
+          placeholder="Ваш отзыв"
           value={newCommentText}
           onChange={(e) => setNewCommentText(e.target.value)}
           className="border border-[#7a7777] rounded p-1 pt-1 w-full bg-[var(--color-bg)] focus:outline-none placeholder:italic"
@@ -73,17 +73,17 @@ const Comments = ({ postId }) => {
           type="submit"
           className="bg-blue-500 text-white px-4 py-2 rounded mt-2"
         >
-          Add Comment
+          Добавить отзыв
         </button>
       </form>
       <div className="max-h-[330px] overflow-y-auto">
-        <h3 className="text-xl font-semibold mb-2">Комментария:</h3>
+        <h3 className="text-xl font-semibold mb-2">Отзывы:</h3>
         {hasComments ? (
           comments.map((comment) => (
             <Comment key={comment.timestamp} comment={comment} />
           ))
         ) : (
-          <p className="italic text-center text-[]">Комментариев к этому посту пока нет.</p>
+          <p className="italic text-center text-[]">Отзывы к этому посту пока нет.</p>
         )}
       </div>
     </div>

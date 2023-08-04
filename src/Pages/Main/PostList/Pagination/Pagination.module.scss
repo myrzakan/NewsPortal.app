@@ -1,54 +1,121 @@
 /* Pagination.module.scss */
 
 .pagination {
-    display: flex;
-    justify-content: center;
-    margin-top: 20px;
-    margin-bottom: 50px;
+  position: relative;
+  right: 0%;
+  display: flex;
+  justify-content: center;
+  margin-top: 20px;
+  margin-bottom: 50px;
+}
+
+.page_arrow {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 30px;
+  height: 30px;
+  background-color: var(--color-bg-base);
+  color: var(--color-text);
+  border: none;
+  border-radius: 50%;
+  cursor: pointer;
+  font-size: 16px;
+  margin: 0 5px;
+  transition: background-color 0.3s ease;
+
+  &:hover {
+    background-color: var(--color-bg);
   }
-  
+}
+
+.page_number {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+  background-color: var(--color-bg-base);
+  color: var(--color-text);
+  border: none;
+  border-radius: 50%;
+  cursor: pointer;
+  font-size: 16px;
+  margin: 0 5px;
+  transition: background-color 0.3s ease;
+
+  &:hover {
+    background-color: var(--color-text-base);
+  }
+
+  &.active {
+    background-color: var(--color-text-base);
+    color: var(--color-text);
+  }
+}
+
+@media (max-width: 1536px) {
+  .pagination {
+    position: relative;
+    right: 20%;
+  }
+}
+
+@media (max-width: 1280px) {
+  .pagination {
+    position: relative;
+    right: -50%;
+  }
+}
+
+@media (max-width: 1024px) {
+  .pagination {
+    position: relative;
+    right: -7%;
+  }
+}
+
+@media (max-width: 768px) {
+  .pagination {
+    position: relative;
+    right: -38%;
+    width: 50%;
+  }
+}
+
+@media (max-width: 640px) {
+  .pagination {
+    position: relative;
+    right: -44%;
+  }
+
   .page_arrow {
-    display: flex;
-    align-items: center;
-    justify-content: center;
+    width: 20px;
+    height: 20px;
+  }
+
+  .page_number {
     width: 30px;
     height: 30px;
-    background-color: var(--color-bg-base);
-    color: var(--color-text);
-    border: none;
-    border-radius: 50%;
-    cursor: pointer;
-    font-size: 16px;
-    margin: 0 5px;
-    transition: background-color 0.3s ease;
-  
-    &:hover {
-      background-color: var(--color-bg);
-    }
   }
-  
+}
+
+
+@media (max-width: 320px) {
+  .pagination {
+    position: relative;
+    right: 94%;
+  }
+
+  .page_arrow {
+    width: 10px;
+    height: 10px;
+    font-size: 14px;
+  }
+
   .page_number {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    width: 40px;
-    height: 40px;
-    background-color: var(--color-bg-base);
-    color: var(--color-text);
-    border: none;
-    border-radius: 50%;
-    cursor: pointer;
-    font-size: 16px;
-    margin: 0 5px;
-    transition: background-color 0.3s ease;
-  
-    &:hover {
-      background-color: var(--color-text-base);
-    }
-  
-    &.active {
-      background-color: var(--color-text-base);
-      color: var(--color-text);
-    }
+    width: 20px;
+    height: 20px;
+    font-size: 14px;
   }
-  
+}

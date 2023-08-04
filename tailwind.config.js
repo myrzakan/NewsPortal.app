@@ -1,6 +1,6 @@
 /** @type {import('tailwindcss').Config} */
 module.exports = {
-  content: ["./src/**/*.{jsx,js}"],
+  content: ['./src/**/*.{jsx,js}'],
   darkMode: 'class',
   theme: {
     extend: {
@@ -8,10 +8,12 @@ module.exports = {
         'custom': '0.8s',
       },
       screens: {
-        'xs': '320px',
-        'sd': '480px',
-        'l': '420px',
-        'lq': '360px'
+        'x1': '1531px',
+        'x2': '1201px',
+        'x3': '993px',
+        'x4': '768px',
+        'x5': '481px',
+        'x6': '321px',
       },
     },
   },

@@ -35,12 +35,13 @@ const TermsOfUse = () => {
 
 
   return (
-    <div className="mx-[545px] mb-[80px] mt-[110px] pt-[20px] relative right-[25px]">
-      <h1 className="mb-4 font-bold text-[30px] Title">
+    <div className="mx-[545px] mb-[80px] mt-[110px] pt-[20px] relative right-[25px] 
+      max-x1:mx-[20rem] max-x3:mx-[14rem] max-x4:mx-[10rem] max-x5:mx-[3rem]">
+      <h1 className="mb-4 font-bold text-[30px] Title max-x6:text-[22px]">
                 Правила и использование News Line:
       </h1>
 
-      <p className="title1 text-xl">
+      <p className="title1 text-xl max-x6:text-[15px]">
                 Добро пожаловать на
         <strong className="text-[var(--color-text-base)]"> News Line! </strong>
                 Мы рады предоставить вам доступ к нашему
@@ -53,7 +54,7 @@ const TermsOfUse = () => {
 
       <br />
 
-      <p className="title2 text-xl">
+      <p className="title2 text-xl max-x6:text-[15px]">
         <strong className="text-[var(--color-text-base)]">
                     Авторские права:
         </strong>
@@ -69,7 +70,7 @@ const TermsOfUse = () => {
 
       <br />
 
-      <p className="title3 text-xl">
+      <p className="title3 text-xl max-x6:text-[15px]">
         <strong className="text-[var(--color-text-base)]">
                     Правила публикации комментариев:
         </strong>
@@ -86,7 +87,7 @@ const TermsOfUse = () => {
 
       <br />
 
-      <p className="title4 text-xl">
+      <p className="title4 text-xl max-x6:text-[15px]">
         <strong className="text-[var(--color-text-base)]">
                     Информационная ответственность:
         </strong> <br />
@@ -102,7 +103,7 @@ const TermsOfUse = () => {
 
       <br />
 
-      <p className="title5 text-xl">
+      <p className="title5 text-xl max-x6:text-[15px]">
         <strong className="text-[var(--color-text-base)]">
                     Безопасность и конфиденциальность:
         </strong>
@@ -117,7 +118,7 @@ const TermsOfUse = () => {
 
       <br />
 
-      <p className="title6 text-xl">
+      <p className="title6 text-xl max-x6:text-[15px]">
         <strong className="text-[var(--color-text-base)]">
                     Внешние ссылки:
         </strong> <br />
@@ -133,7 +134,7 @@ const TermsOfUse = () => {
 
       <br />
 
-      <p className="title7 text-xl">
+      <p className="title7 text-xl max-x6:text-[15px]">
                 Мы призываем всех пользователей
         <strong className="text-[var(--color-text-base)]"> News Line </strong>
                 соблюдать эти правила и условия использования,
@@ -150,7 +151,7 @@ const TermsOfUse = () => {
 
       <br />
 
-      <p className="title8 text-xl">
+      <p className="title8 text-xl max-x6:text-[15px]">
                 Благодарим вас за использование
         <strong className="text-[var(--color-text-base)]"> News Line! </strong>
                 Мы надеемся, что наш сайт станет вашим надежным

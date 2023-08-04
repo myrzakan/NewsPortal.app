@@ -7,9 +7,8 @@ import cls from './Pagination.module.scss'
 const Pagination = ({ currentPage, postsPerPage, totalPosts, onPageChange }) => {
   const totalPages = Math.ceil(totalPosts / postsPerPage)
 
-  // Определение диапазона отображаемых страниц
   let startPage, endPage
-  const maxVisiblePages = 5
+  const maxVisiblePages = 3
   if (totalPages <= maxVisiblePages) {
     startPage = 1
     endPage = totalPages

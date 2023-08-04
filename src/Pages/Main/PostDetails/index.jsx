@@ -3,7 +3,7 @@ import { useParams } from 'react-router-dom'
 import firebase from 'firebase/compat/app'
 import 'firebase/compat/database'
 import firebaseConfig from '../../../FirebaseConfig'
-import Comments from './components/Comments' // Подключаем компонент Comments
+import Comments from './components/Comments'
 import { useSelector } from 'react-redux'
 import { AuthButtonPostDetals } from './components/authButton'
 
@@ -37,7 +37,7 @@ const PostDetails = () => {
   }, [])
 
   if (!post) {
-    return <div className="pt-[400px] mb-[500px] text-[35px] flex justify-center">Loading...</div>
+    return <div className="pt-[400px] mb-[500px] text-[35px] flex justify-center">Загрузка...</div>
   }
 
   const formattedTimestamp = new Date(post.timestamp).toLocaleString()

@@ -6,7 +6,7 @@ import { ToastContainer } from 'react-toastify'
 
 import AdminPanel from './Admin/AdminPanel'
 import { AuthRoutes } from './Auth/Routes'
-import Footer from './Components/Footer/Index'
+import Footer from './Components/Footer/Index.jsx'
 import Header from './Components/Header'
 import NotFound from './NotFound'
 import About from './Pages/About'
@@ -19,7 +19,6 @@ import TermsOfUse from './Pages/TermsOfUse'
 
 import  './styledToast/index.css'
 
-// import BurgerMenu from './BurgerMenu';
 
 function App() {
   return (

@@ -1,9 +1,28 @@
+import {
+  Box,
+  Container,
+  SimpleGrid,
+  Stack,
+  Text,
+  Flex,
+  Tag,
+  useColorModeValue,
+} from '@chakra-ui/react'
 import React from 'react'
 import { AiOutlineArrowRight } from 'react-icons/ai'
-import { FaFacebook, FaTwitter, FaInstagram } from 'react-icons/fa'
 import { Link } from 'react-router-dom'
-const Footer = () => {
+import './Footer.css'
 
+
+const ListHeader = ({ children }) => {
+  return (
+    <Text fontWeight={'500'} fontSize={'lg'} mb={2}>
+      {children}
+    </Text>
+  )
+}
+
+const LargeWithLogoCentered = () => {
   const handlePhoneClick = () => {
     window.location.href = 'tel:+996500002007'
   }
@@ -13,175 +32,179 @@ const Footer = () => {
   }
 
   const handleAddressClick = () => {
-    window.location.href = 'https://www.google.com/maps/search/?api=1&query=г.+Бишкек, проспект Эркиндик 46'
+    window.location.href =
+      'https://www.google.com/maps/search/?api=1&query=г.+Бишкек, проспект Эркиндик 46'
   }
 
-
-
   return (
-    <div className="h-[590px] max-h-[100rem]">
+    <Box bg="var(--color-bg)" color="var(--color-text)">
       <div className="bg-[var(--color-text-base)] w-[100%] h-4"></div>
-      <div className="flex relative left-[50px] my-[100px] mx-[200px]">
-        <div className="w-[400px] text-center mx-[50px]">
-          <h3 className="mt-[20px] font-bold text-[var(--color-text)] mb-2">
-                        О нас
-          </h3>
-          <p className="text-[var(--color-text-base)] font-bold">
-                        Мы предлагаем самые свежие новости и актуальную информацию нашим читателям.
-                        Наша цель - держать вас в курсе всех событий и происшествий, происходящих в мире.
-          </p>
-        </div>
+      <Container
+        as={Stack}
+        maxW={'7xl'}
+        py={10}
+        className="flex justify-center items-center  mr-[13%]"
+      >
+        <SimpleGrid columns={{ base: 1, sm: 2, md: 4 }} spacing={10}>
+          <Stack align={'flex-start'}>
+            <ListHeader>Свяжитесь с нами</ListHeader>
 
-        <div className="mx-[50px]">
-          <h3 className="mt-[20px] font-bold text-[var(--color-text)] mb-2">
-                        Ссылки
-          </h3>
-          <ul>
-            <li className="flex text-[var(--color-text-base)]">
-              <AiOutlineArrowRight/>
-              <Link
-                to="/about"
-                className="text-[var(--color-text)] text-[15px] font-bold ml-[5px]
+            <Box as="a" href={'#'}>
+              <p className="text-[var(--color-text-base)] font-[500] max-2xl:w-[160%]">
+                Телефон:{' '}
+                <span
+                  onClick={handlePhoneClick}
+                  className="text-[var(--color-text)] cursor-pointer hover:underline"
+                >
+                  +996 (500) 002 007
+                </span>
+              </p>
+            </Box>
+
+            <Box as="a" href={'#'}>
+              <p className="text-[var(--color-text-base)] font-[500]">
+                Email: {' '}
+                <span
+                  onClick={handleEmailClick}
+                  className="text-[var(--color-text)] cursor-pointer hover:underline"
+                >
+                  news@line.kg
+                </span>
+              </p>
+            </Box>
+
+            <Box as="a" href={'#'}>
+              <p className="text-[var(--color-text-base)] font-[500]">
+            Адрес: {' '}
+                <span
+                  onClick={handleAddressClick}
+                  className="text-[var(--color-text)] cursor-pointer hover:underline"
+                >
+              г. Бишкек, проспект Эркиндик 46
+                </span>
+              </p>
+            </Box>
+          </Stack>
+
+          <Stack align={'flex-start'} className="category">
+            <ListHeader>Ссылки</ListHeader>
+            <Box as="a">
+              <li className="flex text-[var(--color-text-base)]">
+                <AiOutlineArrowRight />
+                <Link
+                  to="/about"
+                  className="text-[var(--color-text)] text-[15px] font-[500] ml-[5px]
                                         hover:text-[var(--color-text-base)]"
-              >
-                                О проекте
-              </Link>
-            </li>
+                >
+                О проекте
+                </Link>
+              </li>
+            </Box>
 
-            <li className="flex text-[var(--color-text-base)]">
-              <AiOutlineArrowRight/>
-              <Link
-                to="/contact"
-                className="text-[var(--color-text)] text-[15px] font-bold ml-[5px]
+            <Box as="a">
+              <li className="flex text-[var(--color-text-base)]">
+                <AiOutlineArrowRight />
+                <Link
+                  to="/contact"
+                  className="text-[var(--color-text)] text-[15px] font-[500] ml-[5px]
                                         hover:text-[var(--color-text-base)]"
-              >
-                                Контакты
-              </Link>
-            </li>
+                >
+                Контакты
+                </Link>
+              </li>
+            </Box>
 
-            <li className="flex text-[var(--color-text-base)]">
-              <AiOutlineArrowRight/>
-              <Link
-                to="/termsOfUse"
-                className="text-[var(--color-text)] text-[15px] font-bold ml-[5px]
+            <Box as="a">
+              <li className="flex text-[var(--color-text-base)]">
+                <AiOutlineArrowRight />
+                <Link
+                  to="/termsOfUse"
+                  className="text-[var(--color-text)] text-[15px] font-[500] ml-[5px]
                                         hover:text-[var(--color-text-base)]"
-              >
-                                Правила использования
-              </Link>
-            </li>
+                >
+                Правила использования
+                </Link>
+              </li>
+            </Box>
 
-            <li className="flex text-[var(--color-text-base)]">
-              <AiOutlineArrowRight/>
-              <Link
-                to="/advertising"
-                className="text-[var(--color-text)] text-[15px] font-bold ml-[5px]
+            <Box as="a">
+              <li className="flex text-[var(--color-text-base)]">
+                <AiOutlineArrowRight />
+                <Link
+                  to="/advertising"
+                  className="text-[var(--color-text)] text-[15px] font-[500] ml-[5px]
                                         hover:text-[var(--color-text-base)]"
-              >
-                                Реклама
-              </Link>
-            </li>
+                >
+                Реклама
+                </Link>
+              </li>
+            </Box>
 
-            <li className="flex text-[var(--color-text-base)]">
-              <AiOutlineArrowRight/>
-              <Link
-                to="/policy"
-                className="text-[var(--color-text)] text-[15px] font-bold ml-[5px]
+            <Box as="a">
+              <li className="flex text-[var(--color-text-base)]">
+                <AiOutlineArrowRight/>
+                <Link
+                  to="/policy"
+                  className="text-[var(--color-text)] text-[15px] font-[500] ml-[5px]
                                         hover:text-[var(--color-text-base)]"
-              >
-                                Политика конфиденциальности
-              </Link>
-            </li>
+                >
+                Политика конфиденциальности
+                </Link>
+              </li>
+            </Box>
+          </Stack>
 
-          </ul>
-        </div>
+          <Stack align={'flex-start'}>
+            <ListHeader>Подписывайтесь на нас</ListHeader>
+            <Box as="a" href={'#'} className="hover:text-[var(--color-text-base)]">
+              Facebook
+            </Box>
+            <Box as="a" href={'#'} className="hover:text-[var(--color-text-base)]">
+              Twitter
+            </Box>
+            <Box as="a" href={'#'} className="hover:text-[var(--color-text-base)]">
+              Instagram
+            </Box>
+          </Stack>
 
-        <div className="mx-[50px]">
-          <h3 className="mt-[20px] font-bold text-[var(--color-text)] mb-2">
-                        Свяжитесь с нами
-          </h3>
-          <p className="text-[var(--color-text-base)] font-bold">
-                        Телефон:
-            <span
-              onClick={handlePhoneClick}
-              className="text-[var(--color-text)] cursor-pointer hover:underline"
-            >
-                        +996 (500) 002 007
-            </span>
-          </p>
+          <Stack align={'flex-start'}>
+            <ListHeader>О нас</ListHeader>
+            <Box as="a" textColor="var(--color-text-base)">
+            Наша цель - держать вас в курсе всех событий и происшествий, происходящих в мире.
+            </Box>
 
-          <p className="text-[var(--color-text-base)] font-bold">
-                        Email:
-            <span
-              onClick={handleEmailClick}
-              className="text-[var(--color-text)] cursor-pointer hover:underline"
-            >
-                            news@line.kg
-            </span>
-          </p>
+          </Stack>
 
-          <p className="text-[var(--color-text-base)] font-bold">
-                        Адрес:
-            <span
-              onClick={handleAddressClick}
-              className="text-[var(--color-text)] cursor-pointer hover:underline"
-            >
-                            г. Бишкек, проспект Эркиндик 46
-            </span>
-          </p>
-        </div>
-
-        <div className="mx-[50px]">
-          <h3 className="mt-[20px] font-bold text-[var(--color-text)] mb-2">
-                        Мы в социальных сетях
-          </h3>
-          <ul className="flex text-[var(--color-text-base)]">
-            <li className="mx-2 mt-2">
-              <a
-                href="https://www.facebook.com/example"
-                target="_blank" rel="noopener noreferrer"
-                // className=''
-              >
-                <FaFacebook size="30px"/>
-              </a>
-            </li>
-            <li className="mx-2 mt-2">
-              <a
-                href="https://www.twitter.com/example"
-                target="_blank" rel="noopener noreferrer"
-                // className=''
-              >
-                <FaTwitter size="30px"/>
-              </a>
-            </li>
-            <li className="mx-2 mt-2">
-              <a
-                href="https://www.instagram.com/example"
-                target="_blank" rel="noopener noreferrer"
-              >
-                <FaInstagram size="30px"/>
-              </a>
-            </li>
-          </ul>
-        </div>
-      </div>
-
-      <div className="text-center">
-        <h1 className="text-[var(--color-text-base)] text-[25px] font-bold">18+</h1>
-        <div className="mt-[20px] mb-[50px]">
-          <p className="m-1 text-[var(--color-text)] font-bold">
-                        © {new Date().getFullYear()} Все права защищены.
-          </p>
-          <p className="m-1 text-[var(--color-text)] font-bold" >
-                        Использование материалов разрешено только с письменного разрешения компании.
-          </p>
-          <p className="text-[var(--color-text)] font-bold" >
-                        Любое копирование, воспроизведение или распространение контента без разрешения запрещено.
-          </p>
-        </div>
-      </div>
-
-    </div>
+        </SimpleGrid>
+      </Container>
+      <Box py={10}>
+        <Flex
+          align={'center'}
+          _before={{
+            content: '""',
+            borderBottom: '1px solid',
+            borderColor: useColorModeValue('[#7a7777]'),
+            flexGrow: 1,
+            mr: 8,
+          }}
+          _after={{
+            content: '""',
+            borderBottom: '1px solid',
+            borderColor: useColorModeValue('[#7a7777]'),
+            flexGrow: 1,
+            ml: 8,
+          }}
+        >
+          <h1 className="text-[20px] text-[var(--color-text-base)]">18+</h1>
+        </Flex>
+        <Text pt={6} fontSize={'md'} textAlign={'center'} textColor={'var(--color-text-base)'} className="font-[600]">
+          © 2023 Все права защищены. <br />
+          Использование материалов разрешено только с письменного разрешения компании. <br />
+          Любое копирование, воспроизведение или распространение контента без разрешения запрещено.
+        </Text>
+      </Box>
+    </Box>
   )
 }
 
-export default Footer
+export default LargeWithLogoCentered

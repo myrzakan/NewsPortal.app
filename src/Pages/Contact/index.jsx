@@ -2,10 +2,11 @@
 import { gsap } from 'gsap'
 import React from 'react'
 
+
 const Contact = () => {
 
   React.useEffect(() => {
-    window.scrollTo(0, 0) // Прокручиваем страницу в начало при монтировании компонента
+    window.scrollTo(0, 0)
   }, [])
 
   // <========= Phone ============>
@@ -49,10 +50,11 @@ const Contact = () => {
 
 
   return (
-    <div className="mx-[545px] mb-[80px] mt-[110px] pt-[20px] relative right-[25px]">
-      <h1 className="mb-4 font-bold text-[30px] Title">Контакты:</h1>
+    <div className="mx-[545px] mb-[80px] mt-[110px] pt-[20px] relative right-[25px] 
+      max-x1:mx-[20rem] max-x3:mx-[14rem] max-x4:mx-[10rem] max-x5:mx-[3rem]">
+      <h1 className="mb-4 font-bold text-[30px] Title max-x6:text-[22px]">Контакты:</h1>
 
-      <p className="title1 text-xl">
+      <p className="title1 text-xl max-x6:text-[15px]">
                 Мы ценим ваши вопросы, отзывы и предложения.
                 Наша команда всегда готова
                 общаться с вами и помочь вам в любых вопросах,
@@ -64,7 +66,7 @@ const Contact = () => {
 
       <br />
 
-      <p className="title2 text-xl">
+      <p className="title2 text-xl max-x6:text-[15px]">
                 Если у вас возникли вопросы о нашем контенте,
                 функциональности сайта,
                 рекламных возможностях или сотрудничестве,
@@ -75,14 +77,14 @@ const Contact = () => {
 
       <br />
 
-      <p className="title3 text-xl">
+      <p className="title3 text-xl max-x6:text-[15px]">
                 Вы можете связаться с нами по следующим контактным данным:
       </p>
 
       <br />
 
       <p
-        className="title4 text-xl"
+        className="title4 text-xl max-x6:text-[15px]"
         onClick={handlePhoneClick}
       >
         <span className="font-bold">Телефон: </span>
@@ -94,7 +96,7 @@ const Contact = () => {
       <br />
 
       <p
-        className="title5 text-xl"
+        className="title5 text-xl max-x6:text-[15px]"
         onClick={handleEmailClick}
       >
         <span className="font-bold">Emali: </span>
@@ -106,7 +108,7 @@ const Contact = () => {
       <br />
 
       <p
-        className="title6 text-xl"
+        className="title6 text-xl max-x6:text-[15px]"
         onClick={handleAddressClick}
       >
         <span className="font-bold">Адрес:  </span>
@@ -117,7 +119,7 @@ const Contact = () => {
 
       <br />
 
-      <p className="title7 text-xl">
+      <p className="title7 text-xl max-x6:text-[15px]">
                 Наша команда службы поддержки пользователей работает
                 для вас и готова помочь вам в любое время.
                 Мы стремимся обеспечить высокий уровень обслуживания
@@ -126,7 +128,7 @@ const Contact = () => {
 
       <br />
 
-      <p className="title8 text-xl">
+      <p className="title8 text-xl max-x6:text-[15px]">
                 Если у вас есть интересные новости, статьи или
                 медиаматериалы, которые вы бы хотели предложить
                 для публикации на
@@ -138,7 +140,7 @@ const Contact = () => {
 
       <br />
 
-      <p className="title9 text-xl">
+      <p className="title9 text-xl max-x6:text-[15px]">
                 Мы ценим ваше внимание к
         <strong className="text-[var(--color-text-base)]"> "News Line" </strong>
                 и стремимся создать долгосрочные отношения с

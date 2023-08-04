@@ -24,7 +24,7 @@ const Ad = () => {
       { selector: 'title9', delay: 0.9 },
     ]
 
-    animationData.forEach(({ selector, duration, delay }) => {
+    animationData.forEach(({ selector, delay }) => {
       gsap.from('.' + selector, {
         opacity: 0,
         duration: 0.2,
@@ -38,12 +38,13 @@ const Ad = () => {
 
 
   return (
-    <div className="mx-[545px] mb-[80px] mt-[110px] pt-[20px] relative right-[25px]">
-      <h1 className="mb-4 font-bold text-[30px] Title">
+    <div className="mx-[545px] mb-[80px] mt-[110px] pt-[20px] relative right-[25px]
+      max-x1:mx-[20rem] max-x3:mx-[14rem] max-x4:mx-[10rem] max-x5:mx-[3rem]">
+      <h1 className="mb-4 font-bold text-[30px] Title max-x6:text-[22px]">
                 Реклама на News Line:
       </h1>
 
-      <p className="title1 text-xl">
+      <p className="title1 text-xl max-x6:text-[15px]">
                 Хотите достичь широкой аудитории и продвинуть
                 свой бренд или продукт?
         <br />
@@ -56,7 +57,7 @@ const Ad = () => {
 
       <br />
 
-      <p className="title2 text-xl">
+      <p className="title2 text-xl max-x6:text-[15px]">
                 Мы предлагаем различные рекламные форматы и
                 партнерские возможности,
                 чтобы удовлетворить ваши потребности и цели.
@@ -65,7 +66,7 @@ const Ad = () => {
 
       <br />
 
-      <p className="title3 text-xl">
+      <p className="title3 text-xl max-x6:text-[15px]">
         <strong className="text-[var(--color-text-base)]">
                     Баннерная реклама:
         </strong>
@@ -78,7 +79,7 @@ const Ad = () => {
 
       <br />
 
-      <p className="title4 text-xl">
+      <p className="title4 text-xl max-x6:text-[15px]">
         <strong className="text-[var(--color-text-base)]">
                     Спонсорские статьи:
         </strong>
@@ -92,7 +93,7 @@ const Ad = () => {
 
       <br />
 
-      <p className="title5 text-xl">
+      <p className="title5 text-xl max-x6:text-[15px]">
         <strong className="text-[var(--color-text-base)]">
                     Видеореклама:
         </strong> <br />
@@ -106,7 +107,7 @@ const Ad = () => {
 
       <br />
 
-      <p className="title6 text-xl">
+      <p className="title6 text-xl max-x6:text-[15px]">
         <strong className="text-[var(--color-text-base)]">
                     Социальные медиа партнерства:
         </strong>
@@ -118,7 +119,7 @@ const Ad = () => {
 
       <br />
 
-      <p className="title7 text-xl">
+      <p className="title7 text-xl max-x6:text-[15px]">
         <strong className="text-[var(--color-text-base)]">
                     Индивидуальные решения:
         </strong>
@@ -130,7 +131,7 @@ const Ad = () => {
 
       <br />
 
-      <p className="title8 text-xl">
+      <p className="title8 text-xl max-x6:text-[15px]">
                 Позвольте вашей рекламе достичь максимального воздействия и
                 привлечь внимание нашей активной аудитории.
                 Обратитесь к нам сегодня, чтобы обсудить возможности
@@ -140,7 +141,7 @@ const Ad = () => {
 
       <br />
 
-      <p className="title9 text-xl">
+      <p className="title9 text-xl max-x6:text-[15px]">
                 Свяжитесь с нами через указанные контактные данные на странице
         <Link to="/contact"><span className="text-[var(--color-text-base)] cursor-pointer hover:underline"> "Контакты".
           <br /></span></Link>

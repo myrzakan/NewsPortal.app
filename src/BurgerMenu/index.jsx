@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react'
 import { AiOutlineMenu, AiOutlineClose } from 'react-icons/ai'
 import { CSSTransition } from 'react-transition-group'
 import styles from './Menu.module.css' // Import Menu.module.css
+import { Link } from 'react-router-dom'
 
 const BurgerMenu = () => {
   const [showMenu, setShowMenu] = useState(false)
@@ -52,12 +53,12 @@ const BurgerMenu = () => {
         unmountOnExit
       >
         <div className={styles['menu-background']}>
-          <ul className="fixed top-[200px] w-full h-full z-10 pt-10 mt-[-83px]">
-            <li>О проекте</li>
-            <li>Контакты</li>
-            <li>Правило использования</li>
-            <li>Реклама</li>
-            <li>Политика конфиденциальности</li>
+          <ul className="fixed top-[300px] w-full h-full z-10 pt-10 mt-[-83px] left-[1rem] text-center text-[22px] max-x6:text-[18px]">
+            <li className='my-7 hover:text-[var(--color-text-base)] cursor-pointer '><Link>ddsds</Link></li>
+            <li className='hover:text-[var(--color-text-base)] cursor-pointer'>Контакты</li>
+            <li className='my-7 hover:text-[var(--color-text-base)] cursor-pointer'>Правило использования</li>
+            <li className='hover:text-[var(--color-text-base)] cursor-pointer' >Реклама</li>
+            <li className='my-7 hover:text-[var(--color-text-base)] cursor-pointer'>Политика конфиденциальности</li>
           </ul>
         </div>
       </CSSTransition>

@@ -34,10 +34,11 @@ const About = () => {
 
 
   return (
-    <div className="mx-[545px] mb-[80px] mt-[110px] pt-[20px] relative right-[25px]">
-      <h1 className="mb-4 font-bold text-[30px] Title">О проекте</h1>
+    <div className="mx-[32rem] mb-[80px] mt-[110px] pt-[20px] 
+      max-x1:mx-[20rem] max-x3:mx-[14rem] max-x4:mx-[10rem] max-x5:mx-[3rem]">
+      <h1 className="mb-4 font-bold text-[30px] Title max-x6:text-[22px]">О проекте</h1>
 
-      <p className="title1 text-xl">
+      <p className="title1 text-xl max-x6:text-[15px]">
         <span className="text-[var(--color-text-base)]"> 'News Line' </span>
             - это инновационный проект, созданный с целью
             предоставления пользователю полного и всестороннего
@@ -48,7 +49,7 @@ const About = () => {
 
       <br />
 
-      <p className="title2 text-xl">
+      <p className="title2 text-xl max-x6:text-[15px]">
             Наша команда состоит из опытных журналистов и редакторов,
             которые тщательно отбирают и анализируют новости со
             всего мира. Мы следим за глобальными событиями, региональными
@@ -60,7 +61,7 @@ const About = () => {
 
       <br />
 
-      <p className="title3 text-xl">
+      <p className="title3 text-xl max-x6:text-[15px]">
         <span className="text-[var(--color-text-base)]">"News Line" </span>
             предлагает множество категорий новостей, чтобы каждый читатель
             мог найти информацию по своим интересам. Вы
@@ -72,7 +73,7 @@ const About = () => {
 
       <br />
 
-      <p className="title4 text-xl">
+      <p className="title4 text-xl max-x6:text-[15px]">
             Мы понимаем, что ваше время ценно, поэтому
         <span className="text-[var(--color-text-base)]"> "News Line" </span>
             предоставляет легкий и удобный интерфейс, который
@@ -84,7 +85,7 @@ const About = () => {
 
       <br />
 
-      <p className="title5 text-xl">
+      <p className="title5 text-xl max-x6:text-[15px]">
             Мы гордимся своей независимостью и объективностью в
             отображении новостей. Мы представляем разные точки
             зрения, анализируем факты и предоставляем достоверную
@@ -94,7 +95,7 @@ const About = () => {
 
       <br />
 
-      <p className="title6 text-xl">
+      <p className="title6 text-xl max-x6:text-[15px]">
         <span className="text-[var(--color-text-base)]">"News Line" </span>
             также предоставляет возможность взаимодействия с
             нашей командой. Вы можете оставлять комментарии, делиться
@@ -105,7 +106,7 @@ const About = () => {
 
       <br />
 
-      <p className="title7 text-xl">
+      <p className="title7 text-xl max-x6:text-[15px]">
             Присоединяйтесь к
         <span className="text-[var(--color-text-base)]"> "News Line" </span>
             уже сегодня и будьте в курсе самых актуальных новостей

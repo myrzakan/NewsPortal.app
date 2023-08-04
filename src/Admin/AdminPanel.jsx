@@ -1,20 +1,12 @@
 
 import React  from 'react'
-
-// <== Подключение модуля Firebase (compat/app для совместимости с Firebase v8) ==>
 import firebase from 'firebase/compat/app'
 import 'firebase/compat/database'
-
-// <================ Components ============>
 import CreatePostForm from './CreatePosts'
 import CreateCategory from './CreateCategory'
 import DeletePosts from './DeletePosts'
 import DeleteCategory from './DeleteCategory'
-
-// <============= Firebase Configuration ==============>
 import firebaseConfig from '../FirebaseConfig'
-
-// <========= Website Logo ==============>
 import logo from '../Logo/Logo_blue.png'
 
 
@@ -35,7 +27,6 @@ const AdminPanel = () => {
     const categoriesRef = database.ref('categories')
     const postsRef = database.ref('posts')
 
-    // Получение списка категорий из базы данных при загрузке компонента
     categoriesRef.on('value', (snapshot) => {
       const categoriesData = snapshot.val()
       if (categoriesData) {
@@ -48,7 +39,6 @@ const AdminPanel = () => {
       }
     })
 
-    // Получение списка постов из базы данных при загрузке компонента
     postsRef.on('value', (snapshot) => {
       const postsData = snapshot.val()
       if (postsData) {
@@ -63,7 +53,6 @@ const AdminPanel = () => {
       }
     })
 
-    // Отписка от обновлений базы данных при размонтировании компонента
     return () => {
       categoriesRef.off()
       postsRef.off()
@@ -71,8 +60,8 @@ const AdminPanel = () => {
   }, [])
 
   if (loading) {
-    return <div className="mt-[150x] mb-[540px]">
-      <img src={logo} alt="log" />
+    return <div className="mb-[32rem] pt-[20rem] relative left-[53rem] top-[5rem] w-[20rem] text-[40px]">
+      Загрузка...
     </div>
   }
 

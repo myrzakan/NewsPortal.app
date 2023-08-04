@@ -33,10 +33,13 @@ const Policy = () => {
   }, [])
 
   return (
-    <div className="mx-[545px] mb-[80px] mt-[110px] pt-[20px] relative right-[25px]">
-      <h1 className="mb-4 font-bold text-[30px] Title"> Политика конфиденциальности News Line:</h1>
+    <div className="mx-[545px] mb-[80px] mt-[110px] pt-[20px] relative right-[25px] 
+      max-x1:mx-[20rem] max-x3:mx-[14rem] max-x4:mx-[10rem] max-x5:mx-[3rem]">
+      <h1 className="mb-4 font-bold text-[30px] Title max-x6:text-[22px]"> 
+        Политика конфиденциальности News Line:
+      </h1>
 
-      <p className="title1 text-xl">
+      <p className="title1 text-xl max-x6:text-[15px]">
         Мы в <strong className="text-[var(--color-text-base)]">News Line </strong>
         ценим вашу конфиденциальность и
         стремимся обеспечить безопасность и защиту ваших личных данных. Эта
@@ -47,7 +50,7 @@ const Policy = () => {
 
       <br />
 
-      <p className="title2 text-xl">
+      <p className="title2 text-xl max-x6:text-[15px]">
         <strong className="text-[var(--color-text-base)]">Сбор информации:</strong>
         <br />
         Мы собираем только ту информацию, которую вы сознательно предоставляете
@@ -58,7 +61,7 @@ const Policy = () => {
 
       <br />
 
-      <p className="title3 text-xl">
+      <p className="title3 text-xl max-x6:text-[15px]">
         <strong className="text-[var(--color-text-base)]">Использование информации:</strong>
         <br />
         Мы используем предоставленную вами информацию для целей, связанных с
@@ -70,7 +73,7 @@ const Policy = () => {
 
       <br />
 
-      <p className="title4 text-xl">
+      <p className="title4 text-xl max-x6:text-[15px]">
         <strong className="text-[var(--color-text-base)]">Защита информации:</strong>
         <br />
         Мы принимаем меры для защиты вашей личной информации от
@@ -81,7 +84,7 @@ const Policy = () => {
 
       <br />
 
-      <p className="title5 text-xl">
+      <p className="title5 text-xl max-x6:text-[15px]">
         <strong className="text-[var(--color-text-base)]">Использование файлов cookie:</strong>
         <br />
         Мы можем использовать файлы cookie, чтобы улучшить ваш опыт
@@ -95,7 +98,7 @@ const Policy = () => {
 
       <br />
 
-      <p className="title6 text-xl">
+      <p className="title6 text-xl max-x6:text-[15px]">
         <strong className="text-[var(--color-text-base)]">Ссылки на сторонние ресурсы:</strong>
         <br />
         Наш сайт может содержать ссылки на сторонние веб-сайты, которые имеют
@@ -107,7 +110,7 @@ const Policy = () => {
 
       <br />
 
-      <p className="title7 text-xl">
+      <p className="title7 text-xl max-x6:text-[15px]">
         <strong className="text-[var(--color-text-base)]">Изменения в политике конфиденциальности:</strong>
         <br />
         Мы можем время от времени вносить изменения в нашу политику
@@ -118,7 +121,7 @@ const Policy = () => {
 
       <br />
 
-      <p className="title8 text-xl">
+      <p className="title8 text-xl max-x6:text-[15px]">
         Если у вас возникнут вопросы или требуется дополнительная информация о
         нашей политике конфиденциальности, пожалуйста, свяжитесь с нами через
         контактные данные, указанные на странице
@@ -129,7 +132,7 @@ const Policy = () => {
 
       <br />
 
-      <p className="title8 text-xl">
+      <p className="title8 text-xl max-x6:text-[15px]">
         Мы ценим ваше доверие и гарантируем, что ваша конфиденциальность
         является нашим приоритетом.
       </p>

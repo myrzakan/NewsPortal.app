@@ -1,15 +1,9 @@
-import React, { useState } from 'react'
-
-// <================= Firebase ==================>
 import firebase from 'firebase/compat/app'
+import React, { useState } from 'react'
 import 'firebase/compat/database'
 import 'firebase/compat/storage'
-
-// <================== Toastify ===============>
 import { toast } from 'react-toastify'
 import 'react-toastify/dist/ReactToastify.css'
-
-// <================= React Quill ================>
 import ReactQuill from 'react-quill'
 import 'react-quill/dist/quill.snow.css'
 
@@ -100,7 +94,7 @@ const CreatePostForm = ({ categories }) => {
   return (
     <div className=" max-h-[100rem] h-[50rem]  pt-[50px]">
       <form onSubmit={handleSubmit} className="w-[700px]">
-        {/* Заголовок поста */}
+        {/* <======================== Заголовок поста ==========================>*/}
         <div className="flex justify-center">
           <input
             type="text"
@@ -114,21 +108,20 @@ const CreatePostForm = ({ categories }) => {
           />
         </div>
 
-        {/* Содержание поста */}
+        {/* <=========================== Содержание поста ==========================>*/}
         <div className="flex  mt-3 ml-[265px] w-[700px] relative left-[20.6rem]" >
           <ReactQuill
             value={content}
             modules={{
               toolbar: [
-                ['bold', 'italic', 'underline', 'strike'], // Жирный, курсив, подчеркнутый, зачеркнутый
-                // ['link', 'image'], // Ссылка, изображение
-                [{ list: 'ordered' }, { list: 'bullet' }], // Нумерованный и маркированный список
-                ['blockquote', 'code-block'], // Блок цитаты, блок кода
-                [{ header: [1, 2, 3, 4, 5, 6, false] }], // Заголовки
-                [{ color: [] }, { background: [] }], // Цвет текста и фона
-                [{ font: [] }], // Шрифт
-                [{ align: [] }], // Выравнивание текста
-                ['clean'], // Очистить форматирование
+                ['bold', 'italic', 'underline', 'strike'],
+                [{ list: 'ordered' }, { list: 'bullet' }],
+                ['blockquote', 'code-block'],
+                [{ header: [1, 2, 3, 4, 5, 6, false] }],
+                [{ color: [] }, { background: [] }],
+                [{ font: [] }],
+                [{ align: [] }],
+                ['clean'],
               ],
             }}
             onChange={handleContentChange}
@@ -137,7 +130,7 @@ const CreatePostForm = ({ categories }) => {
           />
         </div>
 
-        {/* Выбор категории поста */}
+        {/* <=================================== Выбор категории поста ============================?*/}
         <div className="relative left-[37.2rem] top-[5rem]">
           <select
             id="category"
@@ -156,7 +149,7 @@ const CreatePostForm = ({ categories }) => {
           </select>
         </div>
 
-        {/* Картинка поста */}
+        {/* <======================================== Картинка поста ===========================> */}
         <div className="relative left-[65rem] top-[3rem] w-[100px]">
           <input
             type="file"
@@ -166,7 +159,7 @@ const CreatePostForm = ({ categories }) => {
           />
         </div>
 
-        {/* Кнопка создания поста */}
+        {/* <============================= Кнопка создания поста ============================>*/}
         <button
           type="submit"
           disabled={isLoading}

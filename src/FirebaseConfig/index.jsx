@@ -27,5 +27,3 @@ const firebaseConfig = {
   export {auth, provider}
 
   export default firebaseConfig
-
-// auth.app.options.debug = true; 
