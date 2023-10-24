@@ -44,13 +44,13 @@ export const ProfileSection = () => {
 
 
   return (
-    <div className="flex items-center justify-end mr-16 mb-[-9px] category">
+    <div className="">
       <div>
         <p>{google.displayName || user.name || userData?.username}</p>
         <p>{google.email || user.email}</p>
       </div>
       <div>
-        <FiLogOut onClick={onSignOut} size="25px" className="cursor-pointer text-[var(--color-text-base)] ml-8"/>
+        <FiLogOut onClick={onSignOut} size="25"/>
       </div>
     </div>
   )

@@ -158,7 +158,7 @@ export const SignUp = () => {
                 Имя пользователя
               </FormLabel>
               <Input
-                placeholder="spiderman"
+                placeholder="name"
                 size="lg"
                 defaultValue={name}
                 onChange={(e) => setName(e.target.value)}
@@ -174,7 +174,7 @@ export const SignUp = () => {
               <Input
                 type="email"
                 size="lg"
-                placeholder="example@example.com"
+                placeholder="user@user.com"
                 {...register('email', Forms.Rules.Email)}
               />
               <FormErrorMessage>

@@ -1,64 +1,79 @@
-import React, { useState, useEffect } from 'react'
-import { useSelector } from 'react-redux'
-import { app } from '../../../../FirebaseConfig'
-import { getDatabase, ref, onValue, push } from 'firebase/database'
+import React, { useState, useEffect } from "react";
+import { useSelector } from "react-redux";
+import { app, auth } from "../../../../FirebaseConfig"; // Импорт auth из FirebaseConfig
+import { getDatabase, ref, onValue, push } from "firebase/database";
 
-const db = getDatabase(app)
+const db = getDatabase(app);
 
 const Comment = ({ comment }) => {
-  const formattedTime = new Date(comment.timestamp).toLocaleString()
+  const formattedTime = new Date(comment.timestamp).toLocaleString();
 
   return (
     <div className="border border-[#7a7777] rounded-lg p-4 my-4 w-[750px]">
-      <p className="text-[var(--color-text)] mb-2">{comment.username || comment.user}</p>
+      <p className="text-[var(--color-text)] mb-2">
+        {comment.username || comment.user || userData?.username}
+      </p>
       <p className="text-[var(--color-text-base)]">{comment.text}</p>
       <p className="text-sm text-[var(--color-text)]">{formattedTime}</p>
     </div>
-  )
-}
+  );
+};
 
 const Comments = ({ postId }) => {
-  const [comments, setComments] = useState([])
-  const [newCommentText, setNewCommentText] = useState('')
-  const [hasComments, setHasComments] = useState(true)
+  const [userData, setUserData] = React.useState(null);
+  const [comments, setComments] = useState([]);
+  const [newCommentText, setNewCommentText] = useState("");
+  const [hasComments, setHasComments] = useState(true);
 
-  const username = useSelector((state) => state.google)
-  const user = useSelector((state) => state.user)
+  const username = useSelector((state) => state.google);
+  const user = useSelector((state) => state.user);
 
   useEffect(() => {
-    const commentsRef = ref(db, 'comments/' + postId)
+    const commentsRef = ref(db, "comments/" + postId);
 
     const unsubscribe = onValue(commentsRef, (snapshot) => {
-      const commentsData = snapshot.val()
+      const commentsData = snapshot.val();
       if (commentsData) {
-        const commentsArray = Object.values(commentsData)
-        setComments(commentsArray.reverse())
-        setHasComments(true)
+        const commentsArray = Object.values(commentsData);
+        setComments(commentsArray.reverse());
+        setHasComments(true);
       } else {
-        setComments([])
-        setHasComments(false)
+        setComments([]);
+        setHasComments(false);
       }
-    })
+    });
 
     return () => {
-      unsubscribe()
+      unsubscribe();
+    };
+  }, [postId]);
+
+  useEffect(() => {
+    const currentUser = auth.currentUser;
+
+    if (currentUser) {
+      const userRef = ref(db, `users/${currentUser.uid}`);
+      onValue(userRef, (snapshot) => {
+        const data = snapshot.val();
+        setUserData(data);
+      });
     }
-  }, [postId])
+  }, []); // Зависимости пусты, чтобы эффект выполнялся только при монтировании компонента
 
   const handleSubmit = (e) => {
-    e.preventDefault()
-    if (newCommentText.trim() === '' || !username) return
+    e.preventDefault();
+    if (newCommentText.trim() === "" || !username) return;
 
-    const commentsRef = ref(db, 'comments/' + postId)
+    const commentsRef = ref(db, "comments/" + postId);
     const newComment = {
       text: newCommentText,
-      username: username.displayName || user.name,
+      username: username.displayName || user.name || userData?.username,
       timestamp: Date.now(),
-    }
-    setNewCommentText('')
+    };
+    setNewCommentText("");
 
-    push(commentsRef, newComment)
-  }
+    push(commentsRef, newComment);
+  };
 
   return (
     <div className="max-h-[400px] w-[800px] mb-[100px] relative left-[540px] ">
@@ -83,11 +98,13 @@ const Comments = ({ postId }) => {
             <Comment key={comment.timestamp} comment={comment} />
           ))
         ) : (
-          <p className="italic text-center text-[]">Отзывы к этому посту пока нет.</p>
+          <p className="italic text-center text-[]">
+            Отзывы к этому посту пока нет.
+          </p>
         )}
       </div>
     </div>
-  )
-}
+  );
+};
 
-export default Comments
+export default Comments;

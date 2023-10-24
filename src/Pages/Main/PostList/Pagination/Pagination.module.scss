@@ -1,8 +1,6 @@
 /* Pagination.module.scss */
 
 .pagination {
-  position: relative;
-  right: 0%;
   display: flex;
   justify-content: center;
   margin-top: 20px;
@@ -13,8 +11,8 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  width: 30px;
-  height: 30px;
+  width: 2rem;
+  height: 2rem;
   background-color: var(--color-bg-base);
   color: var(--color-text);
   border: none;
@@ -25,7 +23,7 @@
   transition: background-color 0.3s ease;
 
   &:hover {
-    background-color: var(--color-bg);
+    background-color: var(--color-text-base);
   }
 }
 
@@ -33,8 +31,8 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  width: 40px;
-  height: 40px;
+  width: 3rem;
+  height: 3rem;
   background-color: var(--color-bg-base);
   color: var(--color-text);
   border: none;
@@ -54,68 +52,75 @@
   }
 }
 
-@media (max-width: 1536px) {
-  .pagination {
-    position: relative;
-    right: 20%;
-  }
-}
-
-@media (max-width: 1280px) {
-  .pagination {
-    position: relative;
-    right: -50%;
-  }
-}
-
-@media (max-width: 1024px) {
-  .pagination {
-    position: relative;
-    right: -7%;
-  }
-}
-
-@media (max-width: 768px) {
-  .pagination {
-    position: relative;
-    right: -38%;
-    width: 50%;
-  }
-}
-
-@media (max-width: 640px) {
-  .pagination {
-    position: relative;
-    right: -44%;
-  }
-
+@media (max-width: 1000px) {
   .page_arrow {
-    width: 20px;
-    height: 20px;
+    width: 1.8rem;
+    height: 1.8rem;
+    font-size: 15px;
   }
 
   .page_number {
-    width: 30px;
-    height: 30px;
+    width: 2.8rem;
+    height: 2.8rem;
+    font-size: 15px;
   }
 }
 
-
-@media (max-width: 320px) {
-  .pagination {
-    position: relative;
-    right: 94%;
-  }
-
+@media (max-width: 800px) {
   .page_arrow {
-    width: 10px;
-    height: 10px;
+    width: 1.5rem;
+    height: 1.5rem;
     font-size: 14px;
   }
 
   .page_number {
-    width: 20px;
-    height: 20px;
+    width: 2.5rem;
+    height: 2.5rem;
     font-size: 14px;
+  }
+}
+
+
+@media (max-width: 600px) {
+  .page_arrow {
+    width: 1.2rem;
+    height: 1.2rem;
+    font-size: 13px;
+  }
+
+  .page_number {
+    width: 2.2rem;
+    height: 2.2rem;
+    font-size: 14px;
+  }
+}
+
+
+@media (max-width: 450px) {
+  .page_arrow {
+    width: 1.1rem;
+    height: 1.1rem;
+    font-size: 13px;
+  }
+
+  .page_number {
+    width: 2.1rem;
+    height: 2.1rem;
+    font-size: 13px;
+  }
+}
+
+
+@media (max-width: 370px) {
+  .page_arrow {
+    width: 1rem;
+    height: 1rem;
+    font-size: 12px;
+  }
+
+  .page_number {
+    width: 2rem;
+    height: 2rem;
+    font-size: 12px;
   }
 }

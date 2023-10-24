@@ -1,0 +1,15 @@
+.headerLogo {
+  h1 {
+    font-size: 35px;
+    color: var(--color-text-base);
+  }
+
+}
+
+  .headerContent {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
+
