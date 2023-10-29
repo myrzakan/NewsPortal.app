@@ -28,13 +28,20 @@
   width: 100%;
   height: 100%;
   background-color: var(--color-bg);
-  z-index: 1; /* Измените значение z-index на 1 или 0 */
+  z-index: 1;
   display: flex;
   align-items: center;
   justify-content: center;
 }
 
-/* Добавьте больший z-index для кнопки закрытия */
-.cursor-pointer {
-  z-index: 2; /* Попробуйте использовать значение 2 или больше */
+.burger_item {
+  margin: 20px 0;
+  cursor: pointer;
+  font-size: clamp(0.938rem, 0.646rem + 1.46vw, 1.375rem);
 }
+
+.burger_item a:hover {
+  color: var(--color-text-base);
+}
+
+

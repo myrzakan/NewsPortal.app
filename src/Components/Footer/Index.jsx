@@ -7,34 +7,33 @@ import {
   Flex,
   Tag,
   useColorModeValue,
-} from '@chakra-ui/react'
-import React from 'react'
-import { AiOutlineArrowRight } from 'react-icons/ai'
-import { Link } from 'react-router-dom'
-import './Footer.css'
-
+} from '@chakra-ui/react';
+import React from 'react';
+import { AiOutlineArrowRight } from 'react-icons/ai';
+import { Link } from 'react-router-dom';
+import './Footer.css';
 
 const ListHeader = ({ children }) => {
   return (
     <Text fontWeight={'500'} fontSize={'lg'} mb={2}>
       {children}
     </Text>
-  )
-}
+  );
+};
 
 const LargeWithLogoCentered = () => {
   const handlePhoneClick = () => {
-    window.location.href = 'tel:+996500002007'
-  }
+    window.location.href = 'tel:+996500002007';
+  };
 
   const handleEmailClick = () => {
-    window.location.href = 'mailto:news@line.kg'
-  }
+    window.location.href = 'mailto:news@line.kg';
+  };
 
   const handleAddressClick = () => {
     window.location.href =
-      'https://www.google.com/maps/search/?api=1&query=г.+Бишкек, проспект Эркиндик 46'
-  }
+      'https://www.google.com/maps/search/?api=1&query=г.+Бишкек, проспект Эркиндик 46';
+  };
 
   return (
     <Box bg="var(--color-bg)" color="var(--color-text)">
@@ -63,7 +62,7 @@ const LargeWithLogoCentered = () => {
 
             <Box as="a" href={'#'}>
               <p className="text-[var(--color-text-base)] font-[500]">
-                Email: {' '}
+                Email:{' '}
                 <span
                   onClick={handleEmailClick}
                   className="text-[var(--color-text)] cursor-pointer hover:underline"
@@ -75,12 +74,12 @@ const LargeWithLogoCentered = () => {
 
             <Box as="a" href={'#'}>
               <p className="text-[var(--color-text-base)] font-[500]">
-            Адрес: {' '}
+                Адрес:{' '}
                 <span
                   onClick={handleAddressClick}
                   className="text-[var(--color-text)] cursor-pointer hover:underline"
                 >
-              г. Бишкек, проспект Эркиндик 46
+                  г. Бишкек, проспект Эркиндик 46
                 </span>
               </p>
             </Box>
@@ -96,7 +95,7 @@ const LargeWithLogoCentered = () => {
                   className="text-[var(--color-text)] text-[15px] font-[500] ml-[5px]
                                         hover:text-[var(--color-text-base)]"
                 >
-                О проекте
+                  О проекте
                 </Link>
               </li>
             </Box>
@@ -109,7 +108,7 @@ const LargeWithLogoCentered = () => {
                   className="text-[var(--color-text)] text-[15px] font-[500] ml-[5px]
                                         hover:text-[var(--color-text-base)]"
                 >
-                Контакты
+                  Контакты
                 </Link>
               </li>
             </Box>
@@ -122,7 +121,7 @@ const LargeWithLogoCentered = () => {
                   className="text-[var(--color-text)] text-[15px] font-[500] ml-[5px]
                                         hover:text-[var(--color-text-base)]"
                 >
-                Правила использования
+                  Правила использования
                 </Link>
               </li>
             </Box>
@@ -135,46 +134,32 @@ const LargeWithLogoCentered = () => {
                   className="text-[var(--color-text)] text-[15px] font-[500] ml-[5px]
                                         hover:text-[var(--color-text-base)]"
                 >
-                Реклама
+                  Реклама
                 </Link>
               </li>
             </Box>
 
             <Box as="a">
               <li className="flex text-[var(--color-text-base)]">
-                <AiOutlineArrowRight/>
+                <AiOutlineArrowRight />
                 <Link
                   to="/policy"
                   className="text-[var(--color-text)] text-[15px] font-[500] ml-[5px]
                                         hover:text-[var(--color-text-base)]"
                 >
-                Политика конфиденциальности
+                  Политика конфиденциальности
                 </Link>
               </li>
             </Box>
           </Stack>
 
           <Stack align={'flex-start'}>
-            <ListHeader>Подписывайтесь на нас</ListHeader>
-            <Box as="a" href={'https://m.facebook.com/login/?locale=ru_RU&refsrc=deprecated'} className="hover:text-[var(--color-text-base)]">
-              Facebook
-            </Box>
-            <Box as="a" href={'https://twitter.com/i/flow/login?input_flow_data=%7B%22requested_variant%22%3A%22eyJsYW5nIjoicnUifQ%3D%3D%22%7D'} className="hover:text-[var(--color-text-base)]">
-              Twitter
-            </Box>
-            <Box as="a" href={'https://www.instagram.com/'} className="hover:text-[var(--color-text-base)]">
-              Instagram
-            </Box>
-          </Stack>
-
-          <Stack align={'flex-start'}>
             <ListHeader>О нас</ListHeader>
             <Box as="a" textColor="var(--color-text-base)">
-            Наша цель - держать вас в курсе всех событий и происшествий, происходящих в мире.
+              Наша цель - держать вас в курсе всех событий и происшествий,
+              происходящих в мире.
             </Box>
-
           </Stack>
-
         </SimpleGrid>
       </Container>
       <Box py={10}>
@@ -197,14 +182,22 @@ const LargeWithLogoCentered = () => {
         >
           <h1 className="text-[20px] text-[var(--color-text-base)]">18+</h1>
         </Flex>
-        <Text pt={6} fontSize={'md'} textAlign={'center'} textColor={'var(--color-text-base)'} className="font-[600]">
+        <Text
+          pt={6}
+          fontSize={'md'}
+          textAlign={'center'}
+          textColor={'var(--color-text-base)'}
+          className="font-[600]"
+        >
           © 2023 Все права защищены. <br />
-          Использование материалов разрешено только с письменного разрешения компании. <br />
-          Любое копирование, воспроизведение или распространение контента без разрешения запрещено.
+          Использование материалов разрешено только с письменного разрешения
+          компании. <br />
+          Любое копирование, воспроизведение или распространение контента без
+          разрешения запрещено.
         </Text>
       </Box>
     </Box>
-  )
-}
+  );
+};
 
-export default LargeWithLogoCentered
+export default LargeWithLogoCentered;

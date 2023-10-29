@@ -1,11 +1,11 @@
-import { gsap } from 'gsap'
-import React from 'react'
-import { Link } from 'react-router-dom'
+import { gsap } from 'gsap';
+import React from 'react';
+import { Link } from 'react-router-dom';
 
 const Policy = () => {
   React.useEffect(() => {
-    window.scrollTo(0, 0)
-  }, [])
+    window.scrollTo(0, 0);
+  }, []);
 
   // <============== Gsap Animations ===========>
   React.useEffect(() => {
@@ -20,7 +20,7 @@ const Policy = () => {
       { selector: 'title7', delay: 0.7 },
       { selector: 'title8', delay: 0.8 },
       { selector: 'title9', delay: 0.9 },
-    ]
+    ];
 
     animationData.forEach(({ selector, delay }) => {
       gsap.from('.' + selector, {
@@ -28,30 +28,34 @@ const Policy = () => {
         duration: 0.2,
         delay,
         x: 30,
-      })
-    })
-  }, [])
+      });
+    });
+  }, []);
 
   return (
-    <div className="mx-[545px] mb-[80px] mt-[110px] pt-[20px] relative right-[25px] 
-      max-x1:mx-[20rem] max-x3:mx-[14rem] max-x4:mx-[10rem] max-x5:mx-[3rem]">
-      <h1 className="mb-4 font-bold text-[30px] Title max-x6:text-[22px]"> 
+    <div
+      className="mx-[545px] mb-[80px] mt-[110px] pt-[20px] relative right-[25px] 
+      max-x1:mx-[20rem] max-x3:mx-[14rem] max-x4:mx-[10rem] max-x5:mx-[3rem]"
+    >
+      <h1 className="mb-4 font-bold text-[30px] Title max-x6:text-[22px]">
         Политика конфиденциальности News Line:
       </h1>
 
       <p className="title1 text-xl max-x6:text-[15px]">
-        Мы в <strong className="text-[var(--color-text-base)]">News Line </strong>
-        ценим вашу конфиденциальность и
-        стремимся обеспечить безопасность и защиту ваших личных данных. Эта
-        политика конфиденциальности объясняет, как мы собираем, используем,
-        защищаем и раскрываем информацию, которую вы предоставляете при
-        использовании нашего сайта.
+        Мы в{' '}
+        <strong className="text-[var(--color-text-base)]">News Line </strong>
+        ценим вашу конфиденциальность и стремимся обеспечить безопасность и
+        защиту ваших личных данных. Эта политика конфиденциальности объясняет,
+        как мы собираем, используем, защищаем и раскрываем информацию, которую
+        вы предоставляете при использовании нашего сайта.
       </p>
 
       <br />
 
       <p className="title2 text-xl max-x6:text-[15px]">
-        <strong className="text-[var(--color-text-base)]">Сбор информации:</strong>
+        <strong className="text-[var(--color-text-base)]">
+          Сбор информации:
+        </strong>
         <br />
         Мы собираем только ту информацию, которую вы сознательно предоставляете
         нам, например, при заполнении формы подписки на новости или оставлении
@@ -62,7 +66,9 @@ const Policy = () => {
       <br />
 
       <p className="title3 text-xl max-x6:text-[15px]">
-        <strong className="text-[var(--color-text-base)]">Использование информации:</strong>
+        <strong className="text-[var(--color-text-base)]">
+          Использование информации:
+        </strong>
         <br />
         Мы используем предоставленную вами информацию для целей, связанных с
         предоставлением новостной информации, общения с вами и улучшения
@@ -74,7 +80,9 @@ const Policy = () => {
       <br />
 
       <p className="title4 text-xl max-x6:text-[15px]">
-        <strong className="text-[var(--color-text-base)]">Защита информации:</strong>
+        <strong className="text-[var(--color-text-base)]">
+          Защита информации:
+        </strong>
         <br />
         Мы принимаем меры для защиты вашей личной информации от
         несанкционированного доступа, использования или разглашения. Мы
@@ -85,7 +93,9 @@ const Policy = () => {
       <br />
 
       <p className="title5 text-xl max-x6:text-[15px]">
-        <strong className="text-[var(--color-text-base)]">Использование файлов cookie:</strong>
+        <strong className="text-[var(--color-text-base)]">
+          Использование файлов cookie:
+        </strong>
         <br />
         Мы можем использовать файлы cookie, чтобы улучшить ваш опыт
         использования нашего сайта. Файлы cookie являются небольшими текстовыми
@@ -99,7 +109,9 @@ const Policy = () => {
       <br />
 
       <p className="title6 text-xl max-x6:text-[15px]">
-        <strong className="text-[var(--color-text-base)]">Ссылки на сторонние ресурсы:</strong>
+        <strong className="text-[var(--color-text-base)]">
+          Ссылки на сторонние ресурсы:
+        </strong>
         <br />
         Наш сайт может содержать ссылки на сторонние веб-сайты, которые имеют
         свои собственные политики конфиденциальности. Мы не несем
@@ -111,7 +123,9 @@ const Policy = () => {
       <br />
 
       <p className="title7 text-xl max-x6:text-[15px]">
-        <strong className="text-[var(--color-text-base)]">Изменения в политике конфиденциальности:</strong>
+        <strong className="text-[var(--color-text-base)]">
+          Изменения в политике конфиденциальности:
+        </strong>
         <br />
         Мы можем время от времени вносить изменения в нашу политику
         конфиденциальности. Любые изменения будут опубликованы на этой странице,
@@ -126,7 +140,11 @@ const Policy = () => {
         нашей политике конфиденциальности, пожалуйста, свяжитесь с нами через
         контактные данные, указанные на странице
         <Link to="/contact">
-          <span className="text-[var(--color-text-base)] cursor-pointer hover:underline"> "Контакты"</span>,
+          <span className="text-[var(--color-text-base)] cursor-pointer hover:underline">
+            {' '}
+            "Контакты"
+          </span>
+          ,
         </Link>
       </p>
 
@@ -137,7 +155,7 @@ const Policy = () => {
         является нашим приоритетом.
       </p>
     </div>
-  )
-}
+  );
+};
 
-export default Policy
+export default Policy;

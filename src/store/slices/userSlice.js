@@ -1,11 +1,11 @@
-import { createSlice } from '@reduxjs/toolkit'
+import { createSlice } from "@reduxjs/toolkit"
 
 const initialState = {
   name: null,
   email: null,
   token: null,
   id: null,
-  isAuthenticated: false, // Добавьте свойство isAuthenticated
+  isAuthenticated: false,
 }
 
 const userSlice = createSlice({
@@ -17,14 +17,14 @@ const userSlice = createSlice({
       state.email = action.payload.email
       state.token = action.payload.token
       state.id = action.payload.id
-      state.isAuthenticated = true // Установите свойство isAuthenticated в true после успешного входа в систему
+      state.isAuthenticated = true
     },
     removeUser(state) {
       state.name = null
       state.email = null
       state.token = null
       state.id = null
-      state.isAuthenticated = false // Установите свойство isAuthenticated в false при выходе из системы
+      state.isAuthenticated = false
     },
   },
 })

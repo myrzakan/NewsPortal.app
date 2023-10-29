@@ -1,95 +1,93 @@
-import firebase from 'firebase/compat/app'
-import React, { useState } from 'react'
-import 'firebase/compat/database'
-import 'firebase/compat/storage'
-import { toast } from 'react-toastify'
-import 'react-toastify/dist/ReactToastify.css'
-import ReactQuill from 'react-quill'
-import 'react-quill/dist/quill.snow.css'
+import firebase from 'firebase/compat/app';
+import React, { useState } from 'react';
+import 'firebase/compat/database';
+import 'firebase/compat/storage';
+import { toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+import ReactQuill from 'react-quill';
+import 'react-quill/dist/quill.snow.css';
 
-
-import './CreatePost.css'
+import './CreatePost.css';
 
 const CreatePostForm = ({ categories }) => {
-  const [title, setTitle] = useState('')
-  const [content, setContent] = useState('')
-  const [image, setImage] = useState(null)
-  const [category, setCategory] = useState('')
-  const [isLoading, setIsLoading] = React.useState(false)
+  const [title, setTitle] = useState('');
+  const [content, setContent] = useState('');
+  const [image, setImage] = useState(null);
+  const [category, setCategory] = useState('');
+  const [isLoading, setIsLoading] = React.useState(false);
 
+  const handleTitleChange = event => {
+    setTitle(event.target.value);
+  };
 
-  const handleTitleChange = (event) => {
-    setTitle(event.target.value)
-  }
+  const handleContentChange = value => {
+    setContent(value);
+  };
 
-  const handleContentChange = (value) => {
-    setContent(value)
-  }
-
-  const handleImageChange = (event) => {
+  const handleImageChange = event => {
     if (event.target.files[0]) {
-      setImage(event.target.files[0])
+      setImage(event.target.files[0]);
     }
-  }
+  };
 
-  const handleCategoryChange = (event) => {
-    setCategory(event.target.value)
-  }
+  const handleCategoryChange = event => {
+    setCategory(event.target.value);
+  };
 
-  const handleSubmit = (event) => {
-    event.preventDefault()
-    setIsLoading(true)
+  const handleSubmit = event => {
+    event.preventDefault();
+    setIsLoading(true);
 
-    const storageRef = firebase.storage().ref()
-    const imagesRef = storageRef.child('images')
+    const storageRef = firebase.storage().ref();
+    const imagesRef = storageRef.child('images');
 
     if (image) {
-      const imageRef = imagesRef.child(image.name)
+      const imageRef = imagesRef.child(image.name);
       imageRef
         .put(image)
         .then(() => imageRef.getDownloadURL())
-        .then((imageUrl) => {
-          const database = firebase.database()
-          const postsRef = database.ref('posts')
+        .then(imageUrl => {
+          const database = firebase.database();
+          const postsRef = database.ref('posts');
 
-          const newPostRef = postsRef.push()
+          const newPostRef = postsRef.push();
           const newPost = {
             title: title,
             content: content,
             imageUrl: imageUrl,
             category: category,
             timestamp: Date.now(),
-          }
+          };
 
           newPostRef
             .set(newPost)
             .then(() => {
-              setTitle('')
-              setContent('')
-              setImage(null)
-              setCategory('')
-              setIsLoading(false)
-              document.getElementById('image').value = null
+              setTitle('');
+              setContent('');
+              setImage(null);
+              setCategory('');
+              setIsLoading(false);
+              document.getElementById('image').value = null;
               toast.success('Post successfully created', {
                 position: 'top-center',
-              })
+              });
             })
-            .catch((error) => {
-              console.log(error)
-              setIsLoading(false)
-            })
+            .catch(error => {
+              console.log(error);
+              setIsLoading(false);
+            });
         })
-        .catch((error) => {
-          console.log(error)
-          setIsLoading(false)
-        })
+        .catch(error => {
+          console.log(error);
+          setIsLoading(false);
+        });
     } else {
       toast.error('Please select an image', {
         position: 'top-center',
-      })
-      setIsLoading(false)
+      });
+      setIsLoading(false);
     }
-  }
+  };
 
   return (
     <div className=" max-h-[100rem] h-[50rem]  pt-[50px]">
@@ -109,7 +107,7 @@ const CreatePostForm = ({ categories }) => {
         </div>
 
         {/* <=========================== Содержание поста ==========================>*/}
-        <div className="flex  mt-3 ml-[265px] w-[700px] relative left-[20.6rem]" >
+        <div className="flex  mt-3 ml-[265px] w-[700px] relative left-[20.6rem]">
           <ReactQuill
             value={content}
             modules={{
@@ -141,7 +139,7 @@ const CreatePostForm = ({ categories }) => {
             <option value="" className="">
               Select a category
             </option>
-            {categories.map((category) => (
+            {categories.map(category => (
               <option key={category.id} value={category.name}>
                 {category.name}
               </option>
@@ -171,7 +169,7 @@ const CreatePostForm = ({ categories }) => {
         </button>
       </form>
     </div>
-  )
-}
+  );
+};
 
-export default CreatePostForm
+export default CreatePostForm;

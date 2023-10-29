@@ -23,8 +23,7 @@ import { useToasts } from 'react-toast-notifications';
 import { setGoogleUserData } from 'store/slices/useGoogleSlice';
 import { setUser } from 'store/slices/userSlice';
 import { Forms } from '../../helpers/Forms';
-import { BiHide, BiShow } from 'react-icons/bi'
-
+import { BiHide, BiShow } from 'react-icons/bi';
 
 export const SignUp = () => {
   const dispatch = useDispatch();
@@ -34,8 +33,8 @@ export const SignUp = () => {
   const [showConfirmPass, setConfirmPass] = React.useState(false);
   const [isLoading, setIsLoading] = React.useState(false);
 
-  const tooglePassword = () => setShowPass((prev) => !prev);
-  const toogleConfirmPassword = () => setConfirmPass((prev) => !prev);
+  const tooglePassword = () => setShowPass(prev => !prev);
+  const toogleConfirmPassword = () => setConfirmPass(prev => !prev);
 
   const {
     register,
@@ -48,13 +47,13 @@ export const SignUp = () => {
 
   const handleLoginGoogle = () => {
     signInWithPopup(auth, provider)
-      .then((result) => {
+      .then(result => {
         const user = result.user;
         dispatch(
           setGoogleUserData({
             displayName: user.displayName,
             email: user.email,
-          })
+          }),
         );
         localStorage.setItem('google', JSON.stringify(user));
         addToast(`Успешно вошли ${user.displayName}`, {
@@ -63,7 +62,7 @@ export const SignUp = () => {
         });
         navigate('/');
       })
-      .catch((error) => {
+      .catch(error => {
         console.error('Error signing in with Google:', error);
         addToast('Ошибка: Не удалось войти с помощью Google', {
           appearance: 'error',
@@ -72,7 +71,7 @@ export const SignUp = () => {
       });
   };
 
-  const handleRegister = async (data) => {
+  const handleRegister = async data => {
     const { email, password, username } = data;
     const auth = getAuth();
     setIsLoading(true);
@@ -81,7 +80,7 @@ export const SignUp = () => {
       const userCredential = await createUserWithEmailAndPassword(
         auth,
         email,
-        password
+        password,
       );
       const user = userCredential.user;
 
@@ -99,7 +98,7 @@ export const SignUp = () => {
           email: user.email,
           id: user.uid,
           token: user.accessToken,
-        })
+        }),
       );
 
       navigate('/');
@@ -135,7 +134,7 @@ export const SignUp = () => {
     }
   };
 
-  const handleFormSubmit = (data) => {
+  const handleFormSubmit = data => {
     handleRegister(data);
   };
 
@@ -161,7 +160,7 @@ export const SignUp = () => {
                 placeholder="name"
                 size="lg"
                 defaultValue={name}
-                onChange={(e) => setName(e.target.value)}
+                onChange={e => setName(e.target.value)}
                 {...register('username', Forms.Rules.Username)}
               />
               <FormErrorMessage>
@@ -222,7 +221,7 @@ export const SignUp = () => {
                   {...register('passwordConfirm', {
                     ...Forms.Rules.Password,
                     validate: {
-                      match: (value) =>
+                      match: value =>
                         getValues().password === value || 'Пароли не совпадают',
                     },
                   })}
@@ -252,25 +251,30 @@ export const SignUp = () => {
               size="lg"
               bg="var(--color-text-base)"
               disabled={isLoading}
-              className={`mt-3 w-full ${isLoading ? 'opacity-60 cursor-not-allowed' : ''}`}
+              className={`mt-3 w-full ${
+                isLoading ? 'opacity-60 cursor-not-allowed' : ''
+              }`}
             >
               {isLoading ? 'Регистрация...' : 'Регистрация'}
             </Button>
 
             <p className="text-center my-2 text-[#7a7777]">или</p>
 
-            <Button 
-              onClick={handleLoginGoogle} 
+            <Button
+              onClick={handleLoginGoogle}
               className="w-full"
-              bg='var(--color-text-base)'
-              >
+              bg="var(--color-text-base)"
+            >
               Google
             </Button>
 
             <div className="mt-3 text-center">
               <p>
                 Есть аккаунт?{' '}
-                <Link className="text-[var(--color-text-base)] hover:underline" to="../SignIn">
+                <Link
+                  className="text-[var(--color-text-base)] hover:underline"
+                  to="../SignIn"
+                >
                   Авторизуйтесь
                 </Link>
               </p>
