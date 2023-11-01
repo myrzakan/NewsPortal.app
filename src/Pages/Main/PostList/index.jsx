@@ -126,7 +126,7 @@ const PostList = () => {
 
   return (
     <div className={cls.container}>
-      {/* <====================================== Search =================================> */}
+      {/* <== Search ==> */}
       <div>
         <input
           type="text"
@@ -137,7 +137,7 @@ const PostList = () => {
         />
       </div>
 
-      {/* <===================================== Category ====================================> */}
+      {/* <== Category ==> */}
       <div className={cls.postCategory}>
         <button
           onClick={() => selectCategory(null)}
@@ -166,7 +166,7 @@ const PostList = () => {
           .reverse()}
       </div>
 
-      {/* <==================== Loading ======================> */}
+      {/* <== Loading ==> */}
       {loading ? (
         <div className={cls.loading}>Загрузка...</div>
       ) : (
@@ -184,7 +184,7 @@ const PostList = () => {
               <div className={cls.loading}>Нет результатов</div>
             )}
           </div>
-          {/* <================== Pagination ====================> */}
+          {/* <== Pagination ==> */}
           <Pagination
             currentPage={currentPage}
             postsPerPage={postsPerPage}

@@ -1,0 +1,20 @@
+
+.container {
+  margin: 0 auto;
+  max-width: 1000px;
+}
+
+.content {
+  padding: 0 1.5rem;
+}
+
+.Title {
+  margin-bottom: 30px;
+  font-weight: bold;
+  font-size: clamp(1.25rem, 0.956rem + 1.47vw, 1.875rem);
+  text-align: center;
+}
+
+.content p {
+  font-size: clamp(0.938rem, 0.79rem + 0.74vw, 1.25rem);
+}
