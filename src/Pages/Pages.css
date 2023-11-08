@@ -1,11 +1,11 @@
 
 .container {
   margin: 0 auto;
-  max-width: 1000px;
+  max-width: 900px;
 }
 
 .content {
-  padding: 0 1.5rem;
+  padding: 0 1rem;
 }
 
 .Title {

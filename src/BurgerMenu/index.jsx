@@ -1,22 +1,28 @@
-import { useEffect, useState } from 'react';
-import { AiOutlineClose, AiOutlineMenu } from 'react-icons/ai'; // Иконки бургер-меню и закрытия
-import { Link } from 'react-router-dom'; // Для создания ссылок
-import { CSSTransition } from 'react-transition-group'; // Для анимаций входа и выхода меню
-import styles from './Menu.module.css'; // Стили, возможно, CSS-модули
+import 'boxicons';
+import React from 'react';
+import { AiOutlineClose, AiOutlineMenu } from 'react-icons/ai';
+import { useSelector } from 'react-redux';
+import { Link } from 'react-router-dom';
+import { CSSTransition } from 'react-transition-group';
+import AuthButton from './Components/AuthButton';
+import { Profile } from './Components/Profile';
+import styles from './Menu.module.css';
 
 const BurgerMenu = () => {
-  const [showMenu, setShowMenu] = useState(false); // Состояние для отображения/скрытия меню
+  const [showMenu, setShowMenu] = React.useState(false);
+
+  const Google = useSelector(state => state.google);
+  const User = useSelector(state => state.user);
 
   const toggleMenu = () => {
-    setShowMenu(!showMenu); // Переключение состояния меню при клике
+    setShowMenu(!showMenu);
   };
 
-  // Функция для закрытия меню при нажатии на ссылку
   const closeMenu = () => {
     setShowMenu(false);
   };
 
-  useEffect(() => {
+  React.useEffect(() => {
     // Управление прокруткой страницы
     const handleScrollLock = () => {
       if (showMenu) {
@@ -41,58 +47,68 @@ const BurgerMenu = () => {
         className="cursor-pointer z-10 absolute top-[2.4rem] left-[1rem] w-3"
       >
         {showMenu ? (
-          <AiOutlineClose size={30} /> // Иконка закрытия меню
+          <AiOutlineClose size={30} />
         ) : (
           <AiOutlineMenu
             size={30}
             className="max-xs:text-[20px] max-sd:text-[26px]"
-          /> // Иконка бургер-меню
+          />
         )}
       </div>
       <CSSTransition
         in={showMenu}
         timeout={400}
         classNames={{
-          enter: styles['menu-list-enter'], // Классы анимации при входе
-          enterActive: styles['menu-list-enter-active'], // Классы активной анимации при входе
-          exit: styles['menu-list-exit'], // Классы анимации при выходе
-          exitActive: styles['menu-list-exit-active'], // Классы активной анимации при выходе
+          enter: styles['menu-list-enter'],
+          enterActive: styles['menu-list-enter-active'],
+          exit: styles['menu-list-exit'],
+          exitActive: styles['menu-list-exit-active'],
         }}
         unmountOnExit
       >
         <div className={styles['menu-background']}>
-          <ul className="text-center">
-            <li className={styles.burger_item}>
-              <Link to={'/'} onClick={closeMenu}>
-                Главная
-              </Link>
-            </li>
-            <li className={styles.burger_item}>
-              <Link to={'/about'} onClick={closeMenu}>
-                О проекте
-              </Link>
-            </li>
-            <li className={styles.burger_item}>
-              <Link to={'/contact'} onClick={closeMenu}>
-                Контакты
-              </Link>
-            </li>
-            <li className={styles.burger_item}>
-              <Link to={'/termsOfUse'} onClick={closeMenu}>
-                Правил использования
-              </Link>
-            </li>
-            <li className={styles.burger_item}>
-              <Link to={'/advertisig'} onClick={closeMenu}>
-                Реклама
-              </Link>
-            </li>
-            <li className={styles.burger_item}>
-              <Link to={'/policy'} onClick={closeMenu}>
-                Политика конфиденциальности
-              </Link>
-            </li>
-          </ul>
+          <div className={styles.content}>
+            <ul className="ml-[4rem]">
+              <li className={styles.burger_item}>
+                <Link to={'/'} onClick={closeMenu}>
+                  Главная
+                </Link>
+              </li>
+              <li className={styles.burger_item}>
+                <Link to={'/about'} onClick={closeMenu}>
+                  О проекте
+                </Link>
+              </li>
+              <li className={styles.burger_item}>
+                <Link to={'/contact'} onClick={closeMenu}>
+                  Контакты
+                </Link>
+              </li>
+              <li className={styles.burger_item}>
+                <Link to={'/termsOfUse'} onClick={closeMenu}>
+                  Правил использования
+                </Link>
+              </li>
+              <li className={styles.burger_item}>
+                <Link to={'/advertising'} onClick={closeMenu}>
+                  Реклама
+                </Link>
+              </li>
+              <li className={styles.burger_item}>
+                <Link to={'/policy'} onClick={closeMenu}>
+                  Политика конфиденциальности
+                </Link>
+              </li>
+            </ul>
+
+            <div className={styles.auth}>
+              {User.isAuthenticated || Google.isAuthenticated ? (
+                <Profile />
+              ) : (
+                <AuthButton closeMenu={closeMenu} />
+              )}
+            </div>
+          </div>
         </div>
       </CSSTransition>
     </nav>

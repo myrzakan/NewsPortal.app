@@ -30,8 +30,14 @@
   background-color: var(--color-bg);
   z-index: 1;
   display: flex;
+  flex-direction: column;
   align-items: center;
   justify-content: center;
+}
+
+.content {
+  width: 100%;
+
 }
 
 .burger_item {
@@ -45,3 +51,62 @@
 }
 
 
+
+.auth {
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  border-top: 4px solid var(--color-text-base);
+  display: flex;
+  justify-content: left;
+  /* align-items: center; */
+  padding: 20px;
+  gap: 0 20px;
+  font-size: clamp(0.813rem, 0.646rem + 0.83vw, 1.063rem);
+}
+
+
+/* <-- Profile Menu --> */
+
+.profile {
+  position: relative;
+  bottom: 0;
+  display: flex;
+  /* justify-content: center; */
+  gap: 0 1rem;
+  margin-left: 3rem;
+}
+
+.profileText_auth {
+  width: 90%;
+}
+
+.button_out {
+  cursor: pointer;
+}
+
+
+/* <-- Auth Button --> */
+
+.authButton {
+  margin-left: 3rem;
+}
+
+.signUp {
+  margin-right: 1rem;
+  padding: 8px 15px;
+  border-radius: 5px;
+  background-color: var(--color-text-base);
+}
+
+.signUp:hover {
+  opacity: 0.7;
+}
+
+.signIn {
+  color: var(--color-text-base);
+}
+
+.signIn:hover {
+  text-decoration: underline;
+}

@@ -10,8 +10,8 @@ import {
   loadGoogleUserDataFromLocalStorage,
   loadUserFromLocalStorage,
 } from '../../utils/LocalStorage';
-import { AuthButton } from './components/AuthButton';
-import { ProfileSection } from './components/ProfileMenu';
+import { AuthButton } from './Components/AuthButton';
+import { ProfileSection } from './Components/ProfileMenu';
 
 import cls from './Header.module.scss';
 
@@ -55,11 +55,9 @@ const Header = () => {
         {theme === 'light' ? <BsMoon size="22px" /> : <BsSun size="22px" />}
       </div>
 
-      <Link to="/">
-        <div className="">
-          <h1>News Line</h1>
-        </div>
-      </Link>
+      <div className={cls.header_text}>
+        <Link to="/">News Line</Link>
+      </div>
 
       <div>
         {User.isAuthenticated || Google.isAuthenticated ? (

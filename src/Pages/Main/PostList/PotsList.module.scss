@@ -18,11 +18,24 @@
   // max-width: 800px;
 }
 
+// <-- Category -->
+
 .postCategory {
   max-width: 850px; 
   overflow-x: auto;
   white-space: nowrap;
+
+  button {
+    padding: 5px 10px;
+    margin: 15px 5px;
+    border-radius: 5px;
+    outline: none;
+    font-size: clamp(0.813rem, 0.664rem + 0.74vw, 1.063rem);
+  }
 }
+
+
+// <-- Searh -->
 
 .Search {
   width: 100%;
@@ -36,6 +49,9 @@
   margin: 0 auto;
 }
 
+
+// <-- Loading -->
+
 .loading {
   display: flex;
   justify-content: center;
@@ -44,9 +60,5 @@
   margin-top: 10rem;
 }
 
-@media (max-width: 768px) {
-  .container {
-    padding-top: 2rem;
-  }
-}
+
 

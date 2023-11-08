@@ -33,7 +33,6 @@ const PostList = () => {
     gsap.registerPlugin(ScrollTrigger);
 
     const fetchData = async () => {
-      console.log(fetchData);
       try {
         const snapshot = await firebase.database().ref('posts').once('value');
         const postsData = snapshot.val();
@@ -141,7 +140,7 @@ const PostList = () => {
       <div className={cls.postCategory}>
         <button
           onClick={() => selectCategory(null)}
-          className={`category py-[5px] px-[10px] my-[20px] mx-[5px] rounded-lg outline-none ${
+          className={`${
             selectedCategory === null
               ? 'bg-[var(--color-text-base)] text-[var(--color-text)]'
               : ''
@@ -154,7 +153,7 @@ const PostList = () => {
             <button
               key={category}
               onClick={() => selectCategory(category)}
-              className={`category-button py-[5px] px-[5px] my-[20px] mx-[5px] rounded-lg outline-none ${
+              className={`${
                 selectedCategory === category
                   ? 'bg-[var(--color-text-base)] text-[var(--color-text)]'
                   : ''
@@ -171,7 +170,7 @@ const PostList = () => {
         <div className={cls.loading}>Загрузка...</div>
       ) : (
         <>
-          <div ref={postListRef} className="relative">
+          <div ref={postListRef}>
             {currentPosts.length > 0 ? (
               currentPosts.map((post, index) => (
                 <PostItem

@@ -1,17 +1,9 @@
 
   .headerContent {
     display: flex;
-    justify-content: space-between;
-    gap: 0 20px;
+    justify-content: space-around;
+    // gap: 0 20px;
     height: 10rem;
-
-    h1 {
-      font-size: 45px;
-      color: var(--color-text-base);
-      position: relative;
-      top: 1rem;
-      right: 4rem;
-    }
 
     &::before {
       content: '';
@@ -22,9 +14,17 @@
       top: 8rem;
     }
 
+    .header_text {
+      font-size: clamp(1.875rem, 1.319rem + 2.78vw, 2.813rem);
+      color: var(--color-text-base);
+      position: relative;
+      top: 2rem;
+      right: 2rem;
+    }
+
     .toggleTheme {
-      display: flex;
-      justify-content: flex-start;
+      // display: flex;
+      // justify-content: flex-end;
       position: relative;
       top: 2.5rem;
       margin-left: 5rem;
@@ -37,9 +37,15 @@
 
   @media (max-width: 800px) {
     .toggleTheme {
-      display: flex;
-      justify-content: flex-end;
+      display: none;
     }
+
+    .headerContent {
+      justify-content: center;
+      align-items: center;
+    }
+
+
   }
 
  

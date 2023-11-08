@@ -3,3 +3,70 @@
     display: none;
   }
 }
+
+ .Footer {
+  margin: 0 auto;
+ }
+
+
+ .content_footer {
+  display: flex;
+  justify-content: space-around;
+  padding: 0 10rem;
+  margin-bottom: 3rem;
+  flex-wrap: wrap;
+ }
+
+ .content h1 {
+  margin-bottom: 1rem;
+  color: var(--color-text-base);
+  font-weight: bold;
+ }
+
+ .content p {
+  font-size: 17px;
+ }
+
+ .content-item {
+  margin-top: 3rem;
+ }
+
+ .content-item ul li {
+  margin-bottom: 0.5rem;
+  
+ }
+
+ .content-item ul li span {
+  color: var(--color-text-base);
+  cursor: pointer;
+  font-weight: 500;
+ }
+
+ .content-item ul li span:hover {
+  text-decoration: underline;
+ }
+
+
+ .about {
+  width: 20%;
+  text-align: center;
+  font-weight: 500;
+ }
+
+ .anchor {
+  display: flex;
+  justify-content: center;
+  border-left: 1px solid #fff;
+ }
+
+ .copyright {
+  display: flex;
+  justify-content: center;
+  text-align: center;
+  padding-bottom: 2rem;
+ }
+
+ .copyright h1 {
+  color: var(--color-text-base);
+  font-weight: 500;
+ }
