@@ -1,5 +1,5 @@
 import { Link } from 'react-router-dom';
-import './Footer.css';
+import styles from './Footer.module.scss';
 
 const Footer = () => {
   // <== Phone ==>
@@ -19,9 +19,9 @@ const Footer = () => {
   };
 
   return (
-    <div className="Footer">
-      <div className="content_footer">
-        <div className="content-item">
+    <div className={styles.footer}>
+      <div className={styles.content_footer}>
+        <div className={styles.content_item}>
           <h1>Свяжитесь с нами</h1>
           <ul>
             <li onClick={handlePhoneClick}>
@@ -36,7 +36,7 @@ const Footer = () => {
           </ul>
         </div>
 
-        <div className="content-item">
+        <div className={styles.content_item} id="link">
           <h1>Ссылка</h1>
           <ul>
             <li>
@@ -49,7 +49,7 @@ const Footer = () => {
           </ul>
         </div>
 
-        <div className="content-item">
+        <div className={styles.content_item}>
           <h1>Подписывайтесь на нас</h1>
           <ul>
             <li>Facebook</li>
@@ -58,7 +58,7 @@ const Footer = () => {
           </ul>
         </div>
 
-        <div className="content-item about">
+        <div className={styles.content_item} id="about">
           <h1>О нас</h1>
           <p>
             Наша цель - держать вас в курсе всех событий и происшествий,
@@ -67,9 +67,9 @@ const Footer = () => {
         </div>
       </div>
 
-      <div className="anchor">18+</div>
+      <div className={styles.anchor}>18+</div>
 
-      <div className="copyright">
+      <div className={styles.copyright}>
         <h1>
           © 2023 Все права защищены. <br />
           Использование материалов разрешено только с письменного разрешения

@@ -37,7 +37,7 @@ export const AuthenticationSection = () => {
       {User.isAuthenticated || Google.isAuthenticated ? (
         <ProfileSection addToast={addToast} />
       ) : (
-        <AuthButton theme={theme} />
+        <AuthButton />
       )}
     </div>
   );

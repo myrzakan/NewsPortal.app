@@ -19,10 +19,6 @@ a {
   list-style: none;
 }
 
-.custom-transition {
-  transition-duration: var(--transition-duration, 0.3s);
-}
-
 body[data-theme='dark'] {
   --color-text: #FEFEFA;  
   --color-text-base: #29AB87;

@@ -17,6 +17,7 @@ import TermsOfUse from './Pages/TermsOfUse';
 import BurgerMenu from 'BurgerMenu';
 import Header from 'Components/Header';
 import './styledToast/index.css';
+import Footer from 'Components/Footer/Index';
 
 function App() {
   return (
@@ -38,7 +39,7 @@ function App() {
           <Route path="/policy" element={<Policy />} />
         </Routes>
       </ToastProvider>
-      {/* <Footer /> */}
+      <Footer />
       <ToastContainer />
     </div>
   );

@@ -1,10 +1,10 @@
 import React from 'react';
 import { BsMoon, BsSun } from 'react-icons/bs';
 import { useDispatch, useSelector } from 'react-redux';
-import { toggleTheme } from '../../../store/slices/useThemeSlice.js'; // импортируйте экшен для переключения темы
-import cls from '../Header.module.scss';
+import { toggleTheme } from '../../store/slices/useThemeSlice.js';
+import styles from '../Menu.module.css';
 
-export const ToggleTheme = () => {
+export const ToggleThemeBurgerMenu = () => {
   const dispatch = useDispatch();
   const currentTheme = useSelector(state => state.theme.currentTheme);
 
@@ -17,12 +17,8 @@ export const ToggleTheme = () => {
     dispatch(toggleTheme());
   };
   return (
-    <div onClick={toggleThemeHandle} className={cls.toggleTheme}>
-      {currentTheme === 'light' ? (
-        <BsMoon size="25px" />
-      ) : (
-        <BsSun size="25px" />
-      )}
+    <div onClick={toggleThemeHandle} className={styles.toggleTheme}>
+      {currentTheme === 'light' ? <BsMoon /> : <BsSun />}
     </div>
   );
 };

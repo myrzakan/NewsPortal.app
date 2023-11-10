@@ -17,6 +17,7 @@
   position: relative;
   right: 4rem;
   top: 2.6rem;
+  object-fit: cover;
 
 }
 
