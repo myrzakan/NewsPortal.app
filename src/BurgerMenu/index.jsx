@@ -1,6 +1,7 @@
 import 'boxicons';
 import React from 'react';
 import { AiOutlineClose, AiOutlineMenu } from 'react-icons/ai';
+import { BsMoon, BsSun } from 'react-icons/bs';
 import { useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
 import { CSSTransition } from 'react-transition-group';
@@ -10,6 +11,11 @@ import styles from './Menu.module.css';
 
 const BurgerMenu = () => {
   const [showMenu, setShowMenu] = React.useState(false);
+
+  const [theme, setTheme] = React.useState(() => {
+    const storedTheme = localStorage.getItem('theme');
+    return storedTheme || 'light';
+  });
 
   const Google = useSelector(state => state.google);
   const User = useSelector(state => state.user);
@@ -40,19 +46,25 @@ const BurgerMenu = () => {
     };
   }, [showMenu]);
 
+  React.useEffect(() => {
+    document.body.setAttribute('data-theme', theme);
+    localStorage.setItem('theme', theme);
+  }, [theme]);
+
+  const toggleTheme = () => {
+    setTheme(prevTheme => (prevTheme === 'light' ? 'dark' : 'light'));
+  };
+
   return (
     <nav className="md:hidden">
       <div
         onClick={toggleMenu}
-        className="cursor-pointer z-10 absolute top-[2.4rem] left-[1rem] w-3"
+        className="cursor-pointer z-10 absolute top-[3rem] left-[1rem]"
       >
         {showMenu ? (
-          <AiOutlineClose size={30} />
+          <AiOutlineClose className={styles.outlineClose} />
         ) : (
-          <AiOutlineMenu
-            size={30}
-            className="max-xs:text-[20px] max-sd:text-[26px]"
-          />
+          <AiOutlineMenu className={styles.outlineMenu} />
         )}
       </div>
       <CSSTransition
@@ -67,40 +79,47 @@ const BurgerMenu = () => {
         unmountOnExit
       >
         <div className={styles['menu-background']}>
+          {/* <-- ToggleTheme --> */}
+          <div onClick={toggleTheme} className={styles.toggleTheme}>
+            {theme === 'light' ? <BsMoon /> : <BsSun />}
+          </div>
+
           <div className={styles.content}>
-            <ul className="ml-[4rem]">
-              <li className={styles.burger_item}>
+            {/* <-- Link --> */}
+            <ul className={styles.burger_item}>
+              <li>
                 <Link to={'/'} onClick={closeMenu}>
                   Главная
                 </Link>
               </li>
-              <li className={styles.burger_item}>
+              <li>
                 <Link to={'/about'} onClick={closeMenu}>
                   О проекте
                 </Link>
               </li>
-              <li className={styles.burger_item}>
+              <li>
                 <Link to={'/contact'} onClick={closeMenu}>
                   Контакты
                 </Link>
               </li>
-              <li className={styles.burger_item}>
+              <li>
                 <Link to={'/termsOfUse'} onClick={closeMenu}>
                   Правил использования
                 </Link>
               </li>
-              <li className={styles.burger_item}>
+              <li>
                 <Link to={'/advertising'} onClick={closeMenu}>
                   Реклама
                 </Link>
               </li>
-              <li className={styles.burger_item}>
+              <li>
                 <Link to={'/policy'} onClick={closeMenu}>
                   Политика конфиденциальности
                 </Link>
               </li>
             </ul>
 
+            {/* <-- Profile and AuthButton --> */}
             <div className={styles.auth}>
               {User.isAuthenticated || Google.isAuthenticated ? (
                 <Profile />
