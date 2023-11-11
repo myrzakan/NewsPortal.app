@@ -148,6 +148,10 @@
   .burger_item {
     margin-left: 3rem;
   }
+
+  .authButton {
+    margin-left: 2rem;
+  }
 }
 
 @media (max-width: 400px) {
@@ -157,5 +161,10 @@
 
   .burger_item {
     margin-left: 2rem;
+  }
+
+
+  .authButton {
+    margin-left: 1rem;
   }
 }

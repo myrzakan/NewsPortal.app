@@ -6,10 +6,12 @@ import React from 'react';
 
 import 'firebase/compat/database';
 
+import Pagination from './Components/Pagination';
 import firebaseConfig from '../../../FirebaseConfig';
-import Pagination from './Pagination';
-import PostItem from './PostItem';
+import PostItem from './Components/PostItem';
 
+import { Category } from './Components/Category';
+import { Search } from './Components/Search';
 import cls from './PotsList.module.scss';
 
 // Инициализация Firebase приложения
@@ -82,16 +84,6 @@ const PostList = () => {
     }
   }, [selectedCategory]);
 
-  const selectCategory = category => {
-    setSelectedCategory(category);
-    setCurrentPage(1);
-  };
-
-  const handleSearch = event => {
-    setSearchText(event.target.value);
-    setCurrentPage(1);
-  };
-
   const filterPosts = post => {
     const lowerCaseSearchText = searchText.toLowerCase();
     const lowerCaseTitle = post.title.toLowerCase();
@@ -126,45 +118,18 @@ const PostList = () => {
   return (
     <div className={cls.container}>
       {/* <== Search ==> */}
-      <div>
-        <input
-          type="text"
-          placeholder="Поиск..."
-          value={searchText}
-          onChange={handleSearch}
-          className={cls.Search}
-        />
-      </div>
-
+      <Search
+        searchText={searchText}
+        setSearchText={setSearchText}
+        setCurrentPage={setCurrentPage}
+      />
       {/* <== Category ==> */}
-      <div className={cls.postCategory}>
-        <button
-          onClick={() => selectCategory(null)}
-          className={`${
-            selectedCategory === null
-              ? 'bg-[var(--color-text-base)] text-[var(--color-text)]'
-              : ''
-          }`}
-        >
-          Все
-        </button>
-        {categories
-          .map(category => (
-            <button
-              key={category}
-              onClick={() => selectCategory(category)}
-              className={`${
-                selectedCategory === category
-                  ? 'bg-[var(--color-text-base)] text-[var(--color-text)]'
-                  : ''
-              }`}
-            >
-              {category}
-            </button>
-          ))
-          .reverse()}
-      </div>
-
+      <Category
+        setSelectedCategory={setSelectedCategory}
+        setCurrentPage={setCurrentPage}
+        categories={categories}
+        selectedCategory={selectedCategory}
+      />
       {/* <== Loading ==> */}
       {loading ? (
         <div className={cls.loading}>Загрузка...</div>

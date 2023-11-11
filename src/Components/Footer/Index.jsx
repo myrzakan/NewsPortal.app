@@ -21,7 +21,7 @@ const Footer = () => {
   return (
     <div className={styles.footer}>
       <div className={styles.content_footer}>
-        <div className={styles.content_item}>
+        <div className={`${styles.content_item} ${styles.contact}`}>
           <h1>Свяжитесь с нами</h1>
           <ul>
             <li onClick={handlePhoneClick}>
@@ -36,20 +36,28 @@ const Footer = () => {
           </ul>
         </div>
 
-        <div className={styles.content_item} id="link">
+        <div className={`${styles.content_item} ${styles.link}`}>
           <h1>Ссылка</h1>
           <ul>
             <li>
               <Link to="/about">О нас</Link>
             </li>
-            <li>dvsvds</li>
-            <li>vdsvsd</li>
-            <li>vfdbd</li>
-            <li>fdgsfd</li>
+            <li>
+              <Link to="/contact">Контакты</Link>
+            </li>
+            <li>
+              <Link to="/termsOfUse">Правила использования</Link>
+            </li>
+            <li>
+              <Link to="/advertising">Реклама</Link>
+            </li>
+            <li>
+              <Link to="/policy">Политика конфиденциальности</Link>
+            </li>
           </ul>
         </div>
 
-        <div className={styles.content_item}>
+        <div className={`${styles.content_item} ${styles.social}`}>
           <h1>Подписывайтесь на нас</h1>
           <ul>
             <li>Facebook</li>
@@ -58,7 +66,7 @@ const Footer = () => {
           </ul>
         </div>
 
-        <div className={styles.content_item} id="about">
+        <div className={`${styles.content_item} ${styles.about}`}>
           <h1>О нас</h1>
           <p>
             Наша цель - держать вас в курсе всех событий и происшествий,

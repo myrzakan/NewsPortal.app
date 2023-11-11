@@ -1,38 +1,31 @@
 .footer {
   margin: 0 auto;
+  border-top: 15px solid var(--color-text-base);
 }
 
 .content_footer {
   display: flex;
-  justify-content: space-around;
+  justify-content: space-evenly;
   padding: 0 10rem;
   margin-bottom: 3rem;
   flex-wrap: wrap;
-
-  &::after {
-    width: 100%;
-    height: 10px;
-    background-color: var(--color-text-base);
-  }
 }
 
-.content {
+.content_item {
+  // margin-top: 3rem;
+  margin: 3rem 1rem;
+
   h1 {
     margin-bottom: 1rem;
     color: var(--color-text-base);
     font-weight: bold;
+    text-align: center;
+    font-size: clamp(1rem, 0.917rem + 0.42vw, 1.125rem);
   }
-
-  p {
-    font-size: 17px;
-  }
-}
-
-.content_item {
-  margin-top: 3rem;
 
   li {
     margin-bottom: 0.5rem;
+    font-size: clamp(0.875rem, 0.792rem + 0.42vw, 1rem);
   }
 
   span {
@@ -46,20 +39,34 @@
   }
 }
 
-#about {
+.link {
+  h1 {
+    position: relative;
+    // right: 5.6rem;
+  }
+}
+
+.link li:hover {
+  color: var(--color-text-base);
+  text-decoration: underline;
+  transition: 0.1s;
+}
+
+.about {
   width: 20%;
+  font-size: 17px;
   text-align: center;
   font-weight: 500;
 
   p {
     color: var(--color-text-base);
+    font-size: clamp(0.875rem, 0.792rem + 0.42vw, 1rem);
   }
 }
 
 .anchor {
   display: flex;
   justify-content: center;
-  border-left: 1px solid #fff;
 }
 
 .copyright {
@@ -67,15 +74,55 @@
   justify-content: center;
   text-align: center;
   padding-bottom: 2rem;
-}
 
-.copyright h1 {
-  color: var(--color-text-base);
-  font-weight: 500;
+  h1 {
+    color: var(--color-text-base);
+    font-weight: 500;
+    font-size: clamp(0.875rem, 0.792rem + 0.42vw, 1rem);
+  }
 }
 
 @media (max-width: 768px) {
-  #link {
+  .link {
     display: none;
+  }
+}
+
+@media screen and (max-width: 1312px) {
+  /* Apply two-column layout at or below 1280px */
+  .content_footer {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-gap: 20px;
+  }
+
+  .about {
+    width: 80%;
+  }
+
+  .contact,
+  .social,
+  .link {
+    ul {
+      text-align: center;
+    }
+    // text-align: center;
+  }
+}
+
+@media screen and (max-width: 768px) {
+  .about {
+    grid-column: 1 / span 2;
+  }
+}
+
+@media screen and (max-width: 500px) {
+  .content_footer {
+    display: block;
+    padding: 0 2rem;
+  }
+
+  .about {
+    width: 90%;
   }
 }
