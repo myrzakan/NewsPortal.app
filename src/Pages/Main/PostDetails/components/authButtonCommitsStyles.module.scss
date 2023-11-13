@@ -1,0 +1,22 @@
+// <-- AuthButton -->
+
+.authButton_content {
+  margin: 0 auto;
+  padding: 0 10px;
+  max-width: 850px;
+  border: 1px dashed #7a7777;
+  border-radius: 10px;
+  height: 200px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 3rem;
+  text-align: center;
+
+  .text {
+    font-size: clamp(0.75rem, 0.474rem + 1.38vw, 1.25rem);
+  }
+}
+
+// <-- Comments -->

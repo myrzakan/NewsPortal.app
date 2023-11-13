@@ -1,10 +1,11 @@
-import React from 'react';
-import { useParams } from 'react-router-dom';
 import firebase from 'firebase/compat/app';
 import 'firebase/compat/database';
-import firebaseConfig from '../../../FirebaseConfig';
-import Comments from './components/Comments';
+import React from 'react';
 import { useSelector } from 'react-redux';
+import { useParams } from 'react-router-dom';
+import firebaseConfig from '../../../FirebaseConfig';
+import styles from './PostDetails.module.scss';
+import Comments from './components/Comments';
 import { AuthButtonPostDetals } from './components/authButton';
 
 const PostDetails = () => {
@@ -37,35 +38,23 @@ const PostDetails = () => {
   }, []);
 
   if (!post) {
-    return (
-      <div className="pt-[400px] mb-[500px] text-[35px] flex justify-center">
-        Загрузка...
-      </div>
-    );
+    return <div className="">Загрузка...</div>;
   }
 
   const formattedTimestamp = new Date(post.timestamp).toLocaleString();
   const content = { __html: post.content };
 
   return (
-    <div className="relative top-0 max-h-[1000rem] mt-[100px] pt-[50px]">
-      <h2 className="text-[30px] font-bold text-[var(--color-text)] mb-3 relative left-[550px] w-[780px]">
-        {post.title}
-      </h2>
+    <div className={styles.postDetails_content}>
+      <h2>{post.title}</h2>
       {post.imageUrl && (
-        <img
-          src={post.imageUrl}
-          alt="Post"
-          className="w-[800px] h-450px object-cover rounded-lg mb-[10px] ml-[540px]"
-        />
+        <img src={post.imageUrl} alt="Post" className="mt-4 rounded-lg" />
       )}
-      <div className="flex">
-        <p className="relative left-[550px] my-2 text-[var(--color-text-base)]">
-          {formattedTimestamp}
-        </p>
-      </div>
+
+      <p className={styles.post_time}>{formattedTimestamp}</p>
+
       <div
-        className="mx-[570px] text-[20px] relative right-7 mb-10"
+        className={styles.post_description}
         dangerouslySetInnerHTML={content}
       ></div>
 

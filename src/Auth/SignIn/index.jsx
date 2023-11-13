@@ -8,12 +8,13 @@ import {
   InputGroup,
   InputRightElement,
 } from '@chakra-ui/react';
+import { auth, provider } from 'FirebaseConfig';
 import {
   getAuth,
   signInWithEmailAndPassword,
   signInWithPopup,
 } from 'firebase/auth';
-import { auth, provider } from 'FirebaseConfig';
+import { get, getDatabase, onValue, ref } from 'firebase/database';
 import React from 'react';
 import { useForm } from 'react-hook-form';
 import { BiHide, BiShow } from 'react-icons/bi';
@@ -22,7 +23,6 @@ import { Link, useNavigate } from 'react-router-dom';
 import { useToasts } from 'react-toast-notifications'; // Импортируем useToasts
 import { setGoogleUserData } from 'store/slices/useGoogleSlice';
 import { setUser } from 'store/slices/userSlice';
-import { getDatabase, ref, onValue } from 'firebase/database';
 
 import { app } from '../../FirebaseConfig';
 import { Forms } from '../../helpers/Forms';
@@ -98,6 +98,15 @@ export const SignIn = () => {
       );
       const user = userCredential.user;
 
+      // Получаем дополнительные данные о пользователе из Firebase, включая username
+      const database = getDatabase();
+      const userRef = ref(database, `users/${user.uid}`);
+      const snapshot = await get(userRef);
+      const userData = snapshot.val();
+
+      // Добавляем данные о пользователе в стейт
+      setUserData(userData);
+
       // Обычная обработка входа пользователя
       // ...
       dispatch(
@@ -111,10 +120,10 @@ export const SignIn = () => {
       setIsLoading(false);
       reset();
       navigate('/');
-      // addToast(`Успешно вошли ${userData?.username}`, {
-      //   appearance: 'success',
-      //   autoDismiss: true,
-      // })
+      addToast(`Успешно вошли ${userData?.username}`, {
+        appearance: 'success',
+        autoDismiss: true,
+      });
       localStorage.setItem('user', JSON.stringify(user));
     } catch (error) {
       console.error(error);

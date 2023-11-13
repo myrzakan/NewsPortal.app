@@ -1,8 +1,12 @@
 .headerContent {
+  position: fixed;
   display: flex;
   justify-content: space-around;
   // gap: 0 20px;
-  height: 10rem;
+  height: 8rem;
+  width: 100%;
+  background-color: var(--color-bg);
+  z-index: 2;
 
   &::before {
     content: '';
@@ -19,6 +23,7 @@
     position: relative;
     top: 2rem;
     right: 3rem;
+    cursor: pointer;
   }
 
   .toggleTheme {
@@ -54,7 +59,7 @@
 
   .header_text a {
     position: relative;
-    bottom: 3rem;
+    bottom: 2.5rem;
     left: 3rem;
   }
 }

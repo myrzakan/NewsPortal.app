@@ -2,6 +2,8 @@
 .container {
   margin: 0 auto;
   max-width: 900px;
+  padding-top: 10rem;
+  padding-bottom: 2rem;
 }
 
 .content {
