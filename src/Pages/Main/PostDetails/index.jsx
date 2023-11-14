@@ -11,6 +11,7 @@ import { AuthButtonPostDetals } from './components/authButton';
 const PostDetails = () => {
   const { postId } = useParams();
   const [post, setPost] = React.useState(null);
+  const [loading, setLoading] = React.useState(true);
 
   React.useEffect(() => {
     if (!firebase.apps.length) {
@@ -23,6 +24,7 @@ const PostDetails = () => {
     postRef.on('value', snapshot => {
       const postData = snapshot.val();
       setPost(postData);
+      setLoading(false); // Set loading to false when data is loaded
     });
 
     return () => {
@@ -37,8 +39,8 @@ const PostDetails = () => {
     window.scrollTo(0, 0);
   }, []);
 
-  if (!post) {
-    return <div className="">Загрузка...</div>;
+  if (loading) {
+    return <div className={styles.loading}>Загрузка...</div>;
   }
 
   const formattedTimestamp = new Date(post.timestamp).toLocaleString();

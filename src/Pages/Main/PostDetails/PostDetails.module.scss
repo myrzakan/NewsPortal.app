@@ -22,3 +22,14 @@
   border-top: 1px solid var(--color-text);
   padding-top: 1rem;
 }
+
+// <-- loading -->
+.loading {
+  color: var(--color-text-base);
+  font-weight: 500;
+  display: flex;
+  justify-content: center;
+  margin-bottom: 26rem;
+  padding-top: 27rem;
+  font-size: clamp(1.25rem, 0.833rem + 2.08vw, 1.875rem);
+}

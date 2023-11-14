@@ -1,21 +1,32 @@
-import React, { useState, useEffect } from 'react';
+import { getDatabase, onValue, push, ref } from 'firebase/database';
+import React, { useEffect, useState } from 'react';
 import { useSelector } from 'react-redux';
+import { useToasts } from 'react-toast-notifications';
 import { app, auth } from '../../../../FirebaseConfig'; // Импорт auth из FirebaseConfig
-import { getDatabase, ref, onValue, push } from 'firebase/database';
 import styles from './authButtonCommitsStyles.module.scss';
 
 const db = getDatabase(app);
 
 const Comment = ({ comment }) => {
-  const formattedTime = new Date(comment.timestamp).toLocaleString();
+  const commentTimestamp = new Date(comment.timestamp);
+  const options = {
+    day: 'numeric',
+    month: 'long',
+    hour: 'numeric',
+    minute: 'numeric',
+    hour12: false,
+  };
+
+  const formatter = new Intl.DateTimeFormat('ru-RU', options);
+  const formattedTime = formatter.format(commentTimestamp);
 
   return (
-    <div className="border border-[#7a7777] rounded-lg p-4 my-4 w-[750px]">
-      <p className="text-[var(--color-text)] mb-2">
+    <div className={styles.review_container}>
+      <p className={styles.username_text}>
         {comment.username || comment.user || userData?.username}
       </p>
-      <p className="text-[var(--color-text-base)]">{comment.text}</p>
-      <p className="text-sm text-[var(--color-text)]">{formattedTime}</p>
+      <p className={styles.comment_text}>{comment.text}</p>
+      <p className={styles.timestamp_text}>{formattedTime}</p>
     </div>
   );
 };
@@ -28,6 +39,8 @@ const Comments = ({ postId }) => {
 
   const username = useSelector(state => state.google);
   const user = useSelector(state => state.user);
+
+  const { addToast } = useToasts();
 
   useEffect(() => {
     const commentsRef = ref(db, 'comments/' + postId);
@@ -59,7 +72,7 @@ const Comments = ({ postId }) => {
         setUserData(data);
       });
     }
-  }, []); // Зависимости пусты, чтобы эффект выполнялся только при монтировании компонента
+  }, []);
 
   const handleSubmit = e => {
     e.preventDefault();
@@ -75,35 +88,31 @@ const Comments = ({ postId }) => {
 
     push(commentsRef, newComment);
 
-    alert('sfs');
+    addToast('Отзыв добавлен 👍', {
+      appearance: 'success',
+      autoDismiss: 'true',
+    });
   };
 
   return (
     <div className={styles.comment_content}>
       <form onSubmit={handleSubmit} className="mb-4">
-        <textarea
+        <input
           placeholder="Ваш отзыв"
           value={newCommentText}
           onChange={e => setNewCommentText(e.target.value)}
-          className="border border-[#7a7777] rounded p-1 pt-1 w-full bg-[var(--color-bg)] focus:outline-none placeholder:italic"
+          className={styles.review_input}
         />
-        <button
-          type="submit"
-          className="bg-blue-500 text-white px-4 py-2 rounded mt-2"
-        >
-          Добавить отзыв
-        </button>
+        <button type="submit">Добавить отзыв</button>
       </form>
       <div className="max-h-[330px] overflow-y-auto">
-        <h3 className="text-xl font-semibold mb-2">Отзывы:</h3>
+        <h3>Отзывы:</h3>
         {hasComments ? (
           comments.map(comment => (
             <Comment key={comment.timestamp} comment={comment} />
           ))
         ) : (
-          <p className="italic text-center text-[]">
-            Отзывы к этому посту пока нет.
-          </p>
+          <p className={styles.noComments}>Отзывы к этому посту пока нет.</p>
         )}
       </div>
     </div>

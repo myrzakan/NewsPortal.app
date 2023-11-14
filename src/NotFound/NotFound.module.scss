@@ -1,0 +1,34 @@
+/* NotFound.module.scss */
+
+.notFoundContainer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+  text-align: center;
+}
+
+.notFoundText {
+  font-size: clamp(3rem, 2.333rem + 3.33vw, 4rem);
+  font-weight: bold;
+  color: var(--color-text-base);
+  margin-bottom: 10px;
+}
+
+.notFoundMessage {
+  font-size: clamp(1rem, 0.667rem + 1.67vw, 1.5rem);
+  margin-bottom: 20px;
+}
+
+.notFoundLink {
+  font-size: clamp(1rem, 0.667rem + 1.67vw, 1.5rem);
+  color: var(--color-text-base);
+  text-decoration: none;
+  font-weight: bold;
+  transition: opacity 0.3s ease-in-out;
+}
+
+.notFoundLink:hover {
+  opacity: 0.8;
+}

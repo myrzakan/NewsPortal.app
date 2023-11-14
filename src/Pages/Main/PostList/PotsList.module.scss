@@ -2,7 +2,7 @@
   margin: 0 auto;
   padding: 0 10px;
   max-width: 850px;
-  padding-top: 12rem;
+  padding-top: 10rem;
 
   img {
     display: block;
@@ -53,7 +53,9 @@
 .loading {
   display: flex;
   justify-content: center;
-  font-size: clamp(1.563rem, 1.335rem + 1.14vw, 2.188rem);
+  font-size: clamp(1.25rem, 0.833rem + 2.08vw, 1.875rem);
   margin-bottom: 26rem;
   margin-top: 10rem;
+  color: var(--color-text-base);
+  font-weight: 500;
 }

@@ -6,8 +6,8 @@ import React from 'react';
 
 import 'firebase/compat/database';
 
-import Pagination from './Components/Pagination';
 import firebaseConfig from '../../../FirebaseConfig';
+import Pagination from './Components/Pagination';
 import PostItem from './Components/PostItem';
 
 import { Category } from './Components/Category';
@@ -101,8 +101,8 @@ const PostList = () => {
   const filteredPosts = searchText
     ? posts.filter(filterPosts)
     : selectedCategory
-    ? posts.filter(post => post.category === selectedCategory)
-    : posts;
+      ? posts.filter(post => post.category === selectedCategory)
+      : posts;
 
   const indexOfLastPost = currentPage * postsPerPage;
   const indexOfFirstPost = indexOfLastPost - postsPerPage;
@@ -135,6 +135,7 @@ const PostList = () => {
         <div className={cls.loading}>Загрузка...</div>
       ) : (
         <>
+          {/* <== Post ==> */}
           <div ref={postListRef}>
             {currentPosts.length > 0 ? (
               currentPosts.map((post, index) => (
@@ -149,12 +150,14 @@ const PostList = () => {
             )}
           </div>
           {/* <== Pagination ==> */}
-          <Pagination
-            currentPage={currentPage}
-            postsPerPage={postsPerPage}
-            totalPosts={totalPosts}
-            onPageChange={handlePageChange}
-          />
+          {currentPosts.length > 0 && (
+            <Pagination
+              currentPage={currentPage}
+              postsPerPage={postsPerPage}
+              totalPosts={totalPosts}
+              onPageChange={handlePageChange}
+            />
+          )}
         </>
       )}
     </div>

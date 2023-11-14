@@ -4,7 +4,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { toggleTheme } from '../../store/slices/useThemeSlice.js';
 import styles from '../Menu.module.css';
 
-export const ToggleThemeBurgerMenu = () => {
+export const ToggleThemeBurgerMenu = ({ setShowMenu }) => {
   const dispatch = useDispatch();
   const currentTheme = useSelector(state => state.theme.currentTheme);
 
@@ -15,6 +15,7 @@ export const ToggleThemeBurgerMenu = () => {
 
   const toggleThemeHandle = () => {
     dispatch(toggleTheme());
+    setShowMenu(false);
   };
   return (
     <div onClick={toggleThemeHandle} className={styles.toggleTheme}>
