@@ -1,6 +1,6 @@
 import firebase from 'firebase/compat/app';
-import React from 'react';
 import 'firebase/compat/database';
+import React from 'react';
 import { useToasts } from 'react-toast-notifications';
 import 'react-toastify/dist/ReactToastify.css';
 

@@ -8,22 +8,22 @@ import {
   InputGroup,
   InputRightElement,
 } from '@chakra-ui/react';
+import { auth, provider } from 'FirebaseConfig';
 import {
-  getAuth,
   createUserWithEmailAndPassword,
+  getAuth,
   signInWithPopup,
 } from 'firebase/auth';
 import { getDatabase, ref, set } from 'firebase/database';
-import { auth, provider } from 'FirebaseConfig';
 import React from 'react';
 import { useForm } from 'react-hook-form';
+import { BiHide, BiShow } from 'react-icons/bi';
 import { useDispatch } from 'react-redux';
 import { Link, useNavigate } from 'react-router-dom';
 import { useToasts } from 'react-toast-notifications';
 import { setGoogleUserData } from 'store/slices/useGoogleSlice';
 import { setUser } from 'store/slices/userSlice';
 import { Forms } from '../../helpers/Forms';
-import { BiHide, BiShow } from 'react-icons/bi';
 
 export const SignUp = () => {
   const dispatch = useDispatch();

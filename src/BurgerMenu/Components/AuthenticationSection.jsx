@@ -10,7 +10,7 @@ export const AuthenticationBurgerMenu = ({ closeMenu }) => {
   return (
     <div className={styles.auth}>
       {User.isAuthenticated || Google.isAuthenticated ? (
-        <Profile />
+        <Profile closeMenu={closeMenu} />
       ) : (
         <AuthButton closeMenu={closeMenu} />
       )}

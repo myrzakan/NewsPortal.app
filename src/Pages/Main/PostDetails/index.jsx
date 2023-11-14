@@ -24,7 +24,7 @@ const PostDetails = () => {
     postRef.on('value', snapshot => {
       const postData = snapshot.val();
       setPost(postData);
-      setLoading(false); // Set loading to false when data is loaded
+      setLoading(false);
     });
 
     return () => {

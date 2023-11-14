@@ -1,10 +1,9 @@
-import { Regex } from './regex'
+import { Regex } from './regex';
 
-const required = 'Обязательное поле'
+const required = 'Обязательное поле';
 const hasNumber = value => /\d/.test(value);
 const hasUppercaseLetter = value => /[A-Z]/.test(value);
 const containsOnlyLettersAndNumbers = value => /^[a-zA-Z0-9]+$/.test(value);
-
 
 export const Rules = {
   Username: {
@@ -22,8 +21,10 @@ export const Rules = {
       message: 'Минимум 4 символа',
     },
     validate: {
-      hasUppercaseLetter: value => hasUppercaseLetter(value) || 'Имя пользователя должен содержать хотя бы одну заглавную букву',
-    }
+      hasUppercaseLetter: value =>
+        hasUppercaseLetter(value) ||
+        'Имя пользователя должен содержать хотя бы одну заглавную букву',
+    },
   },
   Email: {
     required,
@@ -32,8 +33,10 @@ export const Rules = {
       message: 'Некорректный формат почты',
     },
     validate: {
-      validFormat: value => Regex.LowercaseEmail.test(value) || 'Используйте только маленькие буквы в email',
-    }
+      validFormat: value =>
+        Regex.LowercaseEmail.test(value) ||
+        'Используйте только маленькие буквы в email',
+    },
   },
   Password: {
     required,
@@ -46,9 +49,14 @@ export const Rules = {
       message: 'Максимум 20 символов',
     },
     validate: {
-      hasNumber: value => hasNumber(value) || 'Пароль должен содержать хотя бы одну цифру',
-      hasUppercaseLetter: value => hasUppercaseLetter(value) || 'Пароль должен содержать хотя бы одну заглавную букву',
-      containsOnlyLettersAndNumbers: value => containsOnlyLettersAndNumbers(value) || 'Пароль должен содержать только буквы и цифры',
+      hasNumber: value =>
+        hasNumber(value) || 'Пароль должен содержать хотя бы одну цифру',
+      hasUppercaseLetter: value =>
+        hasUppercaseLetter(value) ||
+        'Пароль должен содержать хотя бы одну заглавную букву',
+      containsOnlyLettersAndNumbers: value =>
+        containsOnlyLettersAndNumbers(value) ||
+        'Пароль должен содержать только буквы и цифры',
     },
   },
   PasswordSignIn: {
@@ -61,6 +69,5 @@ export const Rules = {
       value: 20,
       message: 'Максимум 20 символов',
     },
-
-  }
-}
+  },
+};

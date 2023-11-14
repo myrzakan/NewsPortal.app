@@ -54,7 +54,7 @@ const BurgerMenu = () => {
       >
         <div className={styles['menu-background']}>
           {/* <-- ToggleTheme --> */}
-          <ToggleThemeBurgerMenu setShowMenu={setShowMenu} />
+          <ToggleThemeBurgerMenu closeMenu={closeMenu} />
 
           <div className={styles.content}>
             {/* <-- Link --> */}

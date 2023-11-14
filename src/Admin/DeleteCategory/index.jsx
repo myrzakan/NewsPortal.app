@@ -1,5 +1,4 @@
 // Delete Category
-import React from 'react';
 
 // <== Подключение модуля Firebase (compat/app для совместимости с Firebase v8) ==>
 import firebase from 'firebase/compat/app';

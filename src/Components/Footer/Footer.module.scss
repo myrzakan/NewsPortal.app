@@ -39,17 +39,24 @@
   }
 }
 
+.social {
+  cursor: pointer;
+}
+
 .link {
+  transition: color 0.3s ease-in-out;
   h1 {
     position: relative;
     // right: 5.6rem;
   }
 }
 
-.link li:hover {
+.link li:hover,
+.social li:hover {
   color: var(--color-text-base);
   text-decoration: underline;
   transition: 0.1s;
+  transition: color 0.1s ease-in-out;
 }
 
 .about {
@@ -89,7 +96,6 @@
 }
 
 @media screen and (max-width: 1312px) {
-  /* Apply two-column layout at or below 1280px */
   .content_footer {
     display: grid;
     grid-template-columns: 1fr 1fr;

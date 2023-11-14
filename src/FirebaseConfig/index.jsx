@@ -1,11 +1,11 @@
-import firebase from 'firebase/compat/app';
-import 'firebase/compat/database';
-import { initializeApp } from 'firebase/app';
+// <-- Config Firebase -->
 import { getAnalytics } from 'firebase/analytics';
+import { initializeApp } from 'firebase/app';
 import { getAuth, GoogleAuthProvider } from 'firebase/auth';
+import 'firebase/compat/database';
 
 const firebaseConfig = {
-  // Настройки конфигурации Firebase
+  // <-- Настройки конфигурации Firebase -->
   apiKey: 'AIzaSyCxHT4bGzaKIl8DYK-qwWPuKJAPqlMgaOg',
   authDomain: 'press-e5741.firebaseapp.com',
   databaseURL:
@@ -14,7 +14,6 @@ const firebaseConfig = {
   storageBucket: 'press-e5741.appspot.com',
   messagingSenderId: '325042443581',
   appId: '1:325042443581:web:96832ff63420bda07a6154',
-  // ...
 };
 
 export const app = initializeApp(firebaseConfig);

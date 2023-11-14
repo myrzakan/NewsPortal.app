@@ -1,11 +1,11 @@
 import firebase from 'firebase/compat/app';
-import React, { useState } from 'react';
 import 'firebase/compat/database';
 import 'firebase/compat/storage';
-import { toast } from 'react-toastify';
-import 'react-toastify/dist/ReactToastify.css';
+import React, { useState } from 'react';
 import ReactQuill from 'react-quill';
 import 'react-quill/dist/quill.snow.css';
+import { toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 import './CreatePost.css';
 

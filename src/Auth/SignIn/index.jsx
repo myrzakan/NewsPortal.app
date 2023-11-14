@@ -76,7 +76,7 @@ export const SignIn = () => {
           autoDismiss: 'true',
         });
         navigate('/');
-        console.log(user);
+        // console.log(user);
       })
       .catch(error => {
         console.error('Error signing in with Google:', error);

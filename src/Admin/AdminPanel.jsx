@@ -1,12 +1,9 @@
-import React from 'react';
 import firebase from 'firebase/compat/app';
 import 'firebase/compat/database';
-import CreatePostForm from './CreatePosts';
-import CreateCategory from './CreateCategory';
-import DeletePosts from './DeletePosts';
-import DeleteCategory from './DeleteCategory';
+import React from 'react';
 import firebaseConfig from '../FirebaseConfig';
-import logo from '../Logo/Logo_blue.png';
+import CreatePostForm from './CreatePosts';
+import DeletePosts from './DeletePosts';
 
 if (!firebase.apps.length) {
   firebase.initializeApp(firebaseConfig);

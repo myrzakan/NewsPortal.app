@@ -7,14 +7,12 @@ import { useToasts } from 'react-toast-notifications';
 import { clearGoogleUserData } from 'store/slices/useGoogleSlice';
 import { removeUser } from 'store/slices/userSlice';
 import styles from '../Menu.module.css';
-import { useNavigate } from 'react-router-dom';
 
-export const Profile = () => {
+export const Profile = ({ closeMenu }) => {
   const dispatch = useDispatch();
   const { addToast } = useToasts();
   const user = useSelector(state => state.user);
   const google = useSelector(state => state.google);
-  const navigate = useNavigate();
 
   // console.log(user);
   // console.log(google);
@@ -48,7 +46,7 @@ export const Profile = () => {
       },
     );
 
-    navigate('/');
+    closeMenu();
 
     localStorage.removeItem('user');
     localStorage.removeItem('google');

@@ -15,9 +15,9 @@ import Policy from './Pages/Policy';
 import TermsOfUse from './Pages/TermsOfUse';
 
 import BurgerMenu from 'BurgerMenu';
+import Footer from 'Components/Footer/Index';
 import Header from 'Components/Header';
 import './styledToast/index.css';
-import Footer from 'Components/Footer/Index';
 
 function App() {
   return (
