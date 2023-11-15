@@ -1,14 +1,14 @@
+// ? <-- SignIn -->
 import {
   Button,
-  Card,
   FormControl,
   FormErrorMessage,
-  FormLabel,
   Input,
   InputGroup,
   InputRightElement,
 } from '@chakra-ui/react';
 import { auth, provider } from 'FirebaseConfig';
+import 'boxicons';
 import {
   getAuth,
   signInWithEmailAndPassword,
@@ -27,7 +27,7 @@ import { setUser } from 'store/slices/userSlice';
 import { app } from '../../FirebaseConfig';
 import { Forms } from '../../helpers/Forms';
 
-import '../../styledToast/index.css';
+import styles from './SignIn.module.scss';
 
 export const SignIn = () => {
   const navigate = useNavigate();
@@ -35,6 +35,7 @@ export const SignIn = () => {
   const [isLoading, setIsLoading] = React.useState(false);
   const [userData, setUserData] = React.useState(null);
 
+  // ? <-- React-Hook-Form -->
   const {
     handleSubmit,
     register,
@@ -42,11 +43,13 @@ export const SignIn = () => {
     reset,
   } = useForm();
 
+  // ? <-- Состояние для отображения или скрытия пароля -->
   const [showPass, setShowPass] = React.useState(false);
   const tooglePassword = () => setShowPass(prev => !prev);
 
   const { addToast } = useToasts();
 
+  // ? <-- Запрос данных о пользователе из базы данных Firebase -->
   React.useEffect(() => {
     const database = getDatabase();
     const currentUser = auth.currentUser;
@@ -60,6 +63,7 @@ export const SignIn = () => {
     }
   }, []);
 
+  // ? <-- Обработчик входа через Google -->
   const handleLoginGoogle = () => {
     signInWithPopup(auth, provider)
       .then(result => {
@@ -87,6 +91,7 @@ export const SignIn = () => {
       });
   };
 
+  //? <-- Обработчик входа через форму -->
   const handleLogin = async ({ email, password }) => {
     setIsLoading(true);
     try {
@@ -98,17 +103,16 @@ export const SignIn = () => {
       );
       const user = userCredential.user;
 
-      // Получаем дополнительные данные о пользователе из Firebase, включая username
+      //? <-- Получае дополнительные данные о пользователе из Firebase -->
       const database = getDatabase();
       const userRef = ref(database, `users/${user.uid}`);
       const snapshot = await get(userRef);
       const userData = snapshot.val();
 
-      // Добавляем данные о пользователе в стейт
+      localStorage.setItem('userData', JSON.stringify(userData.username));
+
       setUserData(userData);
 
-      // Обычная обработка входа пользователя
-      // ...
       dispatch(
         setUser({
           email: user.email,
@@ -126,7 +130,7 @@ export const SignIn = () => {
       });
       localStorage.setItem('user', JSON.stringify(user));
     } catch (error) {
-      console.error(error);
+      // ? <-- Обработка различных ошибок входа -->
       if (error.code === 'auth/wrong-password') {
         addToast('Ошибка: Неверный пароль', {
           appearance: 'error',
@@ -166,94 +170,124 @@ export const SignIn = () => {
   }, []);
 
   return (
-    <div className="flex items-center justify-center relative w-full min-h-screen max-x4:w-[100%] max-x5:w-[60rem]">
-      <div className="w-1/3">
-        <h1 className="mb-3 text-4xl font-medium text-center max-x3:text-[22px]">
-          Авторизация
-        </h1>
-        <Card className="p-5" bg="[var(--color-bg)]">
-          <form
-            onSubmit={handleSubmit(handleLogin)}
-            className="bg-[var(--color-bg)]"
-          >
-            <FormControl isInvalid={errors.email} className="mb-3 ">
-              <FormLabel>Email</FormLabel>
+    <div className={styles.signIn_container}>
+      <h1>Авторизация</h1>
+      <div className={styles.signIn_content}>
+        <form onSubmit={handleSubmit(handleLogin)}>
+          {/*  <== Input Email ==> */}
+          <FormControl isInvalid={errors.email}>
+            <label>Email</label>
+            <InputGroup className={styles.inputGroupEmail}>
               <Input
                 type="email"
                 size="lg"
                 placeholder="example@example.com"
+                borderColor="#777"
+                _focus={{
+                  borderColor: 'var(--color-text-base)',
+                  boxShadow: '0 0 0 2px rgba(52, 152, 219, 0.2)',
+                }}
+                _hover={{
+                  borderColor: 'var(--color-text-base)',
+                }}
                 {...register('email', Forms.Rules.Email)}
-                className="border"
               />
-              <FormErrorMessage>
+              <FormErrorMessage
+                className={styles.formError}
+                fontWeight="semibold"
+                color="red.500"
+              >
                 {errors.email && errors.email.message}
               </FormErrorMessage>
-            </FormControl>
+            </InputGroup>
+          </FormControl>
 
-            <FormControl isInvalid={errors.password} className="mb-3">
-              <FormLabel>Пароль</FormLabel>
-              <InputGroup>
-                <Input
-                  type={showPass ? 'text' : 'password'}
-                  placeholder="********"
-                  size="lg"
-                  {...register('password', Forms.Rules.PasswordSignIn)}
-                />
-                <InputRightElement className="!w-12">
-                  <Button
-                    size=""
-                    h=""
-                    bg="[var(--color-bg)]"
-                    onClick={tooglePassword}
-                  >
-                    {showPass ? (
-                      <BiHide className="text-[var(--color-text-base)] bg-[var(--color-bg)] text-[20px]" />
-                    ) : (
-                      <BiShow className="text-[var(--color-text-base)] bg-[var(--color-bg)] text-[20px]" />
-                    )}
-                  </Button>
-                </InputRightElement>
-              </InputGroup>
-              <FormErrorMessage>
-                {errors.password && errors.password.message}
-              </FormErrorMessage>
-            </FormControl>
-
-            <Button
-              type="submit"
-              size="lg"
-              bg="var(--color-text-base)"
-              disabled={isLoading}
-              className={`mt-3 w-[100%] hover:bg-[red] ${
-                isLoading ? 'opacity-60 cursor-not-allowed' : ''
-              }`}
+          {/* <== Input Password ==> */}
+          <FormControl isInvalid={errors.password}>
+            <label>Пароль</label>
+            <InputGroup>
+              <Input
+                type={showPass ? 'text' : 'password'}
+                placeholder="********"
+                size="lg"
+                borderColor="#777"
+                _focus={{
+                  borderColor: 'var(--color-text-base)',
+                  boxShadow: '0 0 0 2px rgba(52, 152, 219, 0.2)',
+                }}
+                _hover={{
+                  borderColor: 'var(--color-text-base)',
+                }}
+                {...register('password', Forms.Rules.PasswordSignIn)}
+              />
+              <InputRightElement>
+                <Button
+                  size=""
+                  h=""
+                  bg="[var(--color-bg)]"
+                  _hover={{
+                    bg: 'var(--color-bg)',
+                  }}
+                  onClick={tooglePassword}
+                >
+                  {showPass ? (
+                    <BiHide className={styles.bi} />
+                  ) : (
+                    <BiShow className={styles.bi} />
+                  )}
+                </Button>
+              </InputRightElement>
+            </InputGroup>
+            <FormErrorMessage
+              className={styles.formError}
+              fontWeight="semibold"
+              color="red.500"
             >
-              {isLoading ? 'Войти...' : 'Войти'}
-            </Button>
+              {errors.password && errors.password.message}
+            </FormErrorMessage>
+          </FormControl>
 
-            <p className="text-center my-2 text-[#7a7777]">или</p>
+          {/* <== Button Login ==> */}
+          <Button
+            type="submit"
+            bg="var(--color-text-base)"
+            disabled={isLoading}
+            className={`mt-3  ${
+              isLoading ? 'opacity-60 cursor-not-allowed' : ''
+            }`}
+            _hover={{
+              opacity: 0.6,
+            }}
+          >
+            {isLoading ? 'Войти...' : 'Войти'}
+          </Button>
 
-            <Button
-              onClick={handleLoginGoogle}
-              className="w-full"
-              bg="var(--color-text-base)"
+          <p className="text-center my-2 text-[#7a7777]">или</p>
+
+          {/* <== Button Gogle ==> */}
+          <Button
+            onClick={handleLoginGoogle}
+            bg="var(--color-text-base)"
+            _hover={{
+              opacity: 0.6,
+            }}
+          >
+            Google
+          </Button>
+        </form>
+
+        {/* <== Link SignUp ==> */}
+        <div className={styles.link}>
+          <p>
+            Нет аккаунта ?{' '}
+            <Link
+              className="text-[var(--color-text-base)] hover:underline"
+              to="../SignUp"
             >
-              Google
-            </Button>
-          </form>
-
-          <div className="mt-3 text-center">
-            <p>
-              Нет аккаунта ?{' '}
-              <Link
-                className="text-[var(--color-text-base)] hover:underline"
-                to="../SignUp"
-              >
-                Зарегистрироваться
-              </Link>
-            </p>
-          </div>
-        </Card>
+              Зарегистрироваться
+            </Link>
+          </p>
+        </div>
       </div>
     </div>
   );

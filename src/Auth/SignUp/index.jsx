@@ -1,6 +1,6 @@
+// ? <-- SignUp -->
 import {
   Button,
-  Card,
   FormControl,
   FormErrorMessage,
   FormLabel,
@@ -24,6 +24,7 @@ import { useToasts } from 'react-toast-notifications';
 import { setGoogleUserData } from 'store/slices/useGoogleSlice';
 import { setUser } from 'store/slices/userSlice';
 import { Forms } from '../../helpers/Forms';
+import styles from './SignUp.module.scss';
 
 export const SignUp = () => {
   const dispatch = useDispatch();
@@ -33,9 +34,11 @@ export const SignUp = () => {
   const [showConfirmPass, setConfirmPass] = React.useState(false);
   const [isLoading, setIsLoading] = React.useState(false);
 
+  // ? <-- Состояние для отображения или скрытия пароля -->
   const tooglePassword = () => setShowPass(prev => !prev);
   const toogleConfirmPassword = () => setConfirmPass(prev => !prev);
 
+  // ? <-- React-Hook-Form -->
   const {
     register,
     handleSubmit,
@@ -45,6 +48,7 @@ export const SignUp = () => {
 
   const navigate = useNavigate();
 
+  // ? <-- Обработчик входа через Google -->
   const handleLoginGoogle = () => {
     signInWithPopup(auth, provider)
       .then(result => {
@@ -71,6 +75,7 @@ export const SignUp = () => {
       });
   };
 
+  //? <-- Обработчик входа через форму -->
   const handleRegister = async data => {
     const { email, password, username } = data;
     const auth = getAuth();
@@ -107,6 +112,7 @@ export const SignUp = () => {
         autoDismiss: 'true',
       });
     } catch (error) {
+      // ? <-- Обработка различных ошибок входа -->
       addToast('Не удалось создать аккаунт', {
         appearance: 'error',
         autoDismiss: 'true',
@@ -143,144 +149,200 @@ export const SignUp = () => {
   }, []);
 
   return (
-    <div className="flex items-center justify-center w-full min-h-screen bg-[var(--color-bg)] ">
-      <div className="w-1/3">
-        <h1 className="mb-3 text-4xl font-medium text-center">Регистрация</h1>
+    <div className={styles.signUp_container}>
+      <h1>Регистрация</h1>
 
-        <Card className="p-5 " bg="[var(--color-bg)]">
-          <form onSubmit={handleSubmit(handleFormSubmit)}>
-            <FormControl
-              className="mb-3 bg-[var(--color-bg)] transition"
-              isInvalid={errors.username}
-            >
-              <FormLabel className="bg-[var(--color-bg)]">
-                Имя пользователя
-              </FormLabel>
-              <Input
-                placeholder="name"
-                size="lg"
-                defaultValue={name}
-                onChange={e => setName(e.target.value)}
-                {...register('username', Forms.Rules.Username)}
-              />
-              <FormErrorMessage>
-                {errors.username && errors.username.message}
-              </FormErrorMessage>
-            </FormControl>
-
-            <FormControl isInvalid={errors.email} className="mb-3">
-              <FormLabel>Email</FormLabel>
-              <Input
-                type="email"
-                size="lg"
-                placeholder="user@user.com"
-                {...register('email', Forms.Rules.Email)}
-              />
-              <FormErrorMessage>
-                {errors.email && errors.email.message}
-              </FormErrorMessage>
-            </FormControl>
-
-            <FormControl isInvalid={errors.password} className="mb-3">
-              <FormLabel>Пароль</FormLabel>
-              <InputGroup>
-                <Input
-                  type={showPass ? 'text' : 'password'}
-                  placeholder="********"
-                  size="lg"
-                  {...register('password', Forms.Rules.Password)}
-                  className=""
-                />
-                <InputRightElement>
-                  <Button
-                    size=""
-                    h=""
-                    bg="[var(--color-bg)]"
-                    onClick={tooglePassword}
-                  >
-                    {showPass ? (
-                      <BiHide className="text-[var(--color-text-base)] bg-[var(--color-bg)] text-[20px]" />
-                    ) : (
-                      <BiShow className="text-[var(--color-text-base)] bg-[var(--color-bg)] text-[20px]" />
-                    )}
-                  </Button>
-                </InputRightElement>
-              </InputGroup>
-              <FormErrorMessage>
-                {errors.password && errors.password.message}
-              </FormErrorMessage>
-            </FormControl>
-
-            <FormControl isInvalid={errors.passwordConfirm} className="mb-3">
-              <FormLabel>Подтверждение пароли</FormLabel>
-              <InputGroup>
-                <Input
-                  type={showConfirmPass ? 'text' : 'password'}
-                  placeholder="********"
-                  size="lg"
-                  {...register('passwordConfirm', {
-                    ...Forms.Rules.Password,
-                    validate: {
-                      match: value =>
-                        getValues().password === value || 'Пароли не совпадают',
-                    },
-                  })}
-                />
-                <InputRightElement className="">
-                  <Button
-                    size=""
-                    h=""
-                    bg="[var(--color-bg)]"
-                    onClick={toogleConfirmPassword}
-                  >
-                    {showConfirmPass ? (
-                      <BiHide className="text-[var(--color-text-base)] bg-[var(--color-bg)] text-[20px]" />
-                    ) : (
-                      <BiShow className="text-[var(--color-text-base)] bg-[var(--color-bg)] text-[20px]" />
-                    )}
-                  </Button>
-                </InputRightElement>
-              </InputGroup>
-              <FormErrorMessage>
-                {errors.passwordConfirm && errors.passwordConfirm.message}
-              </FormErrorMessage>
-            </FormControl>
-
-            <Button
-              type="submit"
+      <div className={styles.signUp_content}>
+        <form onSubmit={handleSubmit(handleFormSubmit)}>
+          {/* <== Input Name ==> */}
+          <FormControl
+            className="mb-3 bg-[var(--color-bg)] transition"
+            isInvalid={errors.username}
+          >
+            <label>Имя пользователя</label>
+            <Input
+              placeholder="name"
               size="lg"
-              bg="var(--color-text-base)"
-              disabled={isLoading}
-              className={`mt-3 w-full ${
-                isLoading ? 'opacity-60 cursor-not-allowed' : ''
-              }`}
+              defaultValue={name}
+              onChange={e => setName(e.target.value)}
+              _focus={{
+                borderColor: 'var(--color-text-base)',
+                boxShadow: '0 0 0 2px rgba(52, 152, 219, 0.2)',
+              }}
+              _hover={{
+                borderColor: 'var(--color-text-base)',
+              }}
+              {...register('username', Forms.Rules.Username)}
+            />
+            <FormErrorMessage
+              className={styles.formError}
+              fontWeight="semibold"
+              color="red.500"
             >
-              {isLoading ? 'Регистрация...' : 'Регистрация'}
-            </Button>
+              {errors.username && errors.username.message}
+            </FormErrorMessage>
+          </FormControl>
 
-            <p className="text-center my-2 text-[#7a7777]">или</p>
-
-            <Button
-              onClick={handleLoginGoogle}
-              className="w-full"
-              bg="var(--color-text-base)"
+          {/* <== Input Email ==> */}
+          <FormControl isInvalid={errors.email} className="mb-3">
+            <FormLabel>Email</FormLabel>
+            <Input
+              type="email"
+              size="lg"
+              placeholder="user@user.com"
+              borderColor="#777"
+              _focus={{
+                borderColor: 'var(--color-text-base)',
+                boxShadow: '0 0 0 2px rgba(52, 152, 219, 0.2)',
+              }}
+              _hover={{
+                borderColor: 'var(--color-text-base)',
+              }}
+              {...register('email', Forms.Rules.Email)}
+            />
+            <FormErrorMessage
+              className={styles.formError}
+              fontWeight="semibold"
+              color="red.500"
             >
-              Google
-            </Button>
+              {errors.email && errors.email.message}
+            </FormErrorMessage>
+          </FormControl>
 
-            <div className="mt-3 text-center">
-              <p>
-                Есть аккаунт?{' '}
-                <Link
-                  className="text-[var(--color-text-base)] hover:underline"
-                  to="../SignIn"
+          {/* <== Input Password ==> */}
+          <FormControl isInvalid={errors.password} className="mb-3">
+            <FormLabel>Пароль</FormLabel>
+            <InputGroup>
+              <Input
+                type={showPass ? 'text' : 'password'}
+                placeholder="********"
+                size="lg"
+                borderColor="#777"
+                _focus={{
+                  borderColor: 'var(--color-text-base)',
+                  boxShadow: '0 0 0 2px rgba(52, 152, 219, 0.2)',
+                }}
+                _hover={{
+                  borderColor: 'var(--color-text-base)',
+                }}
+                {...register('password', Forms.Rules.Password)}
+                className=""
+              />
+              <InputRightElement>
+                <Button
+                  size=""
+                  h=""
+                  bg="[var(--color-bg)]"
+                  _hover={{
+                    bg: 'var(--color-bg)',
+                  }}
+                  onClick={tooglePassword}
                 >
-                  Авторизуйтесь
-                </Link>
-              </p>
-            </div>
-          </form>
-        </Card>
+                  {showPass ? (
+                    <BiHide className={styles.bi} />
+                  ) : (
+                    <BiShow className={styles.bi} />
+                  )}
+                </Button>
+              </InputRightElement>
+            </InputGroup>
+            <FormErrorMessage
+              className={styles.formError}
+              fontWeight="semibold"
+              color="red.500"
+            >
+              {errors.password && errors.password.message}
+            </FormErrorMessage>
+          </FormControl>
+
+          {/* <== Input Password Confirm ==> */}
+          <FormControl isInvalid={errors.passwordConfirm} className="mb-3">
+            <FormLabel>Подтверждение пароли</FormLabel>
+            <InputGroup>
+              <Input
+                type={showConfirmPass ? 'text' : 'password'}
+                placeholder="********"
+                size="lg"
+                borderColor="#777"
+                _focus={{
+                  borderColor: 'var(--color-text-base)',
+                  boxShadow: '0 0 0 2px rgba(52, 152, 219, 0.2)',
+                }}
+                _hover={{
+                  borderColor: 'var(--color-text-base)',
+                }}
+                {...register('passwordConfirm', {
+                  ...Forms.Rules.Password,
+                  validate: {
+                    match: value =>
+                      getValues().password === value || 'Пароли не совпадают',
+                  },
+                })}
+              />
+              <InputRightElement className="">
+                <Button
+                  size=""
+                  h=""
+                  bg="[var(--color-bg)]"
+                  _hover={{
+                    bg: 'var(--color-bg)',
+                  }}
+                  onClick={toogleConfirmPassword}
+                >
+                  {showConfirmPass ? (
+                    <BiHide className={styles.bi} />
+                  ) : (
+                    <BiShow className={styles.bi} />
+                  )}
+                </Button>
+              </InputRightElement>
+            </InputGroup>
+            <FormErrorMessage
+              className={styles.formError}
+              fontWeight="semibold"
+              color="red.500"
+            >
+              {errors.passwordConfirm && errors.passwordConfirm.message}
+            </FormErrorMessage>
+          </FormControl>
+
+          {/* <== Button SignUp ==> */}
+          <Button
+            type="submit"
+            size="lg"
+            bg="var(--color-text-base)"
+            disabled={isLoading}
+            className={`mt-3 w-full ${
+              isLoading ? 'opacity-60 cursor-not-allowed' : ''
+            }`}
+          >
+            {isLoading ? 'Регистрация...' : 'Регистрация'}
+          </Button>
+
+          <p className="text-center my-2 text-[#7a7777]">или</p>
+
+          {/* <== Button SignUp Google ==> */}
+          <Button
+            onClick={handleLoginGoogle}
+            className="w-full"
+            bg="var(--color-text-base)"
+          >
+            Google
+          </Button>
+
+          {/* <== Link SignIn ==> */}
+          <div className={styles.link}>
+            <p>
+              Есть аккаунт?{' '}
+              <Link
+                className="text-[var(--color-text-base)] hover:underline"
+                to="../SignIn"
+              >
+                Авторизуйтесь
+              </Link>
+            </p>
+          </div>
+        </form>
       </div>
     </div>
   );
