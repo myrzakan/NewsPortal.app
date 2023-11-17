@@ -17,13 +17,11 @@ const Header = () => {
   return (
     <div className={cls.headerContent}>
       <ToggleTheme />
-
       <div className={cls.header_text}>
         <Link to="/" onClick={scrollToTop}>
           News Line
         </Link>
       </div>
-
       <AuthenticationSection />
     </div>
   );

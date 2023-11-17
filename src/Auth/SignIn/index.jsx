@@ -101,7 +101,12 @@ export const SignIn = () => {
         email,
         password,
       );
+
       const user = userCredential.user;
+
+      if (email === 'admin@gmail.com' && password === 'admin2004') {
+        navigate('/AdminPanel');
+      }
 
       //? <-- Получае дополнительные данные о пользователе из Firebase -->
       const database = getDatabase();
@@ -224,9 +229,9 @@ export const SignIn = () => {
                 <Button
                   size=""
                   h=""
-                  bg="[var(--color-bg)]"
+                  bg="transparent"
                   _hover={{
-                    bg: 'var(--color-bg)',
+                    bg: 'transparent',
                   }}
                   onClick={tooglePassword}
                 >

@@ -42,7 +42,8 @@
   // width: 30rem;
   padding: 1rem;
   transition-duration: var(--transition-duration);
-  border: 1px solid #777;
+  box-shadow: var(--shadow);
+  // border: 1px solid #777;
   border-radius: 1rem;
   margin: 0 10px;
 
@@ -53,11 +54,11 @@
 
 .bi {
   color: var(--color-text-base);
-  background-color: var(--color-bg);
+  // background-color: var(--color-bg);
   font-size: 20px;
 
   &:hover {
-    background-color: var(--color-bg);
+    background-color: transparent;
   }
 }
 

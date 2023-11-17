@@ -165,6 +165,7 @@ export const SignUp = () => {
               size="lg"
               defaultValue={name}
               onChange={e => setName(e.target.value)}
+              borderColor="#777"
               _focus={{
                 borderColor: 'var(--color-text-base)',
                 boxShadow: '0 0 0 2px rgba(52, 152, 219, 0.2)',
@@ -232,9 +233,9 @@ export const SignUp = () => {
                 <Button
                   size=""
                   h=""
-                  bg="[var(--color-bg)]"
+                  bg="transparent"
                   _hover={{
-                    bg: 'var(--color-bg)',
+                    bg: 'transparent',
                   }}
                   onClick={tooglePassword}
                 >
@@ -283,9 +284,9 @@ export const SignUp = () => {
                 <Button
                   size=""
                   h=""
-                  bg="[var(--color-bg)]"
+                  bg="transparent"
                   _hover={{
-                    bg: 'var(--color-bg)',
+                    bg: 'transparent',
                   }}
                   onClick={toogleConfirmPassword}
                 >
@@ -309,9 +310,12 @@ export const SignUp = () => {
           {/* <== Button SignUp ==> */}
           <Button
             type="submit"
-            size="lg"
+            // size="lg"
             bg="var(--color-text-base)"
             disabled={isLoading}
+            _hover={{
+              opacity: 0.6,
+            }}
             className={`mt-3 w-full ${
               isLoading ? 'opacity-60 cursor-not-allowed' : ''
             }`}
@@ -325,6 +329,9 @@ export const SignUp = () => {
           <Button
             onClick={handleLoginGoogle}
             className="w-full"
+            _hover={{
+              opacity: 0.6,
+            }}
             bg="var(--color-text-base)"
           >
             Google

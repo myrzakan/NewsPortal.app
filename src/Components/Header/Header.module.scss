@@ -20,9 +20,11 @@
   .header_text {
     font-size: clamp(1.875rem, 1.319rem + 2.78vw, 2.813rem);
     color: var(--color-text-base);
-    position: relative;
-    top: 2rem;
-    right: 3rem;
+    text-align: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transform: translateX(-30px);
     cursor: pointer;
   }
 
@@ -57,9 +59,11 @@
     align-items: center;
   }
 
-  .header_text a {
-    position: relative;
-    bottom: 2.5rem;
-    left: 3rem;
+  .header_text {
+    // display: flex;
+    transform: translateY(-40px);
+    // justify-content: center;
+    // align-items: center;
+    margin-left: 60px;
   }
 }
