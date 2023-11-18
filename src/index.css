@@ -10,6 +10,8 @@ a {
 
 * {
   font-family: 'Raleway', sans-serif;
+  margin: 0;
+  padding: 0;
 }
 
 
@@ -17,10 +19,15 @@ a {
   background-color: var(--color-bg);
   transition-duration: 0.5s;
   list-style: none;
+  width: 100%;
+}
+
+body {
+  width: 100%;
 }
 
 body[data-theme='dark'] {
-  --color-text: #FEFEFA;  
+  --color-text: #FEFEFA;
   --color-text-base: #29AB87;
   --color-bg: #333;
   --color-bg-base: #555555;
@@ -37,6 +44,7 @@ body[data-theme='light'] {
   --color-bg-base: #F5F5F5;
   --transition-duration: 0.8s;
 
-  --shadow: 1px 2px 10px 6px rgba(34, 60, 80, 0.2);; 
-  
+  --shadow: 1px 2px 10px 6px rgba(34, 60, 80, 0.2);
+  ;
+
 }
