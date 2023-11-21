@@ -1,20 +1,22 @@
 import firebase from 'firebase/compat/app';
 import 'firebase/compat/database';
 import 'firebase/compat/storage';
-import React, { useState } from 'react';
+import React from 'react';
 import ReactQuill from 'react-quill';
 import 'react-quill/dist/quill.snow.css';
-import { toast } from 'react-toastify';
-import 'react-toastify/dist/ReactToastify.css';
+import { useToasts } from 'react-toast-notifications';
 
 import './CreatePost.css';
 
 const CreatePostForm = ({ categories }) => {
-  const [title, setTitle] = useState('');
-  const [content, setContent] = useState('');
-  const [image, setImage] = useState(null);
-  const [category, setCategory] = useState('');
+  const [title, setTitle] = React.useState('');
+  const [content, setContent] = React.useState('');
+  const [image, setImage] = React.useState(null);
+  const [category, setCategory] = React.useState('');
   const [isLoading, setIsLoading] = React.useState(false);
+  const [selectedFile, setSelectedFile] = React.useState(null);
+
+  const { addToast } = useToasts();
 
   const handleTitleChange = event => {
     setTitle(event.target.value);
@@ -25,8 +27,17 @@ const CreatePostForm = ({ categories }) => {
   };
 
   const handleImageChange = event => {
-    if (event.target.files[0]) {
+    // if (event.target.files[0]) {
+    //   setImage(event.target.files[0]);
+    // }
+
+    const file = event.target.files[0];
+
+    if (file) {
+      setSelectedFile(file);
       setImage(event.target.files[0]);
+    } else {
+      setSelectedFile(null);
     }
   };
 
@@ -68,12 +79,17 @@ const CreatePostForm = ({ categories }) => {
               setCategory('');
               setIsLoading(false);
               document.getElementById('image').value = null;
-              toast.success('Post successfully created', {
-                position: 'top-center',
+              addToast(`Пост успешно создан`, {
+                appearance: 'success',
+                autoDismiss: 'true',
               });
             })
             .catch(error => {
               console.log(error);
+              addToast(`Ошибка при создании поста`, {
+                appearance: 'error',
+                autoDismiss: 'true',
+              });
               setIsLoading(false);
             });
         })
@@ -82,90 +98,99 @@ const CreatePostForm = ({ categories }) => {
           setIsLoading(false);
         });
     } else {
-      toast.error('Please select an image', {
-        position: 'top-center',
+      addToast(`Пожалуйста, выберите изображение`, {
+        appearance: 'error',
+        autoDismiss: 'true',
       });
       setIsLoading(false);
     }
   };
 
   return (
-    <div className=" max-h-[100rem] h-[50rem]  pt-[50px]">
-      <form onSubmit={handleSubmit} className="w-[700px]">
-        {/* <======================== Заголовок поста ==========================>*/}
-        <div className="flex justify-center">
-          <input
-            type="text"
-            id="title"
-            value={title}
-            onChange={handleTitleChange}
-            placeholder="Заголовок поста"
-            className="relative left-[595px] mt-[100px] w-[700px] pl-2  h-10
-            bg-[var(--color-bg)] border border-[#7a7777]
-            rounded-lg focus:outline-none placeholder:italic "
-          />
-        </div>
+    <div className="container">
+      <form onSubmit={handleSubmit} className="">
+        {/* <== Заголовок поста ==>*/}
+        <input
+          type="text"
+          id="title"
+          value={title}
+          onChange={handleTitleChange}
+          placeholder="Заголовок поста"
+          className="post_title"
+        />
 
-        {/* <=========================== Содержание поста ==========================>*/}
-        <div className="flex  mt-3 ml-[265px] w-[700px] relative left-[20.6rem]">
+        {/* <== Содержание поста ==>*/}
+        <div>
           <ReactQuill
             value={content}
             modules={{
               toolbar: [
                 ['bold', 'italic', 'underline', 'strike'],
                 [{ list: 'ordered' }, { list: 'bullet' }],
-                ['blockquote', 'code-block'],
-                [{ header: [1, 2, 3, 4, 5, 6, false] }],
-                [{ color: [] }, { background: [] }],
-                [{ font: [] }],
+                // ['blockquote', 'code-block'],
+                // [{ header: [1, 2, 3, 4, 5, 6, false] }],
+                [{ background: ['var(--color-text-base)'] }],
+                // [{ font: [] }],
                 [{ align: [] }],
-                ['clean'],
+                // ['clean'],
               ],
             }}
             onChange={handleContentChange}
             placeholder="Содержание поста"
-            className="w-[700px] h-[18rem] custom-editor"
+            className="custom-editor"
           />
         </div>
 
-        {/* <=================================== Выбор категории поста ============================?*/}
-        <div className="relative left-[37.2rem] top-[5rem]">
-          <select
-            id="category"
-            value={category}
-            onChange={handleCategoryChange}
-            className="bg-[var(--color-bg)] border border-[#7a7777] p-2 rounded-lg"
-          >
-            <option value="" className="">
-              Select a category
-            </option>
-            {categories.map(category => (
-              <option key={category.id} value={category.name}>
-                {category.name}
+        <div className="content flex justify-between items-center mt-[4rem] mx:flex-col-reverse ml:mt-[5rem]">
+          {/* <== Выбор категории поста ==> */}
+          <div>
+            <select
+              id="category"
+              value={category}
+              onChange={handleCategoryChange}
+              className="post_select"
+            >
+              {/* bg-[var(--color-bg)] border border-[#7a7777] p-2 rounded-lg */}
+              <option value="" className="">
+                Select a category
               </option>
-            ))}
-          </select>
+              {categories.map(category => (
+                <option
+                  className="select_option"
+                  key={category.id}
+                  value={category.name}
+                >
+                  {category.name}
+                </option>
+              ))}
+            </select>
+          </div>
+
+          {/* <== Картинка поста ==> */}
+          <div className=" mx:mb-3 mx:mt-2 ml:mt-4">
+            <label
+              htmlFor="image"
+              className=" cursor-pointer bg-[var(--color-text-base)] hover:opacity-[0.7] text-white font-bold py-2 px-4 rounded-[8px] transition-all"
+            >
+              {selectedFile ? 'Загружено' : 'Загрузить изображение'}
+            </label>
+            <input
+              type="file"
+              id="image"
+              onChange={handleImageChange}
+              className="hidden"
+            />
+          </div>
         </div>
 
-        {/* <======================================== Картинка поста ===========================> */}
-        <div className="relative left-[65rem] top-[3rem] w-[100px]">
-          <input
-            type="file"
-            id="image"
-            onChange={handleImageChange}
-            className="w-[230px]"
-          />
-        </div>
-
-        {/* <============================= Кнопка создания поста ============================>*/}
+        {/* <== Кнопка создания поста ==>*/}
         <button
           type="submit"
           disabled={isLoading}
-          className={`mt-[70px] w-[700px] p-3 relative left-[37.2rem]
-          bg-[var(--color-text-base)] rounded-lg hover:opacity-[0.6] 
+          className={`p-2 mt-2 w-full bg-[var(--color-text-base)] rounded-[8px] text-[var(--text-base)] font-bold hover:opacity-[0.8]
           ${isLoading ? 'opacity-60 cursor-not-allowed' : ''}`}
         >
-          {isLoading ? 'Creating...' : 'Create Post'}
+          {isLoading ? 'Создание...' : 'Создать пость'}
         </button>
       </form>
     </div>

@@ -1,16 +1,50 @@
-/* styles.css (ваш файл стилей) */
+.container {
+  margin: 1rem 0;
+}
+
+/* <-- Загаловог поста --> */
+.post_title {
+  background-color: var(--color-bg);
+  width: 100%;
+  padding: 10px 5px;
+  margin-bottom: 10px;
+  border: 1px solid #777;
+  border-radius: 8px;
+  outline: none;
+  font-size: clamp(0.813rem, 0.673rem + 0.7vw, 1rem);
+  height: 3rem;
+  transition-duration: var(--transition-duration);
+
+}
+
+.post_title:focus {
+  border: 1px solid #777;
+}
+
+.post_title::placeholder {
+  font-style: italic;
+  color: #777;
+}
+
+/* <-- Содежпние поста --> */
 .custom-editor .ql-toolbar .ql-stroke {
-  stroke: var(--color-text); /* Цвет контура иконок */
+  stroke: var(--color-text-base);
+
 }
 
 .custom-editor .ql-toolbar .ql-fill, .custom-editor .ql-toolbar .ql-stroke.ql-fill {
-  fill: var(--color-text); /* Цвет заливки иконок */
+  fill: var(--color-text-base);
+}
+
+.custom-editor {
+  height: 10rem;
+  transition-duration: var(--transition-duration);
 }
 
 .custom-editor .ql-toolbar.ql-snow {
-  border-radius: 6px  ;
+  border-radius: 8px;
   margin-bottom: 15px;
-  border: 1px solid #7a7777;  
+  border: 1px solid #777;
 }
 
 .custom-editor .ql-snow .ql-picker-options {
@@ -21,21 +55,64 @@ span {
   color: var(--color-text);
 }
 
-.custom-editor .ql-toolbar.ql-snow + .ql-container.ql-snow {
-  border: 1px solid #7a7777;  
+.custom-editor .ql-toolbar.ql-snow+.ql-container.ql-snow {
+  border: 1px solid #777;
 }
 
 .custom-editor .ql-container {
   border-radius: 8px;
   background-color: var(--color-bg);
-  
+
 }
 
+.ql-editor.ql-blank::before {
+  color: #777;
+  content: attr(data-placeholder);
+  font-style: italic;
+  font-size: clamp(0.813rem, 0.673rem + 0.7vw, 1rem);
+  left: 5px;
+  pointer-events: none;
+  position: absolute;
+  right: 15px;
+}
 
 .custom-editor .ql-editor:hover {
   outline: none;
-  box-shadow: none; 
+  box-shadow: none;
+  overflow: none;
+}
+
+/* <-- Category --> */
+
+.post_select {
+  margin-right: 1rem;
+  background-color: var(--color-bg);
+  border: 1px solid #777;
+  border-radius: 8px;
+  outline: none;
+  height: 2rem;
+  padding: 0 10px;
+}
+
+.select_option:active,
+.select_option:focus {
+  border-radius: 8px;
 }
 
 
+.select_option {
+  padding: 0.5rem;
+  border-radius: 8px;
+  background-color: var(--color-bg);
+}
 
+
+@media (max-width: 450px) {
+  .post_title {
+    height: 2.3rem;
+  }
+
+  .content {
+    flex-direction: column;
+  }
+}

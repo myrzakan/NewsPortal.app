@@ -94,7 +94,7 @@ const DeletePosts = ({ posts }) => {
   };
 
   return (
-    <div className="relative bottom-[100px] left-[40px] w-[300px]">
+    <div className="">
       <div
         className="relative top-[10px] left-[34.8rem] w-[700px]
           h-[100px] mb-[50px] border border-[#7a7777] rounded-lg bg-[var(--color-bg)]"

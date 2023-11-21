@@ -3,7 +3,6 @@ import 'firebase/compat/database';
 import React from 'react';
 import firebaseConfig from '../FirebaseConfig';
 import CreatePostForm from './CreatePosts';
-import DeletePosts from './DeletePosts';
 
 if (!firebase.apps.length) {
   firebase.initializeApp(firebaseConfig);
@@ -64,7 +63,7 @@ const AdminPanel = () => {
       <CreatePostForm categories={categories} />
       {/* <CreateCategory /> */}
       {/* <DeleteCategory categories={categories} /> */}
-      <DeletePosts posts={posts} />
+      {/* <DeletePosts posts={posts} /> */}
     </div>
   );
 };
