@@ -84,10 +84,17 @@ export const SignIn = () => {
       })
       .catch(error => {
         console.error('Error signing in with Google:', error);
-        addToast('Ошибка: Не удалось войти с помощью Google', {
-          appearance: 'error',
-          autoDismiss: true,
-        });
+        addToast(
+          'К сожалению, в данный момент возникли временные технические неполадки, и сервис Google временно недоступен',
+          {
+            appearance: 'error',
+            autoDismiss: true,
+          },
+        );
+        // addToast('Ошибка: Не удалось войти с помощью Google', {
+        //   appearance: 'error',
+        //   autoDismiss: true,
+        // });
       });
   };
 
