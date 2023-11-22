@@ -163,12 +163,12 @@ const CreatePostForm = ({ categories }) => {
 
           {/* <== Картинка поста ==> */}
           <div className=" mx:mb-2 mx:mt-2 ml:mt-2 mx:w-full">
-            <button
+            <label
               htmlFor="image"
               className=" cursor-pointer bg-[var(--color-text-base)] hover:opacity-[0.7] text-white font-bold py-2 px-4 rounded-[8px] transition-all w-full"
             >
               {selectedFile ? 'Загружено' : 'Загрузить изображение'}
-            </button>
+            </label>
             <input
               type="file"
               id="image"
