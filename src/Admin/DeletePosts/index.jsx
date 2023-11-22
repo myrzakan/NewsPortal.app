@@ -89,6 +89,7 @@ const DeletePosts = ({ posts }) => {
   return (
     <div className={styles.delete_post}>
       <div className={styles.delete_content}>
+        <h1>Удаление поста</h1>
         <div>
           <input
             type="date"
@@ -96,8 +97,8 @@ const DeletePosts = ({ posts }) => {
             onChange={handleDateChange}
             className={styles.delete_input}
           />
-          <button onClick={handleSearch}>Search</button>
-          <button onClick={handleSortByDate}>Sort</button>
+          <button onClick={handleSearch}>Поиск</button>
+          <button onClick={handleSortByDate}>Сортировка</button>
         </div>
       </div>
 

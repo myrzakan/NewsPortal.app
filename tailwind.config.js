@@ -9,6 +9,7 @@ module.exports = {
         mx: { max: '450px' },
         ml: { max: '321px' },
         mk: { max: '364px' },
+        mr: { max: '505px' },
       },
     },
   },

@@ -1,3 +1,4 @@
+// <-- Create Post -->
 import firebase from 'firebase/compat/app';
 import 'firebase/compat/database';
 import 'firebase/compat/storage';
@@ -140,7 +141,6 @@ const CreatePostForm = ({ categories }) => {
 
         <div className="content flex justify-between items-center mt-[4.6rem] mk:mt-[5.6rem] mx:flex-col-reverse ml:mt-[5rem]">
           {/* <== Выбор категории поста ==> */}
-          {/* <div className=""> */}
           <select
             id="category"
             value={category}
@@ -148,7 +148,7 @@ const CreatePostForm = ({ categories }) => {
             className="post_select"
           >
             <option value="" className="">
-              Select a category
+              Выбор категории
             </option>
             {categories.map(category => (
               <option
@@ -160,7 +160,6 @@ const CreatePostForm = ({ categories }) => {
               </option>
             ))}
           </select>
-          {/* </div> */}
 
           {/* <== Картинка поста ==> */}
           <div className=" mx:mb-2 mx:mt-2 ml:mt-2 mx:w-full">

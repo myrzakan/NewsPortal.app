@@ -12,12 +12,16 @@
   align-items: center;
   margin: 0 10px;
 
+  h1 {
+    display: none;
+  }
+
   input {
     margin-right: 5rem;
   }
 
   button {
-    width: 100px;
+    width: 120px;
     background-color: var(--color-text-base);
     padding: 5px;
     border-radius: 8px;
@@ -70,13 +74,23 @@
   }
 }
 
-@media (max-width: 470px) {
+@media (max-width: 505px) {
   .delete_content div {
     flex-direction: column;
   }
 
   .delete_content {
-    height: 12rem;
+    height: 11rem;
+    display: block;
+    border: none;
+
+    h1 {
+      display: block;
+      text-align: center;
+      font-weight: 500;
+      font-size: 20px;
+    }
+
     input {
       display: block;
       width: 100%;
