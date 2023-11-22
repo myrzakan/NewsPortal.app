@@ -1,70 +1,115 @@
-# Getting Started with Create React App
+# News Line - Новостной портал на React
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+![Todo Junior Screenshot](./src/img/junior.png)
 
-## Available Scripts
+News Line - это современный новостной портал, предоставляющий пользователям актуальные новости со всего мира. Сайт обладает удобным интерфейсом, множеством функций, таких как поиск, фильтрация, адаптивный дизайн, уникальная Админ панель для эффективного управления контентом, комментарии для обсуждения новостей, а также система авторизации для пользователей с возможностью стандартной регистрации и аутентификации через Firebase Authentication Google.
 
-In the project directory, you can run:
+## Особенности проекта
 
-### `yarn start`
+### 1. Новости
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+News Line предоставляет широкий спектр новостей по различным темам: политика, экономика, культура, наука и многое другое. Пользователи могут легко находить интересующие их материалы.
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+### 2. Адаптивный дизайн
 
-### `yarn test`
+Сайт обладает адаптивным дизайном, что позволяет пользователям комфортно просматривать новости на любых устройствах - от компьютера до мобильного телефона.
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+### 3. Поиск и фильтрация
 
-### `yarn build`
+Мощные инструменты поиска и фильтрации позволяют пользователям быстро находить нужную информацию. Фильтрация по категориям, ключевым словам и датам обеспечивает эффективный поиск.
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+### 4. Авторизация и Уникальная Админ панель
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+Для администраторов сайта предусмотрен механизм авторизации. Уникальная Админ панель обеспечивает интуитивно понятный интерфейс для управления контентом, а также другими административными функциями.
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+### 5. Комментарии к постам
 
-### `yarn eject`
+Каждая новость предоставляет возможность для пользователей оставлять комментарии. Это способствует обсуждению и взаимодействию между читателями, позволяя им высказывать свои мнения и делиться взглядами.
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+### 6. Система Авторизации
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+Система авторизации предоставляет два способа входа:
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+- **Стандартная регистрация:** Пользователи могут зарегистрироваться, создав учетную запись с уникальным именем пользователя и паролем.
+- **Авторизация через Firebase Authentication:** Удобная и безопасная аутентификация с использованием учетных данных Google.
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+## Технологии
 
-## Learn More
+Проект был разработан с использованием следующих технологий:
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+### 1. Frontend:
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+- **React:** JavaScript-библиотека для построения пользовательских интерфейсов.
+- **Redux Toolkit:** Официальный пакет инструментов для управления состоянием приложения в React.
+- **Chakra UI:** Компонентный фреймворк для React, обеспечивающий стильный и функциональный дизайн.
+- **Tailwind CSS:** Удобный CSS-фреймворк для быстрой стилизации компонентов.
+- **Axios:** HTTP-клиент для удобного взаимодействия с сервером.
 
-### Code Splitting
+### 2. Backend:
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+- **Firebase:** Облачная платформа, предоставляющая множество сервисов, таких как Firebase Authentication, Realtime Database и другие.
 
-### Analyzing the Bundle Size
+### 3. Другие библиотеки и инструменты:
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
+- **Firebase Authentication:** Система аутентификации для безопасного входа пользователей.
+- **React Hook Form:** Библиотека для управления формами в React.
+- **React-Quill:** Реактивный текстовый редактор для ввода и редактирования контента.
+- **Prettier:** Инструмент для форматирования кода, обеспечивающий единый стиль в проекте.
 
-### Making a Progressive Web App
+## Уникальные особенности
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
+### 1. Firebase Authentication
 
-### Advanced Configuration
+Использование Firebase Authentication обеспечивает безопасный и удобный механизм аутентификации пользователей. Это позволяет им входить на сайт, оставлять комментарии и взаимодействовать с контентом.
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
+### 2. React и Redux Toolkit
 
-### Deployment
+Применение React и Redux Toolkit обеспечивает эффективное управление состоянием приложения, обеспечивая плавный и отзывчивый интерфейс.
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
+### 3. Chakra UI и Tailwind CSS
 
-### `yarn build` fails to minify
+Использование Chakra UI и Tailwind CSS обеспечивает красивый и функциональный дизайн. Компоненты Chakra UI позволяют легко создавать стильные интерфейсы, а Tailwind CSS предоставляет гибкий подход к стилизации.
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+### 4. Реактивный текстовый редактор
+
+Интеграция React-Quill обеспечивает возможность создания и редактирования контента с использованием удобного текстового редактора.
+
+### 5. Управление формами с React Hook Form
+
+Благодаря React Hook Form происходит удобное управление формами, что улучшает пользовательский опыт взаимодействия с веб-приложением.
+
+## Деплой на Vercel
+
+Проект успешно деплоился на Vercel, обеспечивая быстрый и надежный хостинг. Для развертывания на Vercel.
+
+- Ссылка на ваш деплой: **news-portal-app-gamma.vercel.app**
+
+## Запуск проекта
+
+Для запуска проекта на своем компьютере выполните следующие шаги:
+
+1. Склонируйте репозиторий на свой локальный компьютер:
+
+   ```bash
+   git clone git@github.com:myrzakan/NewsPortal.app.git
+
+   ```
+
+2. Перейдите в директорию проекта
+
+   ```bash
+   cd NewsLine
+
+   ```
+
+3. Установите зависимости:
+
+   ```bash
+   npm install или yarn install
+
+   ```
+
+4. Запустите проект:
+   ```bash
+   nmp start или yarn start
+   ```
