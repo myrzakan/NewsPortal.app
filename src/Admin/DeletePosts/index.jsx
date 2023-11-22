@@ -1,24 +1,17 @@
-// <======= React =======>
-import React from 'react';
-
-// <== Подключение модуля Firebase (compat/app для совместимости с Firebase v8) ==>
+// <-- Delete Post -->
 import firebase from 'firebase/compat/app';
 import 'firebase/compat/database';
-
-// <== Подключение модуля react-toastify для отображения уведомлений ==>
+import React from 'react';
 import { toast } from 'react-toastify';
+import styles from './DeletePost.module.scss';
 
-// <== Объявление компонента DeletePosts и передача ему пропсов ==>
 const DeletePosts = ({ posts }) => {
-  // <== Состояние для выбранной даты ==>
   const [selectedDate, setSelectedDate] = React.useState(null);
-
-  // <== Состояние для отфильтрованных постов ==>
   const [filteredPosts, setFilteredPosts] = React.useState(posts);
 
   // <== Обработчик удаления поста ==>
   const handleDeletePost = postId => {
-    //                                    <== Запрос на подтверждение удаления ==>
+    //
     const shouldDelete = window.confirm(
       'Вы действительно хотите удалить этот пост?',
     );
@@ -33,14 +26,14 @@ const DeletePosts = ({ posts }) => {
     const postRef = database.ref(`posts/${postId}`);
 
     postRef
-      .remove() // <== Удаление поста из базы данных Firebase ==>
+      .remove()
       .then(() => {
         toast.warning('Post successfully deleted', {
           position: 'top-center',
           autoClose: 2000,
         });
 
-        // <==== Обновление списка постов после удаления ====>
+        // <== Обновление списка постов после удаления ==>
         const updatedPosts = filteredPosts.filter(post => post.id !== postId);
         setFilteredPosts(updatedPosts);
       })
@@ -94,43 +87,24 @@ const DeletePosts = ({ posts }) => {
   };
 
   return (
-    <div className="">
-      <div
-        className="relative top-[10px] left-[34.8rem] w-[700px]
-          h-[100px] mb-[50px] border border-[#7a7777] rounded-lg bg-[var(--color-bg)]"
-      >
-        <input
-          type="date"
-          value={selectedDate ? selectedDate.toISOString().slice(0, 10) : ''} // Отображение выбранной даты в элементе input
-          onChange={handleDateChange}
-          className=" p-1 w-[160px] relative left-9 top-7 border
-          border-[#7a7777] rounded-lg bg-[var(--color-bg)] focus:outline-none"
-        />
-        <button
-          onClick={handleSearch}
-          className="relative top-7 left-[100px] w-[170px]
-          bg-[var(--color-text-base)] p-1 px-7 rounded-lg hover:opacity-[0.6]"
-        >
-          Поиск
-        </button>
-        <button
-          onClick={handleSortByDate}
-          className="relative left-[120px] top-7 w-[170px] p-1 px-7
-          bg-[var(--color-text-base)] rounded-lg hover:opacity-[0.6]"
-        >
-          Сортировать
-        </button>
+    <div className={styles.delete_post}>
+      <div className={styles.delete_content}>
+        <div>
+          <input
+            type="date"
+            value={selectedDate ? selectedDate.toISOString().slice(0, 10) : ''}
+            onChange={handleDateChange}
+            className={styles.delete_input}
+          />
+          <button onClick={handleSearch}>Search</button>
+          <button onClick={handleSortByDate}>Sort</button>
+        </div>
       </div>
 
-      <ul className="relative left-[557px] bottom-2">
-        {filteredPosts.length > 0 ? ( // Если есть отфильтрованные посты
-          // Отображение списка отфильтрованных постов
+      <ul className={styles.delete_post_list}>
+        {filteredPosts.length > 0 ? (
           filteredPosts.map(post => (
-            <li
-              key={post.id}
-              className="border border-[#7a7777]
-              rounded-lg my-4 p-4 w-[700px]"
-            >
+            <li key={post.id}>
               <h3>{post.title}</h3>
               <p>
                 Категория:
@@ -147,7 +121,7 @@ const DeletePosts = ({ posts }) => {
               <button
                 onClick={() => handleDeletePost(post.id)}
                 className=" bg-[var(--color-text-base)]
-                rounded-lg p-1 mt-1 hover:opacity-[0.6]"
+                rounded-lg py-1 px-2 mt-1 hover:opacity-[0.6]"
               >
                 Удалить
               </button>
@@ -155,12 +129,7 @@ const DeletePosts = ({ posts }) => {
           ))
         ) : (
           // Отображение сообщения, если нет результатов
-          <li
-            className="w-[700px] h-10 pl-2 pt-1.5 border
-            border-[#7a7777] rounded-lg flex justify-center"
-          >
-            Нет результатов
-          </li>
+          <li className="w-full text-center">Нет результатов</li>
         )}
       </ul>
     </div>

@@ -27,10 +27,6 @@ const CreatePostForm = ({ categories }) => {
   };
 
   const handleImageChange = event => {
-    // if (event.target.files[0]) {
-    //   setImage(event.target.files[0]);
-    // }
-
     const file = event.target.files[0];
 
     if (file) {
@@ -142,39 +138,38 @@ const CreatePostForm = ({ categories }) => {
           />
         </div>
 
-        <div className="content flex justify-between items-center mt-[4.5rem] mk:mt-[5.6rem] mx:flex-col-reverse ml:mt-[5rem]">
+        <div className="content flex justify-between items-center mt-[4.6rem] mk:mt-[5.6rem] mx:flex-col-reverse ml:mt-[5rem]">
           {/* <== Выбор категории поста ==> */}
-          <div>
-            <select
-              id="category"
-              value={category}
-              onChange={handleCategoryChange}
-              className="post_select"
-            >
-              {/* bg-[var(--color-bg)] border border-[#7a7777] p-2 rounded-lg */}
-              <option value="" className="">
-                Select a category
+          {/* <div className=""> */}
+          <select
+            id="category"
+            value={category}
+            onChange={handleCategoryChange}
+            className="post_select"
+          >
+            <option value="" className="">
+              Select a category
+            </option>
+            {categories.map(category => (
+              <option
+                className="select_option"
+                key={category.id}
+                value={category.name}
+              >
+                {category.name}
               </option>
-              {categories.map(category => (
-                <option
-                  className="select_option"
-                  key={category.id}
-                  value={category.name}
-                >
-                  {category.name}
-                </option>
-              ))}
-            </select>
-          </div>
+            ))}
+          </select>
+          {/* </div> */}
 
           {/* <== Картинка поста ==> */}
-          <div className=" mx:mb-3 mx:mt-2 ml:mt-4">
-            <label
+          <div className=" mx:mb-2 mx:mt-2 ml:mt-2 mx:w-full">
+            <button
               htmlFor="image"
-              className=" cursor-pointer bg-[var(--color-text-base)] hover:opacity-[0.7] text-white font-bold py-2 px-4 rounded-[8px] transition-all"
+              className=" cursor-pointer bg-[var(--color-text-base)] hover:opacity-[0.7] text-white font-bold py-2 px-4 rounded-[8px] transition-all w-full"
             >
               {selectedFile ? 'Загружено' : 'Загрузить изображение'}
-            </label>
+            </button>
             <input
               type="file"
               id="image"
@@ -188,7 +183,7 @@ const CreatePostForm = ({ categories }) => {
         <button
           type="submit"
           disabled={isLoading}
-          className={`p-2 mt-2 w-full bg-[var(--color-text-base)] rounded-[8px] text-[var(--text-base)] font-bold hover:opacity-[0.8]
+          className={`p-2 mt-3 w-full bg-[var(--color-text-base)] rounded-[8px] text-[var(--text-base)] font-bold hover:opacity-[0.8]
           ${isLoading ? 'opacity-60 cursor-not-allowed' : ''}`}
         >
           {isLoading ? 'Создание...' : 'Создать пость'}

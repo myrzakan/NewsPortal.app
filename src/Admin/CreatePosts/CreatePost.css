@@ -1,7 +1,3 @@
-.container {
-  margin: 1rem 0;
-}
-
 /* <-- Загаловог поста --> */
 .post_title {
   background-color: var(--color-bg);
@@ -110,6 +106,13 @@ span {
 @media (max-width: 450px) {
   .post_title {
     height: 2.3rem;
+  }
+
+  .post_select {
+    height: 3rem;
+    width: 100%;
+    /* margin-top: 10px; */
+    margin: 5px 10px;
   }
 
   .content {
