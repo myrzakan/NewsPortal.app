@@ -42,13 +42,18 @@
   // width: 30rem;
   padding: 1rem;
   transition-duration: var(--transition-duration);
-  box-shadow: var(--shadow);
-  // border: 1px solid #777;
-  border-radius: 1rem;
+  // box-shadow: var(--shadow);
+  border: 1px solid #777;
+  border-radius: 12px;
+  padding: 20px;
   margin: 0 10px;
 
   Button {
     width: 100%;
+  }
+
+  label {
+    font-weight: 500;
   }
 }
 
@@ -72,4 +77,5 @@
   margin-top: 1rem;
   text-align: center;
   font-size: 16px;
+  font-weight: 500;
 }

@@ -25,11 +25,9 @@
 
 // <-- loading -->
 .loading {
-  color: var(--color-text-base);
-  font-weight: 500;
   display: flex;
   justify-content: center;
-  margin-bottom: 31rem;
-  padding-top: 27rem;
-  font-size: clamp(1.25rem, 0.833rem + 2.08vw, 1.875rem);
+  align-items: center;
+  padding-top: 23rem;
+  padding-bottom: 30rem;
 }

@@ -7,6 +7,7 @@ import firebaseConfig from '../../../FirebaseConfig';
 import styles from './PostDetails.module.scss';
 import Comments from './components/Comments';
 import { AuthButtonPostDetals } from './components/authButton';
+import { Radio } from 'react-loader-spinner';
 
 const PostDetails = () => {
   const { postId } = useParams();
@@ -40,7 +41,23 @@ const PostDetails = () => {
   }, []);
 
   if (loading) {
-    return <div className={styles.loading}>Загрузка...</div>;
+    return (
+      <div className={styles.loading}>
+        <Radio
+          visible={true}
+          height="70"
+          width="70"
+          ariaLabel="radio-loading"
+          wrapperStyle={{}}
+          wrapperClass="radio-wrapper"
+          colors={[
+            'var(--color-text-base)',
+            'var(--color-text-base)',
+            'var(--color-text-base)',
+          ]}
+        />
+      </div>
+    );
   }
 
   const formattedTimestamp = new Date(post.timestamp).toLocaleString();

@@ -274,7 +274,7 @@ export const SignIn = () => {
             {isLoading ? 'Войти...' : 'Войти'}
           </Button>
 
-          <p className="text-center my-2 text-[#7a7777]">или</p>
+          <p className="text-center my-2 text-[#7a7777] font-[500]">или</p>
 
           {/* <== Button Gogle ==> */}
           <Button

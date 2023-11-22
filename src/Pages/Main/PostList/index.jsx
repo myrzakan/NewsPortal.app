@@ -10,6 +10,7 @@ import firebaseConfig from '../../../FirebaseConfig';
 import Pagination from './Components/Pagination';
 import PostItem from './Components/PostItem';
 
+import { Radio } from 'react-loader-spinner';
 import { Category } from './Components/Category';
 import { Search } from './Components/Search';
 import cls from './PotsList.module.scss';
@@ -117,24 +118,40 @@ const PostList = () => {
 
   return (
     <div className={cls.container}>
-      {/* <== Search ==> */}
-      <Search
-        searchText={searchText}
-        setSearchText={setSearchText}
-        setCurrentPage={setCurrentPage}
-      />
-      {/* <== Category ==> */}
-      <Category
-        setSelectedCategory={setSelectedCategory}
-        setCurrentPage={setCurrentPage}
-        categories={categories}
-        selectedCategory={selectedCategory}
-      />
       {/* <== Loading ==> */}
       {loading ? (
-        <div className={cls.loading}>Загрузка...</div>
+        // <div className={cls.loading}>Загрузка...</div>
+        <div className={cls.loading}>
+          <Radio
+            visible={true}
+            height="70"
+            width="70"
+            ariaLabel="radio-loading"
+            wrapperStyle={{}}
+            wrapperClass="radio-wrapper"
+            colors={[
+              'var(--color-text-base)',
+              'var(--color-text-base)',
+              'var(--color-text-base)',
+            ]}
+          />
+        </div>
       ) : (
         <>
+          {/* <== Search ==> */}
+          <Search
+            searchText={searchText}
+            setSearchText={setSearchText}
+            setCurrentPage={setCurrentPage}
+          />
+          {/* <== Category ==> */}
+          <Category
+            setSelectedCategory={setSelectedCategory}
+            setCurrentPage={setCurrentPage}
+            categories={categories}
+            selectedCategory={selectedCategory}
+          />
+
           {/* <== Post ==> */}
           <div ref={postListRef}>
             {currentPosts.length > 0 ? (

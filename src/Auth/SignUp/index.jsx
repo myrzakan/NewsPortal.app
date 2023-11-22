@@ -193,7 +193,7 @@ export const SignUp = () => {
 
           {/* <== Input Email ==> */}
           <FormControl isInvalid={errors.email} className="mb-3">
-            <FormLabel>Email</FormLabel>
+            <label>Email</label>
             <Input
               type="email"
               size="lg"
@@ -219,7 +219,7 @@ export const SignUp = () => {
 
           {/* <== Input Password ==> */}
           <FormControl isInvalid={errors.password} className="mb-3">
-            <FormLabel>Пароль</FormLabel>
+            <label>Пароль</label>
             <InputGroup>
               <Input
                 type={showPass ? 'text' : 'password'}
@@ -265,7 +265,7 @@ export const SignUp = () => {
 
           {/* <== Input Password Confirm ==> */}
           <FormControl isInvalid={errors.passwordConfirm} className="mb-3">
-            <FormLabel>Подтверждение пароли</FormLabel>
+            <label>Подтверждение пароли</label>
             <InputGroup>
               <Input
                 type={showConfirmPass ? 'text' : 'password'}
@@ -330,7 +330,7 @@ export const SignUp = () => {
             {isLoading ? 'Регистрация...' : 'Регистрация'}
           </Button>
 
-          <p className="text-center my-2 text-[#7a7777]">или</p>
+          <p className="text-center my-2 text-[#7a7777] font-[500]">или</p>
 
           {/* <== Button SignUp Google ==> */}
           <Button
