@@ -1,8 +1,12 @@
 import firebase from 'firebase/compat/app';
 import 'firebase/compat/database';
 import React from 'react';
+import { Radio } from 'react-loader-spinner';
 import firebaseConfig from '../FirebaseConfig';
 import CreatePostForm from './CreatePosts';
+import DeletePosts from './DeletePosts';
+
+import cls from './Admin.module.scss';
 
 if (!firebase.apps.length) {
   firebase.initializeApp(firebaseConfig);
@@ -52,8 +56,20 @@ const AdminPanel = () => {
 
   if (loading) {
     return (
-      <div className="mb-[32rem] pt-[20rem] relative left-[53rem] top-[5rem] w-[20rem] text-[40px]">
-        Загрузка...
+      <div className={cls.loading}>
+        <Radio
+          visible={true}
+          height="70"
+          width="70"
+          ariaLabel="radio-loading"
+          wrapperStyle={{}}
+          wrapperClass="radio-wrapper"
+          colors={[
+            'var(--color-text-base)',
+            'var(--color-text-base)',
+            'var(--color-text-base)',
+          ]}
+        />
       </div>
     );
   }
@@ -63,7 +79,7 @@ const AdminPanel = () => {
       <CreatePostForm categories={categories} />
       {/* <CreateCategory /> */}
       {/* <DeleteCategory categories={categories} /> */}
-      {/* <DeletePosts posts={posts} /> */}
+      <DeletePosts posts={posts} />
     </div>
   );
 };

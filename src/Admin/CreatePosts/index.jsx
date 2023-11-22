@@ -130,6 +130,7 @@ const CreatePostForm = ({ categories }) => {
                 // ['blockquote', 'code-block'],
                 // [{ header: [1, 2, 3, 4, 5, 6, false] }],
                 [{ background: ['var(--color-text-base)'] }],
+                [{ color: ['var(--color-text-base)'] }],
                 // [{ font: [] }],
                 [{ align: [] }],
                 // ['clean'],
@@ -141,7 +142,7 @@ const CreatePostForm = ({ categories }) => {
           />
         </div>
 
-        <div className="content flex justify-between items-center mt-[4rem] mx:flex-col-reverse ml:mt-[5rem]">
+        <div className="content flex justify-between items-center mt-[4.5rem] mk:mt-[5.6rem] mx:flex-col-reverse ml:mt-[5rem]">
           {/* <== Выбор категории поста ==> */}
           <div>
             <select

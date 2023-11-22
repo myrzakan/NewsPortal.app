@@ -8,6 +8,7 @@ module.exports = {
         md: '768px',
         mx: { max: '450px' },
         ml: { max: '321px' },
+        mk: { max: '364px' },
       },
     },
   },
