@@ -4,7 +4,6 @@ import { ToastContainer } from 'react-toastify';
 
 import AdminPanel from './Admin/AdminPanel';
 import { AuthRoutes } from './Auth/Routes';
-// import Footer from './Components/Footer/Index.jsx';
 import NotFound from './NotFound';
 import About from './Pages/About';
 import Ad from './Pages/Ad';
