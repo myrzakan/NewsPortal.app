@@ -9,7 +9,7 @@
   outline: none;
   font-size: clamp(0.813rem, 0.673rem + 0.7vw, 1rem);
   height: 3rem;
-  transition-duration: var(--transition-duration);
+  transiti`on-duration: var(--transition-duration);
 
 }
 
