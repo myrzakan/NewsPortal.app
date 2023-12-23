@@ -110,9 +110,18 @@ export const SignIn = () => {
       );
 
       const user = userCredential.user;
+      const admin = {
+        name: 'admin',
+        email: 'admin@gmail.com',
+        password: 'admin2004',
+      };
 
-      if (email === 'admin@gmail.com' && password === 'admin2004') {
+      if (email === admin.email && password === admin.password) {
         navigate('/AdminPanel');
+        // addToast(`Успешно вошли как админстратор`, {
+        //   appearance: 'success',
+        //   autoDismiss: true,
+        // });
       }
 
       //? <-- Получае дополнительные данные о пользователе из Firebase -->
@@ -136,7 +145,7 @@ export const SignIn = () => {
       setIsLoading(false);
       reset();
       navigate('/');
-      addToast(`Успешно вошли ${userData?.username}`, {
+      addToast(`Успешно вошли ${userData?.username} || ${admin?.name}`, {
         appearance: 'success',
         autoDismiss: true,
       });

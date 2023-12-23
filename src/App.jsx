@@ -2,6 +2,10 @@ import { Route, Routes } from 'react-router-dom';
 import { ToastProvider } from 'react-toast-notifications';
 import { ToastContainer } from 'react-toastify';
 
+import { SpeedInsights } from '@vercel/speed-insights/next';
+import BurgerMenu from 'BurgerMenu';
+import Footer from 'Components/Footer/Index';
+import Header from 'Components/Header';
 import AdminPanel from './Admin/AdminPanel';
 import { AuthRoutes } from './Auth/Routes';
 import NotFound from './NotFound';
@@ -12,10 +16,6 @@ import PostDetails from './Pages/Main/PostDetails';
 import PostList from './Pages/Main/PostList';
 import Policy from './Pages/Policy';
 import TermsOfUse from './Pages/TermsOfUse';
-
-import BurgerMenu from 'BurgerMenu';
-import Footer from 'Components/Footer/Index';
-import Header from 'Components/Header';
 import './styledToast/index.css';
 
 function App() {
@@ -40,6 +40,7 @@ function App() {
       </ToastProvider>
       <Footer />
       <ToastContainer />
+      <SpeedInsights />
     </div>
   );
 }
