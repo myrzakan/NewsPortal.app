@@ -75,10 +75,6 @@ export const SignUp = () => {
             autoDismiss: true,
           },
         );
-        // addToast('Ошибка: Не удалось войти с помощью Google', {
-        //   appearance: 'error',
-        //   autoDismiss: true,
-        // });
       });
   };
 
