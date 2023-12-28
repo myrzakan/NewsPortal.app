@@ -1,5 +1,4 @@
-import { Box, Text, Link } from '@chakra-ui/react';
-import React from 'react';
+import { Box, Link, Text } from '@chakra-ui/react';
 import { Link as RouterLink } from 'react-router-dom';
 import styles from './authButtonCommitsStyles.module.scss';
 
