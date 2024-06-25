@@ -2,7 +2,7 @@ import { Route, Routes } from 'react-router-dom';
 import { ToastProvider } from 'react-toast-notifications';
 import { ToastContainer } from 'react-toastify';
 
-import { SpeedInsights } from "@vercel/speed-insights/react"
+import { SpeedInsights } from '@vercel/speed-insights/react';
 import BurgerMenu from 'BurgerMenu';
 import Footer from 'Components/Footer/Index';
 import Header from 'Components/Header';
