@@ -1,13 +1,13 @@
 import firebase from 'firebase/compat/app';
 import 'firebase/compat/database';
 import React from 'react';
+import { Radio } from 'react-loader-spinner';
 import { useSelector } from 'react-redux';
 import { useParams } from 'react-router-dom';
 import firebaseConfig from '../../../FirebaseConfig';
 import styles from './PostDetails.module.scss';
 import Comments from './components/Comments';
 import { AuthButtonPostDetals } from './components/authButton';
-import { Radio } from 'react-loader-spinner';
 
 const PostDetails = () => {
   const { postId } = useParams();
